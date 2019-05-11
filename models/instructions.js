@@ -5,7 +5,8 @@ const instructionsSchema = new Schema({
     name: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        index: true
     },
     inventory: [{
         type: Schema.ObjectId, ref: "Inventory"
