@@ -1,24 +1,36 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Orders from "./pages/Orders";
+import Inventory from "./pages/Inventory";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
-  );
+
+class App extends React.Component {
+  state = {
+    user: "",
+    token: {}
+  }
+
+  componentDidMount = () => {
+    console.log(this.state);
+  }
+
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Nav />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/products" component={Products} />
+          <Route exact path="/orders" component={Orders} />
+          <Route exact path="/inventory" component={Inventory}/>
+        </div>
+      </Router>
+    )
+  };
 }
 
 export default App;
