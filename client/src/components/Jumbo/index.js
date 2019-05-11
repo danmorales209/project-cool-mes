@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron, Container } from 'reactstrap';
 
-const Jumbotron = (props) => {
+const Jumbo = (props) => {
   return (
     <div>
       <Jumbotron fluid>
