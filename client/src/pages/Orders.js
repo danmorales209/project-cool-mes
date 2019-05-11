@@ -12,7 +12,7 @@ class Orders extends Component {
     newOrders:[],
     queuedOrders:[],
     completeOrders:[],
-
+    
   };
 
   componentDidMount() {
