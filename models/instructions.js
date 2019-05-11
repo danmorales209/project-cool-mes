@@ -15,7 +15,7 @@ const instructionsSchema = new Schema({
         type: Schema.ObjectId, ref: "Equpiment"
     }],
     duration: {
-        type: Float
+        type: Number
     },
 });
 
