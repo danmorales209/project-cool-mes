@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import DeleteBtn from "../components/DeleteBtn";
-import reactJumbo from "../components/Jumbo";
+import Jumbotron from "../components/Jumbo";
+import Card from "../components/Card";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -27,40 +28,39 @@ class Home extends Component {
                     <Col size="md-6">
                         <Row>
                             <Col size="md-6">
-                                <reactCard>
+                                <Card>
                                 <h2>Products/Recipes</h2>
-                                </reactCard>
+                                </Card>
                             </Col>
                             <Col size="md-6">
-                                <reactCard>
+                                <Card>
                                 <h2>Monitor Inventory</h2>
-                                </reactCard>
+                                </Card>
                             </Col>
                         </Row>
                         <Row>
                             <Col size="md-6">
-                                <reactCard>
+                                <Card>
                                 <h2>Orders</h2>
-                                </reactCard>
+                                </Card>
                             </Col>
                             <Col size="md-6">
-                                <reactCard>
+                                <Card>
                                     <h2>Monitor Inventory</h2>
-                                </reactCard>
+                                </Card>
                             </Col>
                         </Row>
                     </Col>
                     <Col size="md-6">
-                        <reactJumbo>
+                        <Jumbotron>
                             <h2>Dashboard</h2>
-                        // dashboard goes here
                         // Product A Inventory
                         // Product B Inventory
                         // Product C Inventory
                         // active activeOrders
                         // completedOrders
                         // any alerts
-                        </reactJumbo>
+                        </Jumbotron>
                     </Col>
                 </Row>
             </Container>

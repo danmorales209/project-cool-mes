@@ -25,6 +25,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>New Orders</h1>
+              <Card>
+
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
@@ -32,6 +35,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Queued Orders</h1>
+              <Card>
+                
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
@@ -39,6 +45,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Completed Orders</h1>
+              <Card>
+                
+              </Card>
             </Jumbotron>
           </Col>
         </Row>

@@ -26,6 +26,8 @@ class Products extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Current Products</h1>
+              <Card>
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
