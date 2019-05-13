@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { Component } from "react";
+// import DeleteBtn from "../components/DeleteBtn";
+import Jumbotron from "../components/Jumbo";
+// import API from "../utils/API";
+// import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../components/Grid";
+// import { List, ListItem } from "../components/List";
+// import { Input, TextArea, FormBtn } from "../components/Form";
 
-function Login(props) {
-  return (
-    <>
-      <div>
-        <form>
-          <label for="user-name">Username</label>
-          <input type="text" id="user-name" placeholder="please enter a username"></input>
+class Login extends Component {
+  state = {
+    username: "",
+    password: "",
+  };
 
-          <label for="user-name">Username</label>
-          <input type="text" id="user-email" placeholder="something@somewhere.domang"></input>
+  componentDidMount() {
+    // this.loadBooks();
+  }
 
-          <button type="submit">Login</button>
-        </form>
+  render() {
+    return (
+      <Container fluid>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>Log In</h1>
+              <form>
+                <label for="user-name">Username</label>
+                <input type="text" id="user-name" placeholder="username"></input>
 
-      </div>
-    </>
-  )
+                <label for="user-password">Password</label>
+                <input type="text" id="user-password" placeholder="password"></input>
+
+                <button type="submit">Login</button>
+              </form>
+            </Jumbotron>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
-
 export default Login;
