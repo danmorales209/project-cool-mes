@@ -3,7 +3,7 @@ const router = require("express").Router();
 const inventoryRoute = require("./inventory");
 
 // API Routes
-router.route("/inventory", inventoryRoute);
+router.use("/inventory", inventoryRoute);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
