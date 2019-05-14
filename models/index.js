@@ -4,5 +4,5 @@ module.exports = {
   Inventory: require("./inventory"),
   Order: require("./order"),
   Recipe: require("./recipe"),
-  User: require("./user"),
+  User: require("./user")
 };
