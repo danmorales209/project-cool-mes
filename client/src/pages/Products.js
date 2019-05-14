@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbo";
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -26,6 +27,8 @@ class Products extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Current Products</h1>
+              <Card>
+              </Card>
             </Jumbotron>
           </Col>
         </Row>

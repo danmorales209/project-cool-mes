@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbo";
+import { Card } from 'reactstrap';
+import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -12,7 +12,6 @@ class Orders extends Component {
     newOrders:[],
     queuedOrders:[],
     completeOrders:[],
-    
   };
 
   componentDidMount() {
@@ -26,6 +25,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>New Orders</h1>
+              <Card>
+
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
@@ -33,6 +35,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Queued Orders</h1>
+              <Card>
+                
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
@@ -40,6 +45,9 @@ class Orders extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>Completed Orders</h1>
+              <Card>
+                
+              </Card>
             </Jumbotron>
           </Col>
         </Row>
