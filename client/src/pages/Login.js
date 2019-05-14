@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-// import { Input, TextArea, FormBtn } from "../components/Form";
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import LogInCarousel from "../components/LogInCarousel";
+// import { LogInCarousel } from "../components/LogInCarousel";
 
-class Login extends Component {
+export default class Login extends React.Component {
   state = {
     username: "",
     password: "",
@@ -20,23 +17,31 @@ class Login extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <div className="container">
         <Row>
-          <Col size="md-6">
-            <h1>Log In</h1>
-            <form>
-              <label for="user-name">Username</label>
-              <input type="text" id="user-name" placeholder="username"></input>
-
-              <label for="user-password">Password</label>
-              <input type="text" id="user-password" placeholder="password"></input>
-
-              <button type="submit">Login</button>
-            </form>
+          <Col md={12}>
+            <LogInCarousel>
+            </LogInCarousel>
           </Col>
         </Row>
-      </Container>
+        <Form>
+          <Row form>
+            <Col md={3}>
+              <FormGroup>
+                <Label for="exampleEmail">Email</Label>
+                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+              </FormGroup>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Label for="examplePassword">Password</Label>
+                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Button>Sign in</Button>
+        </Form>
+      </div>
     );
   }
 }
-export default Login;
