@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Card } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
