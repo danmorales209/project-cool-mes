@@ -2,11 +2,24 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 export default class Example extends React.Component {
+
+  state = {
+    index: 1,
+    steps: [1],
+
+  }
+
   handleAddStep = () => {
     return (
-      <Input type="textarea" name="text" className="stepsInput" />,
-      console.log("btn clicked")
+      this.setState({
+        steps: [...this.state.steps,this.state.index +1],
+        index: this.state.index +1
+        }),
+      console.log(this.state.steps)
     )
+  }
+  handleChange = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
   render() {
     return (
@@ -21,7 +34,8 @@ export default class Example extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="stepsInput">Steps</Label>
-          <Input type="textarea" name="text" className="stepsInput" />
+          {/* { create an array basedon step number and return input field based on that} */}
+          {this.state.steps.map(el => <Input id={el} key={el} name={"stepsInput"+el} placeholder="Add step info..."></Input>)}
           <Button onClick={this.handleAddStep}>Add Another Step</Button>
         </FormGroup>
         <Button>Submit</Button>
