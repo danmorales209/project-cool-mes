@@ -1,13 +1,9 @@
 const path = require("path");
 const router = require("express").Router();
-const GET = require('./get');
-const PUT = require('./put');
-const POST = require('./post');
+const inventoryRoute = require("./inventory");
 
 // API Routes
-router.route('/get', GET);
-router.route('/put', PUT);
-router.route('/post', POST);
+router.route("/inventory", inventoryRoute);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
