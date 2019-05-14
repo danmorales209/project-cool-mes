@@ -14,7 +14,6 @@ class Products extends Component {
     productsArray:[],
     newProduct:"",
     newProductDesc:"",
-    
   };
 
   componentDidMount() {
