@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
@@ -24,9 +26,12 @@ class Orders extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
-
+          <Col size="md-12">
             <h1>New Orders</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-3">
             <Card>
               <CardBody>
                 <CardTitle>New Order</CardTitle>
@@ -34,24 +39,34 @@ class Orders extends Component {
                 <Button>Start New Order</Button>
               </CardBody>
             </Card>
+          </Col>
+          <Col size="md-3">
             <OrderCard>
               A card for each Active order in the database.
             </OrderCard>
           </Col>
         </Row>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <h1>Queued Orders</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-3">
             <OrderCard>
               A card for each Queued order in the database.
             </OrderCard>
           </Col>
         </Row>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <h1>Completed Orders</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-3">
             <OrderCard>
-              A card for each Completed order in the database. 
+              A card for each Completed order in the database.
             </OrderCard>
           </Col>
         </Row>
