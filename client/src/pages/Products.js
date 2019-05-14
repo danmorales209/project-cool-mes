@@ -7,13 +7,13 @@ import { Jumbotron } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 // import { List, ListItem } from "../components/List";
 // import { Input, TextArea, FormBtn } from "../components/Form";
+import AddProductForm from "../components/AddProductForm"
 
 class Products extends Component {
   state = {
     productsArray:[],
     newProduct:"",
     newProductDesc:"",
-    
   };
 
   componentDidMount() {
@@ -24,10 +24,11 @@ class Products extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-6"> 
             <Jumbotron>
               <h1>Current Products</h1>
               <Card>
+                <AddProductForm/>
               </Card>
             </Jumbotron>
           </Col>
