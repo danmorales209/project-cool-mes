@@ -28,12 +28,12 @@ class Home extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-6">
+                    <Col size="md-8">
                         <Row>
-                            <Col size="md-6">
+                            <Col size="md-3">
                                 <h2>Products/Recipes</h2>
                                 <Card>
-                                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
                                         <CardSubtitle>Card subtitle</CardSubtitle>
@@ -42,10 +42,10 @@ class Home extends Component {
                                     </CardBody>
                                 </Card>
                             </Col>
-                            <Col size="md-6">
+                            <Col size="md-3">
                                 <h2>Monitor Inventory</h2>
                                 <Card>
-                                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
                                         <CardSubtitle>Card subtitle</CardSubtitle>
@@ -54,12 +54,10 @@ class Home extends Component {
                                     </CardBody>
                                 </Card>
                             </Col>
-                        </Row>
-                        <Row>
-                            <Col size="md-6">
+                            <Col size="md-3">
                                 <h2>Orders</h2>
                                 <Card>
-                                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
                                         <CardSubtitle>Card subtitle</CardSubtitle>
@@ -68,10 +66,10 @@ class Home extends Component {
                                     </CardBody>
                                 </Card>
                             </Col>
-                            <Col size="md-6">
+                            <Col size="md-3">
                                 <h2>Manufacturing</h2>
                                 <Card>
-                                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
                                         <CardSubtitle>Card subtitle</CardSubtitle>
@@ -82,7 +80,7 @@ class Home extends Component {
                             </Col>
                         </Row>
                     </Col>
-                    <Col size="md-6">
+                    <Col size="md-4">
                         <Jumbotron>
                             <h2>Dashboard</h2>
                         // Product A Inventory
