@@ -22,18 +22,16 @@ class Login extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-              <h1>Log In</h1>
-              <form>
-                <label for="user-name">Username</label>
-                <input type="text" id="user-name" placeholder="username"></input>
+            <h1>Log In</h1>
+            <form>
+              <label for="user-name">Username</label>
+              <input type="text" id="user-name" placeholder="username"></input>
 
-                <label for="user-password">Password</label>
-                <input type="text" id="user-password" placeholder="password"></input>
+              <label for="user-password">Password</label>
+              <input type="text" id="user-password" placeholder="password"></input>
 
-                <button type="submit">Login</button>
-              </form>
-            </Jumbotron>
+              <button type="submit">Login</button>
+            </form>
           </Col>
         </Row>
       </Container>
