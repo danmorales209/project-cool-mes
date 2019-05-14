@@ -31,8 +31,8 @@ class Home extends Component {
                     <Col size="md-8">
                         <Row>
                             <Col size="md-3">
-                                <h2>Products/Recipes</h2>
                                 <Card>
+                                    <h2>Products/Recipes</h2>
                                     <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
@@ -43,8 +43,8 @@ class Home extends Component {
                                 </Card>
                             </Col>
                             <Col size="md-3">
-                                <h2>Monitor Inventory</h2>
                                 <Card>
+                                    <h2>Monitor Inventory</h2>
                                     <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
@@ -55,8 +55,8 @@ class Home extends Component {
                                 </Card>
                             </Col>
                             <Col size="md-3">
-                                <h2>Orders</h2>
                                 <Card>
+                                    <h2>Orders</h2>
                                     <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
@@ -67,8 +67,8 @@ class Home extends Component {
                                 </Card>
                             </Col>
                             <Col size="md-3">
-                                <h2>Manufacturing</h2>
                                 <Card>
+                                    <h2>Manufacturing</h2>
                                     <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
                                     <CardBody>
                                         <CardTitle>Card title</CardTitle>
@@ -83,12 +83,12 @@ class Home extends Component {
                     <Col size="md-4">
                         <Jumbotron>
                             <h2>Dashboard</h2>
-                        // Product A Inventory
-                        // Product B Inventory
-                        // Product C Inventory
-                        // active activeOrders
-                        // completedOrders
-                        // any alerts
+                            <p>Product A Inventory</p>
+                            <p>Product B Inventory</p>
+                            <p>Product C Inventory</p>
+                            <p>active activeOrders</p>
+                            <p>completedOrders</p>
+                            <p>any alerts</p>
                         </Jumbotron>
                     </Col>
                 </Row>
