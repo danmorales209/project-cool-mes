@@ -14,6 +14,7 @@ module.exports = {
       return res.status(200).send({ msg: "yo token is good!" });
     });
   },
+
   login: function(req, res) {
     db.User.findOne({ where: { email: req.body.email } }).then(u => {
       if (!u) res.status(400).send({ msg: "Invalid Email or Password" });
@@ -25,6 +26,7 @@ module.exports = {
       });
     });
   },
+  
   signup: function(req, res) {
     db.User.findOne({ email: req.body.email }).then(u => {
       if (u) res.status(400).send({ msg: "Invalid Email or Password" });
