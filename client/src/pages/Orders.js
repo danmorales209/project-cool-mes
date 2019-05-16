@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, Jumbotron
 } from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
+import { Col, Row, Container } from "../components/Grid";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
 import OrderCard from "../components/OrderCards";
 // import { List, ListItem } from "../components/List";
 // import { Input, TextArea, FormBtn } from "../components/Form";
