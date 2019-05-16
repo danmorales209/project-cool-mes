@@ -1,0 +1,20 @@
+.bg-primary {
+    background-color: #29B6F6 !important;
+}
+.btn-secondary {
+    color: black;
+    background-color: #29B6F6;
+    border-color: #29B6F6;
+}
+.jumbotron{
+    background-color: #29B6F6;
+    color: black;
+    margin:10px;
+    padding: 10px;
+}
+.navbar-dark .navbar-brand {
+    color: black;
+}
+.card{
+    margin:7px;
+}
