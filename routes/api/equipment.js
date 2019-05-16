@@ -3,7 +3,6 @@ const equipmentController = require("../../controllers/equipmentController");
 
 // Matches with "/api/equipment"
 router.route("/GET").get(equipmentController.findAll);
-
 router.route("/POST").post(equipmentController.create);
 
 // Matches with "/api/equipment/:id"
