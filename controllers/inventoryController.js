@@ -1,7 +1,5 @@
 const db = require("../models");
 
-// Defining methods for the inventoryController
-
 module.exports = {
   findAll: function(req, res) {
     db.Inventory.find(req.query)
