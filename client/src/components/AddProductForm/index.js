@@ -19,10 +19,18 @@ export default class Example extends React.Component {
     )
   }
   handleChange = (e) => {
-    let steps= this.state.steps;
+    let steps = this.state.steps;
     let index = e.target.id;
     steps[index] = e.target.value;
     this.setState({ steps: steps })
+  }
+  handleDelete = (e) => {
+
+    let steps = this.state.steps;
+    let id = e.target.id;
+    steps = steps.filter((el, index) => index !== +id)
+
+    this.setState({steps: steps})
   }
   render() {
     return (
@@ -37,8 +45,23 @@ export default class Example extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="stepsInput">Steps</Label>
-          {/* { create an array basedon step number and return input field based on that} */}
-          {this.state.steps.map((el, index) => <Input value={this.state.steps[index]} id={index} key={index} name={"stepsInput" + index} placeholder="Add step info..." onChange={this.handleChange}></Input>)}
+          <br></br>
+          {this.state.steps.map((el, index) =>
+            <div>
+              <Input
+                value={this.state.steps[index]}
+                id={index} key={index} name={"stepsInput" + index}
+                placeholder="Add step info..."
+                onChange={this.handleChange}>
+              </Input>
+              <Button
+                for={"stepsInput" + index}
+                id={index}
+                onClick={this.handleDelete}
+              >
+                Remove Step
+              </Button>
+            </div>)}
           <Button onClick={this.handleAddStep}>Add Another Step</Button>
         </FormGroup>
         <Button>Submit</Button>
