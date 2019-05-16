@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Container } from "../components/Grid";
 import LogInCarousel from "../components/LogInCarousel";
 // import { LogInCarousel } from "../components/LogInCarousel";
 
@@ -19,20 +20,25 @@ export default class Login extends React.Component {
     return (
       <div className="container">
         <Row>
-          <Col md={12}>
+          <Col size="md-12">
             <LogInCarousel>
             </LogInCarousel>
           </Col>
         </Row>
+        <Row>
+          <Col size="md-12">
+            <h1>Log In</h1>
+          </Col>
+        </Row>
         <Form>
           <Row form>
-            <Col md={3}>
+            <Col size="md-6">
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
                 <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
               </FormGroup>
             </Col>
-            <Col md={3}>
+            <Col size="md-6">
               <FormGroup>
                 <Label for="examplePassword">Password</Label>
                 <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
