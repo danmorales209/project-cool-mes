@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
@@ -11,9 +13,9 @@ import AddProductForm from "../components/AddProductForm"
 
 class Products extends Component {
   state = {
-    productsArray:[],
-    newProduct:"",
-    newProductDesc:"",
+    productsArray: [],
+    newProduct: "",
+    newProductDesc: "",
   };
 
   componentDidMount() {
@@ -24,11 +26,11 @@ class Products extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6"> 
+          <Col size="md-6">
             <Jumbotron>
-              <h1>Current Products</h1>
+              <h1>Add New Product</h1>
               <Card>
-                <AddProductForm/>
+                <AddProductForm />
               </Card>
             </Jumbotron>
           </Col>
