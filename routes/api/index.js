@@ -1,11 +1,17 @@
 const path = require("path");
 const router = require("express").Router();
-const inventoryRoute = require("./inventory");
 const equipmentRoute = require("./equipment");
+const instructionsRoute = require("./instructions");
+const inventoryRoute = require("./inventory");
+const orderRoute = require("./order");
+const recipeRoute = require("./recipe");
 
 // API Routes
-router.use("/inventory", inventoryRoute);
 router.use("/equipment", equipmentRoute);
+router.use("/instructions", instructionsRoute);
+router.use("/inventory", inventoryRoute);
+router.use("/order", orderRoute);
+router.use("/recipe", recipeRoute);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
