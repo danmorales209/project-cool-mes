@@ -1,30 +1,50 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+// This file empties the Inventory collection and adds the items below
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mesData");
 
 const inventorySeed = [
   {
-    name: "clay",
-    quantity: "500 lbs"
+    name: "sugar",
+    quantity: "500",
+    unit: "lbs"
   },
   {
     name: "water",
-    quantity: "1000 gallons"
+    quantity: "1000",
+    unit: "gallons"
   },
   {
-    name: "sheet metal",
-    quantity: "500 sq ft"
+    name: "butter",
+    quantity: "80",
+    unit: "lbs"
   },
   {
     name: "flour",
-    quantity: "600 lbs"
+    quantity: "600",
+    unit: "lbs"
+  },
+  {
+    name: "eggs",
+    quantity: "300",
+    unit: "units"
   },
   {
     name: "salt",
-    quantity: "200 lbs"
+    quantity: "250",
+    unit: "lbs"
+  },
+  {
+    name: "Cocoa powder",
+    quantity: "400",
+    unit: "lbs"
+  },
+  {
+    name: "Confectioners sugar",
+    quantity: "700",
+    unit: "lbs"
   }
 ];
 
