@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import ProductCard from "../ProductCards/index";
 
 export default class Example extends React.Component {
 
   state = {
     steps: [],
-
+    productName: '',
+    productDescription: '',
   }
 
   handleAddStep = () => {
@@ -17,6 +19,14 @@ export default class Example extends React.Component {
         steps: steps
       })
     )
+  }
+  handleName = (e) => {
+    this.setState({ productName: e.target.value })
+
+  }
+  handleDescription = (e) => {
+    this.setState({ productDescription: e.target.value })
+
   }
   handleChange = (e) => {
     let steps = this.state.steps;
@@ -30,18 +40,23 @@ export default class Example extends React.Component {
     let id = e.target.id;
     steps = steps.filter((el, index) => index !== +id)
 
-    this.setState({steps: steps})
+    this.setState({ steps: steps })
   }
+  handleSubmit = () => {
+    console.log(this.state.steps)
+  }
+
   render() {
     return (
+
       <Form>
         <FormGroup>
           <Label for="productName">Product Name</Label>
-          <Input type="" name="productName" id="productName" placeholder="Add product name" />
+          <Input onChange={this.handleName} name="productName" id="productName" placeholder="Add product name" />
         </FormGroup>
         <FormGroup>
           <Label for="productDescription">Add Description</Label>
-          <Input type="" name="productDescription" id="productDescription" placeholder="Add some info..." />
+          <Input onChange={this.handleDescription} name="productDescription" id="productDescription" placeholder="Add some info..." />
         </FormGroup>
         <FormGroup>
           <Label for="stepsInput">Steps</Label>
@@ -50,22 +65,29 @@ export default class Example extends React.Component {
             <div>
               <Input
                 value={this.state.steps[index]}
-                id={index} key={index} name={"stepsInput" + index}
+                id={index}
+                key={index}
+                name={"stepsInput" + index}
                 placeholder="Add step info..."
                 onChange={this.handleChange}>
               </Input>
               <Button
-                for={"stepsInput" + index}
+
                 id={index}
                 onClick={this.handleDelete}
               >
                 Remove Step
               </Button>
             </div>)}
-          <Button onClick={this.handleAddStep}>Add Another Step</Button>
+          <Button onClick={this.handleAddStep}>Add Step</Button>
         </FormGroup>
-        <Button>Submit</Button>
+        <Button
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </Button>
       </Form>
+
     );
   }
 }
