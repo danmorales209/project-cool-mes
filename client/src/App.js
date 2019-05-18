@@ -24,11 +24,9 @@ class App extends React.Component {
 
   handleLogin = (data) => {
 
-    k
+    console.log(data)
     
-    alert("LOGIN" + data);
-    
-    //this.login("/user/login", data);
+    this.login("/user/login", data);
   }
 
   componentDidMount = () => {

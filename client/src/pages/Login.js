@@ -10,25 +10,32 @@ export default class Login extends React.Component {
     this.state = {
       email: "",
       password: ""
-      
+
     }
   };
 
-  handleEmailChange= (e) => {
-    this.setState({email: e.target.value})
+  handleEmailChange = (e) => {
+    this.setState({ email: e.target.value })
+  }
+  handlePWChange = (e) => {
+    this.setState({ password: e.target.value })
   }
 
-  componentDidMount() {
-    console.log(this.state);
+  handleSubmit = () => {
+    let data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.handleLogin(data);
   }
+
 
   render() {
     return (
       <div className="container">
         <Row>
           <Col size="md-12">
-            <LogInCarousel>
-            </LogInCarousel>
+            <LogInCarousel></LogInCarousel>
           </Col>
         </Row>
         <Row>
@@ -47,11 +54,11 @@ export default class Login extends React.Component {
             <Col size="md-6">
               <FormGroup>
                 <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" onChange={(e) => this.handlePWChange(e)} />
               </FormGroup>
             </Col>
           </Row>
-          <Button onClick={this.handleLogin}>Sign in</Button>
+          <Button onClick={() => this.handleSubmit()}>Sign in</Button>
         </Form>
       </div>
     );
