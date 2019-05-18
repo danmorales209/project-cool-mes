@@ -20,22 +20,19 @@ class App extends React.Component {
       console.log(response.data);
       cb({ user: response.data.email, token: response.data.email }).then(() => console.log(state));
     }).catch(err => console.error(err));
+  };
+
+  handleLogin = (data) => {
+    
+    alert("LOGIN" + data);
+    
+    //this.login("/user/login", data);
   }
 
   componentDidMount = () => {
-    console.log(this.state);
-
-    let data = {
-      email: "dan@dan.com",
-      password: "password"
-    }
-
-    this.login("/user/login", data);
+    // console.log(this.state);
 
   };
-
-
-
 
   render() {
     return (
@@ -43,7 +40,9 @@ class App extends React.Component {
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login"
+              render={(props) => <Login {...props} handleLogin={this.handleLogin} />}
+            />
             <Route exact path="/" component={Home} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/orders" component={Orders} />
