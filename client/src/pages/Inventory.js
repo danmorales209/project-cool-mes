@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
-import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
 import axios from "axios";
 // import API from "../utils/API";
@@ -20,6 +16,16 @@ class Inventory extends Component {
     EqupInv: []
   };
 
+  handlePostEquipment() {
+    axios.post("/api/inventory/POST", this.state.EqupInv).then(res => {
+      console.log(res.data)
+    })
+  }
+  handlePostMaterial() {
+    axios.post("/api/inventory/POST", this.state.rawMatInv).then(res => {
+      console.log(res.data)
+    })
+  }
   componentDidMount() {
     // this.loadBooks();
   }
@@ -29,9 +35,9 @@ class Inventory extends Component {
   handleEquipmentChange = (e) => {
     this.setState({ EqupInv: e.target.value })
   }
-  handleClick = () => {
-    console.log(this.state)
-  }
+  // handleClick = () => {
+  //   console.log(this.state)
+  // }
   render() {
     return (
       <div className="container">
@@ -44,7 +50,7 @@ class Inventory extends Component {
                   <h2>Item Name </h2>
                   <Input placeholder="value" onChange={this.handleMaterialChange} />
                   <InputGroupAddon addonType="append">
-                    <Button color="success" onClick={this.handleClick} >Update</Button>
+                    <Button color="success" onClick={this.handlePostMaterial} >Update</Button>
                   </InputGroupAddon>
                 </InputGroup>
               </Jumbotron>
@@ -58,7 +64,7 @@ class Inventory extends Component {
                   <h2>Item Name </h2>
                   <Input placeholder="value" onChange={this.handleEquipmentChange} />
                   <InputGroupAddon addonType="append">
-                    <Button color="success" onClick={this.handleClick} >Update</Button>
+                    <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
                   </InputGroupAddon>
                 </InputGroup>
               </Jumbotron>
