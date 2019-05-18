@@ -15,7 +15,7 @@ const recipeSchema = new Schema({
   steps: [
     {
       type: Schema.ObjectId,
-      ref: "Instruction"
+      ref: "Instructions"
     }
   ],
 
