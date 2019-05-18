@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mesData");
 
 const inventorySeed = [
   {
-    name: "clay",
+    name: "sugar",
     quantity: "500",
     unit: "lbs"
   },
@@ -17,9 +17,9 @@ const inventorySeed = [
     unit: "gallons"
   },
   {
-    name: "sheet metal",
-    quantity: "500",
-    unit: "sq ft"
+    name: "butter",
+    quantity: "80",
+    unit: "lbs"
   },
   {
     name: "flour",
@@ -27,8 +27,23 @@ const inventorySeed = [
     unit: "lbs"
   },
   {
+    name: "eggs",
+    quantity: "300",
+    unit: "units"
+  },
+  {
     name: "salt",
-    quantity: "200",
+    quantity: "250",
+    unit: "lbs"
+  },
+  {
+    name: "Cocoa powder",
+    quantity: "400",
+    unit: "lbs"
+  },
+  {
+    name: "Confectioners sugar",
+    quantity: "700",
     unit: "lbs"
   }
 ];
