@@ -16,7 +16,26 @@ class App extends React.Component {
 
   componentDidMount = () => {
     console.log(this.state);
-  }
+
+    let data = {
+      "email": "dan@dan.com",
+      "password": "password"
+    }
+
+    fetch("localhost:3001/api/user/login", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: data
+    }).then(response => {
+      response.json();
+
+      console.log(response);
+
+    }).catch(error => console.error(error));
+
+  };
+
+
 
 
   render() {
