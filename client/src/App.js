@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
@@ -14,24 +15,22 @@ class App extends React.Component {
     token: {}
   }
 
+  login = (route, data, cb = this.setState, state = this.state) => {
+    axios.post(route, data).then((response) => {
+      console.log(response.data);
+      cb({ user: response.data.email, token: response.data.email }).then(() => console.log(state));
+    }).catch(err => console.error(err));
+  }
+
   componentDidMount = () => {
     console.log(this.state);
 
     let data = {
-      "email": "dan@dan.com",
-      "password": "password"
+      email: "dan@dan.com",
+      password: "password"
     }
 
-    fetch("localhost:3001/api/user/login", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: data
-    }).then(response => {
-      response.json();
-
-      console.log(response);
-
-    }).catch(error => console.error(error));
+    this.login("/user/login", data);
 
   };
 

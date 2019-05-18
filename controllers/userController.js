@@ -20,6 +20,8 @@ module.exports = {
 
       if (!u) res.status(400).send({ msg: "Invalid Email or Password" });
 
+      console.log(u);
+
       bcrypt.compare(req.body.password, u.password, function (err, bRes) {
         if (!bRes) res.status(400).send({ msg: "Invalid Email or Password" });
         var token = jwt.sign({ email: u.email }, "shhhhh");
@@ -46,5 +48,15 @@ module.exports = {
         });
       });
     });
+  },
+
+  test: function(req, res) {
+    users = {
+      a: "A",
+      b: "B",
+      c: "C"
+    };
+
+    res.status(200).json(users).end();
   }
 };
