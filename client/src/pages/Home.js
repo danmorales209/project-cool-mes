@@ -26,73 +26,77 @@ class Home extends Component {
 
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col size="md-8">
-                        <Row>
-                            <Col size="md-3">
-                                <Card>
-                                    <h2>Products/Recipes</h2>
-                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>Card title</CardTitle>
-                                        <CardSubtitle>Card subtitle</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Button>Button</Button>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col size="md-3">
-                                <Card>
-                                    <h2>Monitor Inventory</h2>
-                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>Card title</CardTitle>
-                                        <CardSubtitle>Card subtitle</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Button>Button</Button>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col size="md-3">
-                                <Card>
-                                    <h2>Orders</h2>
-                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>Card title</CardTitle>
-                                        <CardSubtitle>Card subtitle</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Button>Button</Button>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col size="md-3">
-                                <Card>
-                                    <h2>Manufacturing</h2>
-                                    <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>Card title</CardTitle>
-                                        <CardSubtitle>Card subtitle</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Button>Button</Button>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col size="md-4">
-                        <Jumbotron>
-                            <h2>Dashboard</h2>
-                            <p>Product A Inventory</p>
-                            <p>Product B Inventory</p>
-                            <p>Product C Inventory</p>
-                            <p>active activeOrders</p>
-                            <p>completedOrders</p>
-                            <p>any alerts</p>
-                        </Jumbotron>
-                    </Col>
-                </Row>
-            </Container>
+            <div className="container">
+                <Container fluid>
+                    <Row>
+                        <Col size="md-8">
+                            <Row>
+                                <Col size="md-6">
+                                    <Card>
+                                        <h2>Products/Recipes</h2>
+                                        <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>Card title</CardTitle>
+                                            <CardSubtitle>Card subtitle</CardSubtitle>
+                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                            <Button>Button</Button>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                                <Col size="md-6">
+                                    <Card>
+                                        <h2>Monitor Inventory</h2>
+                                        <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>Card title</CardTitle>
+                                            <CardSubtitle>Card subtitle</CardSubtitle>
+                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                            <Button>Button</Button>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col size="md-6">
+                                    <Card>
+                                        <h2>Orders</h2>
+                                        <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>Card title</CardTitle>
+                                            <CardSubtitle>Card subtitle</CardSubtitle>
+                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                            <Button>Button</Button>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                                <Col size="md-6">
+                                    <Card>
+                                        <h2>Manufacturing</h2>
+                                        <CardImg top src="https://via.placeholder.com/100" alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>Card title</CardTitle>
+                                            <CardSubtitle>Card subtitle</CardSubtitle>
+                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                            <Button>Button</Button>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col size="md-4">
+                            <Jumbotron>
+                                <h2>Dashboard</h2>
+                                <p>Product A Inventory</p>
+                                <p>Product B Inventory</p>
+                                <p>Product C Inventory</p>
+                                <p>active activeOrders</p>
+                                <p>completedOrders</p>
+                                <p>any alerts</p>
+                            </Jumbotron>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         );
     }
 }

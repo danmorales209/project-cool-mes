@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
@@ -10,9 +12,9 @@ import { Col, Row, Container } from "../components/Grid";
 
 class Manufacturing extends Component {
   state = {
-    newOrders:[],
-    queuedOrders:[],
-    completeOrders:[],
+    newOrders: [],
+    queuedOrders: [],
+    completeOrders: [],
   };
 
   componentDidMount() {
@@ -21,29 +23,31 @@ class Manufacturing extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>New Orders</h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Queued Orders</h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Completed Orders</h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-      </Container>
+      <div className="container">
+        <Container fluid>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>New Orders</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Queued Orders</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              <Jumbotron>
+                <h1>Completed Orders</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
