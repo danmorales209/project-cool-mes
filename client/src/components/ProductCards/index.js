@@ -10,8 +10,9 @@ const ProductCard = (props) => {
         <div>
             <Card>
                 <CardBody>
-                    <CardTitle>Product Name</CardTitle>
-                    <CardText>Product Description</CardText>
+                    <CardTitle>Product Name: </CardTitle>
+                    <CardText>Product Description: </CardText>
+                    <CardText>Steps:</CardText>
                     <Button>Open</Button>
                 </CardBody>
             </Card>
