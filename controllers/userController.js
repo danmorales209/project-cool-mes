@@ -19,13 +19,7 @@ module.exports = {
     db.User.findOne({ email: req.body.email }).then(u => {
       if (!u) res.status(400).send({ msg: "Invalid Email or Password" });
 
-<<<<<<< HEAD
-      console.log(u);
-
-      bcrypt.compare(req.body.password, u.password, function (err, bRes) {
-=======
       bcrypt.compare(req.body.password, u.password, function(err, bRes) {
->>>>>>> 7167aa99a531308b8f0a600fa42f47aa70713305
         if (!bRes) res.status(400).send({ msg: "Invalid Email or Password" });
         var token = jwt.sign({ email: u.email }, "shhhhh");
         res.json({ email: u.email, token: token });

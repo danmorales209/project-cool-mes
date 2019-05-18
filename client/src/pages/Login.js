@@ -14,6 +14,10 @@ export default class Login extends React.Component {
     }
   };
 
+  handleEmailChange= (e) => {
+    this.setState({email: e.target.value})
+  }
+
   componentDidMount() {
     console.log(this.state);
   }
@@ -37,7 +41,7 @@ export default class Login extends React.Component {
             <Col size="md-6">
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" onChange={(e) => this.handleEmailChange(e)} />
               </FormGroup>
             </Col>
             <Col size="md-6">
