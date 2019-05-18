@@ -14,8 +14,9 @@ module.exports = {
       return res.status(200).send({ msg: "yo token is good!" });
     });
   },
+
   login: function(req, res) {
-    db.User.findOne({ where: { email: req.body.email } }).then(u => {
+    db.User.findOne({ email: req.body.email }).then(u => {
       if (!u) res.status(400).send({ msg: "Invalid Email or Password" });
 
       bcrypt.compare(req.body.password, u.password, function(err, bRes) {
@@ -25,9 +26,11 @@ module.exports = {
       });
     });
   },
+
   signup: function(req, res) {
     db.User.findOne({ email: req.body.email }).then(u => {
       if (u) res.status(400).send({ msg: "Invalid Email or Password" });
+
       bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
           db.User.create({

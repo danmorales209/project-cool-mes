@@ -1,7 +1,10 @@
 import React from 'react';
 import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-
+import axios from "axios";
 const InventoryInput = (props) => {
+
+
+ 
   return (
     <div>
       <InputGroup>
