@@ -1,19 +1,25 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import LogInCarousel from "../components/LogInCarousel";
-// import { LogInCarousel } from "../components/LogInCarousel";
 
 export default class Login extends React.Component {
-  state = {
-    username: "",
-    password: "",
+  constructor(props) {
+    super(props);
+    this.handleLogin = props.handleLogin.bind(this);
+    this.state = {
+      email: "",
+      password: ""
+      
+    }
   };
 
+  handleEmailChange= (e) => {
+    this.setState({email: e.target.value})
+  }
+
   componentDidMount() {
-    // this.loadBooks();
+    console.log(this.state);
   }
 
   render() {
@@ -35,7 +41,7 @@ export default class Login extends React.Component {
             <Col size="md-6">
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" onChange={(e) => this.handleEmailChange(e)} />
               </FormGroup>
             </Col>
             <Col size="md-6">
@@ -45,7 +51,7 @@ export default class Login extends React.Component {
               </FormGroup>
             </Col>
           </Row>
-          <Button>Sign in</Button>
+          <Button onClick={this.handleLogin}>Sign in</Button>
         </Form>
       </div>
     );
