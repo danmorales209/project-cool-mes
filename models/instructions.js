@@ -4,16 +4,21 @@ const Schema = mongoose.Schema;
 const instructionsSchema = new Schema({
   name: {
     type: String,
-    unique: true,
-    required: true,
-    index: true
+    required: true
   },
+
+  directions: {
+    type: String,
+    required: true
+  },
+
   inventory: [
     {
       type: Schema.ObjectId,
       ref: "Inventory"
     }
   ],
+
   equipment: [
     {
       type: Schema.ObjectId,
@@ -21,7 +26,8 @@ const instructionsSchema = new Schema({
     }
   ],
   duration: {
-    type: Number
+    type: Number,
+    required: true
   }
 });
 
