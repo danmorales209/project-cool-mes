@@ -21,13 +21,16 @@ class Inventory extends Component {
     axios.post("/api/inventory/POST", {
       name: this.state.materialName,
       quantity: this.state.materialQuantity,
-      unit: this.state.materialUnit
+      units: this.state.materialUnit
     }).then(res => {
       console.log(res.data)
     })
   }
-  handlePostEquipment() {
-    axios.post("/api/equipment/POST", this.state.EqupInv).then(res => {
+  handlePostEquipment = () => {
+    axios.post("/api/equipment/POST", {
+      name: this.state.equipmentName,
+      equipmentType: this.state.equipmentType
+    }).then(res => {
       console.log(res.data)
     })
   }
@@ -36,6 +39,7 @@ class Inventory extends Component {
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+    console.log(e.target.value)
   }
 
   render() {
