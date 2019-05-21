@@ -3,7 +3,14 @@ const db = require("../models");
 
 // This file empties the Equipment collection and adds the items below
 
+<<<<<<< HEAD
 mongoose.connect("mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk", {useNewUrlParser: true});
+=======
+mongoose.connect(
+  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+  { useNewUrlParser: true }
+);
+>>>>>>> 8383432667ae6d1de5f5991ef1182036f52d072f
 
 const equipmentSeed = [
   {
@@ -56,8 +63,8 @@ const equipmentSeed = [
   }
 ];
 
-db.Inventory.remove({})
-  .then(() => db.Inventory.collection.insertMany(equipmentSeed))
+db.Equipment.remove({})
+  .then(() => db.Equipment.collection.insertMany(equipmentSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

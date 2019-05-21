@@ -6,6 +6,8 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+import MaterialCard from "../components/MaterialResponse/index";
+import EquipmentCard from "../components/EquipmentResponse/index"
 
 
 class Inventory extends Component {
@@ -15,6 +17,8 @@ class Inventory extends Component {
     materialUnit: '',
     equipmentName: '',
     equipmentType: '',
+    materailObj: [],
+    equipmentObj: [],
   };
 
   handlePostMaterial = () => {
@@ -23,7 +27,20 @@ class Inventory extends Component {
       quantity: this.state.materialQuantity,
       units: this.state.materialUnit
     }).then(res => {
-      console.log(res.data)
+      console.log(res.data);
+      let newArr = this.state.materailObj;
+      newArr.push(res.data);
+      this.setState({ materailObj: newArr });
+    })
+  }
+  loadMaterial = () => {
+    axios.get("/api/inventory/GET").then((res) => {
+      this.setState({ materailObj: res.data });
+    })
+  }
+  loadEquipment = () => {
+    axios.get("/api/equipment/GET").then((res) => {
+      this.setState({ equipmentObj: res.data });
     })
   }
   handlePostEquipment = () => {
@@ -32,14 +49,18 @@ class Inventory extends Component {
       equipmentType: this.state.equipmentType
     }).then(res => {
       console.log(res.data)
+      let newArr = this.state.equipmentObj;
+      newArr.push(res.data);
+      this.setState({ equipmentObj: newArr });
     })
   }
   componentDidMount() {
-    // this.loadBooks();
+    this.loadMaterial();
+    this.loadEquipment();
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(e.target.value)
+
   }
 
   render() {
@@ -51,7 +72,7 @@ class Inventory extends Component {
               <Jumbotron>
                 <h1 >Raw Materials Inventory</h1>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Material Name</h2>
+                  <h2 className="p-1">Material Name </h2>
                   <Input
                     placeholder="name"
                     name="materialName"
@@ -59,7 +80,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Amount of Material</h2>
+                  <h2 className="p-1">Amount of Material </h2>
                   <Input
                     placeholder="quantity"
                     name="materialQuantity"
@@ -68,7 +89,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Unit of Measure</h2>
+                  <h2 className="p-1">Unit of Measure </h2>
                   <Input
                     placeholder="units"
                     name="materialUnit"
@@ -100,6 +121,14 @@ class Inventory extends Component {
                 </InputGroup>
                 <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
               </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              {this.state.materailObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
+            </Col>
+            <Col size="md-6">
+              {this.state.equipmentObj.map((el, i) => <EquipmentCard obj={el} key={i} ></EquipmentCard>)}
             </Col>
           </Row>
         </Container>

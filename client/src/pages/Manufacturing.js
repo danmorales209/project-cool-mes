@@ -1,25 +1,28 @@
 import React, { Component } from "react";
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
-import { Jumbotron } from 'reactstrap';
+import { Button } from 'reactstrap';
+import AddManufacturing from "../components/AddManufacturing";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
+import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-// import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Manufacturing extends Component {
   state = {
     newOrders: [],
-    queuedOrders: [],
-    completeOrders: [],
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
+  // handlePostCompleted = () => {
+  //   axios.post("/api/Manufacturing/POST", {
+  //     name: this.state.materialName,
+  //     quantity: this.state.materialQuantity,
+  //     units: this.state.materialUnit
+  //   }).then(res => {
+  //     console.log(res.data)
+  //   })
+  // }
 
   render() {
     return (
@@ -27,23 +30,26 @@ class Manufacturing extends Component {
         <Container fluid>
           <Row>
             <Col size="md-6">
-              <Jumbotron>
-                <h1>New Orders</h1>
-              </Jumbotron>
+              <h1>Incomplete Orders</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-3">
+              <OrderCard>
+                A card for each Active order in the database.
+            </OrderCard>
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
-              <Jumbotron>
-                <h1>Queued Orders</h1>
-              </Jumbotron>
+                <AddManufacturing>
+
+                </AddManufacturing>
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
-              <Jumbotron>
-                <h1>Completed Orders</h1>
-              </Jumbotron>
+              <Button color="success" onClick={this.handlePostCompleted} >Update</Button>
             </Col>
           </Row>
         </Container>
