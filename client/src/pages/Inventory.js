@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Jumbotron } from 'reactstrap';
-import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
+import { InputGroup, Input, Button } from 'reactstrap';
 
 import axios from "axios";
 // import API from "../utils/API";
@@ -125,10 +125,14 @@ class Inventory extends Component {
           </Row>
           <Row>
             <Col size="md-6">
+              <Jumbotron>
               {this.state.materailObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
+              </Jumbotron>
             </Col>
             <Col size="md-6">
+              <Jumbotron>
               {this.state.equipmentObj.map((el, i) => <EquipmentCard obj={el} key={i} ></EquipmentCard>)}
+              </Jumbotron>
             </Col>
           </Row>
         </Container>
