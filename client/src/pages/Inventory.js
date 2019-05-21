@@ -51,7 +51,7 @@ class Inventory extends Component {
               <Jumbotron>
                 <h1 >Raw Materials Inventory</h1>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Material Name</h2>
+                  <h2 className="p-1">Material Name </h2>
                   <Input
                     placeholder="name"
                     name="materialName"
@@ -59,7 +59,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Amount of Material</h2>
+                  <h2 className="p-1">Amount of Material </h2>
                   <Input
                     placeholder="quantity"
                     name="materialQuantity"
@@ -68,7 +68,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
                 <InputGroup className="p-2">
-                  <h2 className="p-1">Unit of Measure</h2>
+                  <h2 className="p-1">Unit of Measure </h2>
                   <Input
                     placeholder="units"
                     name="materialUnit"

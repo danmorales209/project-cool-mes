@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import DeleteBtn from "../components/DeleteBtn";
+import { Link } from "react-router-dom";
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
@@ -24,6 +25,18 @@ class Home extends Component {
         // this.loadBooks();
     }
 
+    handleGetDash = () => {
+        axios.get("/api/dashboard", {
+          activeOrders: this.state.activeOrders,
+          completedOrders: this.state.completedOrders,
+          productAInv: this.state.productAInv,
+          productBInv: this.state.productBInv,
+          productCInv: this.state.productCInv
+        }).then(res => {
+          console.log(res.data)
+        })
+      }
+
     render() {
         return (
             <div className="container">
@@ -36,27 +49,27 @@ class Home extends Component {
                                         <CardImg top src="./images/products2.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Products/Recipes</h2></CardTitle>
-                                            <Button>Open</Button>
+                                            <Link to="/products"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
                                 <Col size="md-6">
-                                    <Card>  
+                                    <Card>
                                         <CardImg top src="./images/inventory.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Monitor Inventory</h2></CardTitle>
-                                            <Button>Open</Button>
+                                            <Link to="/inventory"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col size="md-6">
-                                    <Card> 
+                                    <Card>
                                         <CardImg top src="./images/order.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Orders</h2></CardTitle>
-                                            <Button>Open</Button>
+                                            <Link to="/orders"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
@@ -65,7 +78,7 @@ class Home extends Component {
                                         <CardImg top src="./images/manufacturing.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Manufacturing</h2></CardTitle>
-                                            <Button>Open</Button>
+                                            <Link to="/manufacturing"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
                                 </Col>
