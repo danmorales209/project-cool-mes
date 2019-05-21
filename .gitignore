@@ -64,7 +64,12 @@ package-lock.json
 client/package-lock.json
 
 # DB seeding scripts
+scripts/seedDB.js
 scripts/seedEquipment.js
 scripts/seedInstructions.js
 scripts/seedInventory.js
-secripts/seedDB.js
+scripts/seedOrder.js
+scripts/seedRecipe.js
+
+
+
