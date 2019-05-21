@@ -6,6 +6,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+import MaterialCard from "../components/MaterialResponse/index";
 
 
 class Inventory extends Component {
@@ -15,6 +16,7 @@ class Inventory extends Component {
     materialUnit: '',
     equipmentName: '',
     equipmentType: '',
+    materailObj: [],
   };
 
   handlePostMaterial = () => {
@@ -23,7 +25,15 @@ class Inventory extends Component {
       quantity: this.state.materialQuantity,
       units: this.state.materialUnit
     }).then(res => {
-      console.log(res.data)
+      console.log(res.data);
+      let newArr = this.state.materailObj;
+      newArr.push(res.data);
+      this.setState({ materailObj: newArr, });
+    })
+  }
+  loadMaterial = () => {
+    axios.get("/api/inventory/GET").then((res) => {
+      this.setState({ materailObj: res.data });
     })
   }
   handlePostEquipment = () => {
@@ -35,11 +45,11 @@ class Inventory extends Component {
     })
   }
   componentDidMount() {
-    // this.loadBooks();
+    this.loadMaterial();
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(e.target.value)
+
   }
 
   render() {
@@ -100,6 +110,11 @@ class Inventory extends Component {
                 </InputGroup>
                 <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
               </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              {this.state.materailObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
             </Col>
           </Row>
         </Container>
