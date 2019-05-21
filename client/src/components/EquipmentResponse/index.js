@@ -1,20 +1,17 @@
 import React from "react";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card, CardText, CardBody,
+    CardTitle
 } from 'reactstrap';
 
 const EquipmentCard = (props) => {
     return (
-        <div>
-            <Card key={props.key}>
-                <CardBody>
-                    <CardTitle>Material</CardTitle>
-                    <CardText>Name: {props.obj.name}</CardText>
-                    <CardText>Type: {props.obj.equipmentType}</CardText>
-                </CardBody>
-            </Card>
-        </div>
+        <Card key={props.key}>
+            <CardBody>
+                <CardTitle>Name: {props.obj.name}</CardTitle>
+                <CardText>Type: {props.obj.equipmentType}</CardText>
+            </CardBody>
+        </Card>
     );
 };
 
