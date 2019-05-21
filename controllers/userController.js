@@ -43,5 +43,15 @@ module.exports = {
         });
       });
     });
+  },
+
+  test: function(req, res) {
+    users = {
+      a: "A",
+      b: "B",
+      c: "C"
+    };
+
+    res.status(200).json(users).end();
   }
 };
