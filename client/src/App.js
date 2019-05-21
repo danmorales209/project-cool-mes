@@ -12,20 +12,25 @@ import Login from "./pages/Login";
 class App extends React.Component {
   state = {
     user: "",
-    token: {}
+    token: ""
   }
 
-  login = (route, data, cb = this.setState, state = this.state) => {
-    axios.post(route, data).then((response) => {
-      console.log(response.data);
-      cb({ user: response.data.email, token: response.data.email }).then(() => console.log(state));
-    }).catch(err => console.error(err));
+  login = (route, data) => {
+
+    console.log("trying to log in...")
+
+    axios.post(route, data).then( (response) => {
+      console.log("Trying to send some data to login")
+
+      this.setState({ user: response.data.email, token: response.data.token }, () => console.log(this.state));
+
+    });
   };
 
   handleLogin = (data) => {
 
     console.log(data)
-    
+
     this.login("/user/login", data);
   }
 

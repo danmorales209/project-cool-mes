@@ -3,7 +3,7 @@ const db = require("../models");
 
 // This file empties the Equipment collection and adds the items below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mesData");
+mongoose.connect("mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk", {useNewUrlParser: true});
 
 const equipmentSeed = [
   {
