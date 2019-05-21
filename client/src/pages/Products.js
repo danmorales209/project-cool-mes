@@ -6,6 +6,7 @@ import {
 import { Col, Row, Container } from "../components/Grid";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
+import axios from "axios";
 import AddProductForm from "../components/AddProductForm"
 import ProductCard from "../components/ProductCards";
 

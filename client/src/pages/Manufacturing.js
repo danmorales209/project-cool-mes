@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import AddManufacturing from "../components/AddManufacturing";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
+import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 
 class Manufacturing extends Component {
