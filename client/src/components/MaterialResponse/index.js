@@ -1,22 +1,19 @@
 import React from "react";
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card, CardText, CardBody,
+    CardTitle
 } from 'reactstrap';
 
 const MaterialCard = (props) => {
     return (
-        <div>
-            <Card key={props.key}>
-                <CardBody>
-                    <CardTitle>Material</CardTitle>
-                    <CardText>Name: {props.obj.name}</CardText>
-                    <CardText>Quantity: {props.obj.quantity}</CardText>
-                    <CardText>Units: {props.obj.units}</CardText>
+        <Card key={props.key}>
+            <CardBody>
+                <CardTitle>Name: {props.obj.name}</CardTitle>
+                <CardText>Quantity: {props.obj.quantity}</CardText>
+                <CardText>Units: {props.obj.units}</CardText>
 
-                </CardBody>
-            </Card>
-        </div>
+            </CardBody>
+        </Card>
     );
 };
 
