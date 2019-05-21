@@ -17,20 +17,6 @@ const recipeSchema = new Schema({
       type: Schema.ObjectId,
       ref: "Instructions"
     }
-  ],
-
-  requiredInventory: [
-    {
-      type: Schema.ObjectId,
-      ref: "Inventory"
-    }
-  ],
-  
-  requiredEquipment: [
-    {
-      type: Schema.ObjectId,
-      ref: "Equpiment"
-    }
   ]
 });
 
