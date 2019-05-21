@@ -8,21 +8,31 @@ import { Col, Row, Container } from "../components/Grid";
 
 class Manufacturing extends Component {
   state = {
-    newOrders: [],
+    activeOrders: [],
+
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
-  // handlePostCompleted = () => {
-  //   axios.post("/api/Manufacturing/POST", {
-  //     name: this.state.materialName,
-  //     quantity: this.state.materialQuantity,
-  //     units: this.state.materialUnit
-  //   }).then(res => {
-  //     console.log(res.data)
-  //   })
-  // }
+
+  handleGetOrders = () => {
+    axios.get("/api/orders", {
+      activeOrders: this.state.activeOrders,
+    }).then(res => {
+      console.log(res.data)
+    })
+  }
+
+  handlePostCompleted = () => {
+    axios.post("/api/Manufacturing/POST", {
+      name: this.state.materialName,
+      quantity: this.state.materialQuantity,
+      units: this.state.materialUnit
+    }).then(res => {
+      console.log(res.data)
+    })
+  }
 
   render() {
     return (
@@ -35,15 +45,13 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-              <OrderCard>
-                A card for each Active order in the database.
-            </OrderCard>
+            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
                 <AddManufacturing>
-
+                  
                 </AddManufacturing>
             </Col>
           </Row>
