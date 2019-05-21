@@ -31,26 +31,26 @@ class Orders extends Component {
     // this.loadBooks();
   }
 
-  handlePostMaterial = () => {
-    axios.post("/api/orders/POST", {
-      productName:productName,
-      unitsNeeded:unitsNeeded,
-      unitsAvailable:unitsAvailable,
-      addUnitsNeeded:addUnitsNeeded,
-      dueDate:dueDate,
-      customerName:customerName,
-      address:address,
-      address2:address2,
-      city:city,
-      state:state,
-      zip:zip
-    }).then(res => {
-      console.log(res.data);
-      let newArr = this.state.orderObj;
-      newArr.push(res.data);
-      this.setState({ orderObj: newArr });
-    })
-  }
+  // handlePostMaterial = () => {
+  //   axios.post("/api/orders/POST", {
+  //     productName:productName,
+  //     unitsNeeded:unitsNeeded,
+  //     unitsAvailable:unitsAvailable,
+  //     addUnitsNeeded:addUnitsNeeded,
+  //     dueDate:dueDate,
+  //     customerName:customerName,
+  //     address:address,
+  //     address2:address2,
+  //     city:city,
+  //     state:state,
+  //     zip:zip
+  //   }).then(res => {
+  //     console.log(res.data);
+  //     let newArr = this.state.orderObj;
+  //     newArr.push(res.data);
+  //     this.setState({ orderObj: newArr });
+  //   })
+  // }
   loadMaterial = () => {
     axios.get("/api/orders/GET").then((res) => {
       this.setState({ orders: res.data });

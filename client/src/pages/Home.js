@@ -50,7 +50,7 @@ class Home extends Component {
                                         <CardImg top src="./images/products2.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Products</h2></CardTitle>
-                                             <CardText>Current products, their recipes or list a new product.</CardText>
+                                             <CardText>Products, recipes or list a new product.</CardText>
                                             <Link to="/products"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
