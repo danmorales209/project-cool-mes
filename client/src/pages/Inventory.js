@@ -39,10 +39,24 @@ class Inventory extends Component {
       this.setState({ equipmentObj: res.data });
     })
   }
+  checkType = () => {
+    let equipmentType = this.state.equipmentType;
+    let url = "/api/equipment/TYPE/"+ equipmentType;
+    console.log(url)
+    axios.get(url).then((res) => {
+      console.log(res)
+    })
+
+
+    // if type already exists, add item to that object
+    // If not, create new type object and put item in there
+  }
   handlePostEquipment = () => {
     axios.post("/api/equipment/POST", {
-      name: this.state.equipmentName,
-      equipmentType: this.state.equipmentType
+      equipmentType: this.state.equipmentType,
+      equipment: {
+        name: this.state.equipmentName,
+      }
     }).then(res => {
       console.log(res.data)
       let newArr = this.state.equipmentObj;
@@ -114,7 +128,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
+                <Button color="success" onClick={this.checkType} >Update</Button>
               </Jumbotron>
             </Col>
           </Row>

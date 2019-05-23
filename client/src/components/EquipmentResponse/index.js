@@ -20,7 +20,6 @@ export default class EquipmentCard extends React.Component {
     }
 
     render() {
-        console.log(this.props.equipmentObj)
         return (
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
