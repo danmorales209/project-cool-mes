@@ -16,7 +16,7 @@ const instructionsSchema = new Schema({
     {
       type: Schema.ObjectId,
       ref: "Inventory"
-    },
+    }
   ],
 
   equipment: [
