@@ -22,7 +22,7 @@ const instructionsSchema = new Schema({
   equipment: [
     {
       type: Schema.ObjectId,
-      ref: "Equpiment"
+      ref: "Equipment"
     }
   ],
   duration: {
