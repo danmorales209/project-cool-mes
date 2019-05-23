@@ -49,7 +49,8 @@ class Home extends Component {
                                     <Card>
                                         <CardImg top src="./images/products2.jpg" alt="Card image cap" />
                                         <CardBody>
-                                            <CardTitle><h2>Products/Recipes</h2></CardTitle>
+                                            <CardTitle><h2>Products</h2></CardTitle>
+                                             <CardText>Products, recipes or list a new product.</CardText>
                                             <Link to="/products"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
@@ -59,6 +60,7 @@ class Home extends Component {
                                         <CardImg top src="./images/inventory.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Monitor Inventory</h2></CardTitle>
+                                             <CardText>Equipment and Materials</CardText>
                                             <Link to="/inventory"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
@@ -70,6 +72,7 @@ class Home extends Component {
                                         <CardImg top src="./images/order.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Orders</h2></CardTitle>
+                                             <CardText>Orders Past and Orders Present</CardText>
                                             <Link to="/orders"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>
@@ -79,6 +82,7 @@ class Home extends Component {
                                         <CardImg top src="./images/manufacturing.jpg" alt="Card image cap" />
                                         <CardBody>
                                             <CardTitle><h2>Manufacturing</h2></CardTitle>
+                                             <CardText>Ready to go into production?</CardText>
                                             <Link to="/manufacturing"><Button>Open</Button></Link>
                                         </CardBody>
                                     </Card>

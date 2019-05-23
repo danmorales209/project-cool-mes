@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 const AddOrderForm = (props) => {
@@ -7,47 +7,43 @@ const AddOrderForm = (props) => {
         <Form>
             <FormGroup>
                 <Label for="productName">Product Name</Label>
-                <Input type="" name="productName" id="productName" placeholder="Product Name" />
+                <Input type="" name="productName" id="productName" onChange={this.handleInputChange} placeholder="Product Name" />
             </FormGroup>
             <FormGroup>
                 <Label for="unitsNeeded">Total Units Needed</Label>
-                <Input type="" name="Units Needed" id="unitsNeeded" placeholder="Total Units Needed" />
+                <Input type="" name="Units Needed" id="unitsNeeded" onChange={this.handleInputChange} placeholder="Total Units Needed" />
             </FormGroup>
             <FormGroup>
                 <Label for="unitsAvailable">Current Units Available</Label>
-                <Input type="" name="unitsAvailable" id="unitsAvailable" placeholder="Current Units Available" />
+                <Input type="" name="unitsAvailable" id="unitsAvailable" onChange={this.handleInputChange} placeholder="Current Units Available" />
             </FormGroup>
             <FormGroup>
                 <Label for="addUnitsNeeded">Additional Units Needed</Label>
-                <Input type="" name="addUnitsNeeded" id="addUnitsNeeded" placeholder="Additional Units Needed" />
+                <Input type="" name="addUnitsNeeded" id="addUnitsNeeded" onChange={this.handleInputChange} placeholder="Additional Units Needed" />
             </FormGroup>
             <FormGroup>
                 <Label for="dueDate">Due Date</Label>
-                <Input type="" name="dueDate" id="dueDate" placeholder="Due Date" />
+                <Input type="" name="dueDate" id="dueDate" onChange={this.handleInputChange} placeholder="Due Date" />
             </FormGroup>
             <FormGroup>
                 <Label for="customerName">Customer Name</Label>
-                <Input type="text" name="customerName" id="customerName" placeholder="Jane Doe" />
+                <Input type="text" name="customerName" id="customerName" onChange={this.handleInputChange} placeholder="Jane Doe" />
             </FormGroup>
             <FormGroup>
                 <Label for="exampleAddress">Address</Label>
-                <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" />
-            </FormGroup>
-            <FormGroup>
-                <Label for="exampleAddress2">Address 2</Label>
-                <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor" />
+                <Input type="text" name="address" id="address" onChange={this.handleInputChange} placeholder="1234 Main St" />
             </FormGroup>
             <FormGroup>
                 <Label for="exampleCity">City</Label>
-                <Input type="text" name="city" id="exampleCity" />
+                <Input type="text" name="city" onChange={this.handleInputChange} id="exampleCity" />
             </FormGroup>
             <FormGroup>
                 <Label for="exampleState">State</Label>
-                <Input type="text" name="state" id="exampleState" />
+                <Input type="text" name="state" onChange={this.handleInputChange} id="exampleState" />
             </FormGroup>
             <FormGroup>
                 <Label for="exampleZip">Zip</Label>
-                <Input type="text" name="zip" id="exampleZip" />
+                <Input type="text" name="zip" onChange={this.handleInputChange} id="exampleZip" />
             </FormGroup>
             <Button>Submit</Button>
         </Form>
