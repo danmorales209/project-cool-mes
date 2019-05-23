@@ -3,7 +3,10 @@ const db = require("../models");
 
 // This file empties the Equipment collection and adds the items below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mesData");
+mongoose.connect(
+  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+  { useNewUrlParser: true }
+);
 
 const equipmentSeed = [
   {
@@ -56,8 +59,8 @@ const equipmentSeed = [
   }
 ];
 
-db.Inventory.remove({})
-  .then(() => db.Inventory.collection.insertMany(equipmentSeed))
+db.Equipment.remove({})
+  .then(() => db.Equipment.collection.insertMany(equipmentSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
