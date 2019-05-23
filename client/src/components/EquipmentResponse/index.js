@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Card, CardText, CardBody,
-    CardTitle
+    CardTitle, Input
 } from 'reactstrap';
 
 const EquipmentCard = (props) => {
@@ -10,6 +10,8 @@ const EquipmentCard = (props) => {
             <CardBody>
                 <CardTitle>Name: {props.obj.name}</CardTitle>
                 <CardText>Type: {props.obj.equipmentType}</CardText>
+                <Input placeholder={"update name" }></Input>
+                <Input placeholder={"update type"}></Input>
             </CardBody>
         </Card>
     );

@@ -126,7 +126,7 @@ class Inventory extends Component {
           <Row>
             <Col size="md-6">
               <Jumbotron>
-              {this.state.materailObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
+              <MaterialCard obj={this.state.materailObj}/>
               </Jumbotron>
             </Col>
             <Col size="md-6">
