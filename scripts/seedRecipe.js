@@ -17,7 +17,7 @@ const recipeSeed = [
     name: "Birthday Cake",
     description:
       "A yellow cake with chocolate buttercream frosting and colorful sprinkles",
-    steps: ["5ce3680b7b9a350514616d56"]
+    steps: ["5ce6111ea2215f20083a1e67"]
   }
 ];
 

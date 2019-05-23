@@ -17,12 +17,12 @@ const instructionSeed = [
     name: "Mix dry ingredients",
     directions:
       "Place all dry ingredient in bowl; mix with whisk until thoroughly combined.",
-    inventory: [
-      "5ce3572393924e4978e3f196",
-      "5ce3572393924e4978e3f199",
-      "5ce3572393924e4978e3f19b"
+    stepInventory: [
+      { inventory: "5ce60e586403324578b010af", quantity: 1 },
+      { inventory: "5ce60e586403324578b010b2", quantity: 1 },
+      { inventory: "5ce60e586403324578b010b4", quantity: 1 }
     ],
-    equipment: ["5ce3571794248168d016c8f5", "5ce3571794248168d016c8f7"],
+    equipmentType: ["5ce6093338e20b3ce411581a", "5ce6093338e20b3ce411581b"],
     duration: 0.083
   }
 ];
