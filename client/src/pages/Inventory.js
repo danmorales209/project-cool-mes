@@ -3,11 +3,9 @@ import { Jumbotron } from 'reactstrap';
 import { InputGroup, Input, Button } from 'reactstrap';
 
 import axios from "axios";
-// import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import MaterialCard from "../components/MaterialResponse/index";
-import EquipmentCard from "../components/EquipmentResponse/index"
+import EquipmentCard from "../components/EquipmentResponse/index";
 
 
 class Inventory extends Component {
@@ -20,14 +18,12 @@ class Inventory extends Component {
     materailObj: [],
     equipmentObj: [],
   };
-
   handlePostMaterial = () => {
     axios.post("/api/inventory/POST", {
       name: this.state.materialName,
       quantity: this.state.materialQuantity,
       units: this.state.materialUnit
     }).then(res => {
-      console.log(res.data);
       let newArr = this.state.materailObj;
       newArr.push(res.data);
       this.setState({ materailObj: newArr });
@@ -60,7 +56,6 @@ class Inventory extends Component {
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-
   }
 
   render() {
@@ -126,12 +121,12 @@ class Inventory extends Component {
           <Row>
             <Col size="md-6">
               <Jumbotron>
-              <MaterialCard obj={this.state.materailObj}/>
+                <MaterialCard obj={this.state.materailObj} />
               </Jumbotron>
             </Col>
             <Col size="md-6">
               <Jumbotron>
-              {this.state.equipmentObj.map((el, i) => <EquipmentCard obj={el} key={i} ></EquipmentCard>)}
+                <EquipmentCard equipmentObj={this.state.equipmentObj}></EquipmentCard>
               </Jumbotron>
             </Col>
           </Row>
