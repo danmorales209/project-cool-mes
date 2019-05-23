@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from 'reactstrap';
 import AddManufacturing from "../components/AddManufacturing";
+import OrderCard from "../components/OrderCards";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,30 +10,30 @@ import { Col, Row, Container } from "../components/Grid";
 class Manufacturing extends Component {
   state = {
     activeOrders: [],
-
+    recipe:{},
   };
 
-  componentDidMount() {
-    // this.loadBooks();
-  }
+  // componentDidMount() {
+  //   // this.loadBooks();
+  // }
 
-  handleGetOrders = () => {
-    axios.get("/api/orders", {
-      activeOrders: this.state.activeOrders,
-    }).then(res => {
-      console.log(res.data)
-    })
-  }
+  // handleGetOrders = () => {
+  //   axios.get("/api/orders", {
+  //     activeOrders: this.state.activeOrders,
+  //   }).then(res => {
+  //     console.log(res.data)
+  //   })
+  // }
 
-  handlePostCompleted = () => {
-    axios.post("/api/Manufacturing/POST", {
-      name: this.state.materialName,
-      quantity: this.state.materialQuantity,
-      units: this.state.materialUnit
-    }).then(res => {
-      console.log(res.data)
-    })
-  }
+  // handlePostCompleted = () => {
+  //   axios.post("/api/Manufacturing/POST", {
+  //     name: this.state.materialName,
+  //     quantity: this.state.materialQuantity,
+  //     units: this.state.materialUnit
+  //   }).then(res => {
+  //     console.log(res.data)
+  //   })
+  // }
 
   render() {
     return (
@@ -45,14 +46,12 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
-                <AddManufacturing>
-                  
-                </AddManufacturing>
+                <AddManufacturing steps={this.recipe}/>
             </Col>
           </Row>
           <Row>
