@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 const ManufacturingList = (props) => {
   return (
     <ListGroup>
-      {this.state.obj.steps.map((el, i) => <ListGroupItem> obj={el} key={i} ></ListGroupItem>)}
+      {/* {props.recipe.map((el, i) => <ListGroupItem> obj={el} key={i} ></ListGroupItem>)} */}
     </ListGroup>
   );
 }
