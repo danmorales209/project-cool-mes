@@ -57,9 +57,13 @@ class Orders extends Component {
     })
   }
 
+  handleInputChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   render() {
     return (
-      <div className="container">dxk
+      <div className="container">
         <Container fluid>
           <Row>
             <Col size="md-12">
