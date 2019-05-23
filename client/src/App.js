@@ -36,16 +36,25 @@ class App extends React.Component {
     console.log(data)
 
     this.login("/user/login", data);
-  }
+  };
 
   signup = (route, data) => {
     console.log("trying to sign-up");
 
-    })
-  }
+    axios(route, data).then(response => {
+
+      this.setState({ user: response.data.email, token: response.data.token }, () => {
+        console.log(this.state);
+
+        this.validUser();
+
+      });
+
+    });
+  };
 
   handleSignUp = (data) => {
-    this.signup("/user/signup",data);
+    this.signup("/user/signup", data);
   }
 
   componentDidMount = () => {
@@ -56,7 +65,7 @@ class App extends React.Component {
   validUser = () => {
 
     axios.post("/user/validate", this.state.token).then((response) => {
-      
+
       console.log(response.valid)
 
       return response.valid;
@@ -71,7 +80,7 @@ class App extends React.Component {
         <div>
           <Nav />
           <Switch>
-            {this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp}/>}
+            {this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
             <Route exact path="/login"
               render={(props) => <Login {...props} handleLogin={this.handleLogin} />}
             />
