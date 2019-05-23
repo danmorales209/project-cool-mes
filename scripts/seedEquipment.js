@@ -3,59 +3,71 @@ const db = require("../models");
 
 // This file empties the Equipment collection and adds the items below
 
-mongoose.connect(
-  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
-  { useNewUrlParser: true }
-);
+// connect to heroku DB for seeding
+// mongoose.connect(
+//   "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+//   { useNewUrlParser: true }
+// );
+
+//connect to local DB for seeding
+mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const equipmentSeed = [
   {
-    name: "Medium Bowl 1",
-    equipmentType: "Medium Bowl"
+    equipmentType: "Medium Bowl",
+    equipment: [
+      {
+        name: "Medium Bowl 1",
+        status: "Available"
+      },
+
+      {
+        name: "Medium Bowl 2",
+        status: "Available"
+      }
+    ]
   },
   {
-    name: "Medium Bowl 2",
-    equipmentType: "Medium Bowl"
+    equipmentType: "Whisk",
+    equipment: [
+      {
+        name: "Whisk 1",
+        status: "Available"
+      },
+
+      {
+        name: "Whisk 2",
+        status: "Available"
+      }
+    ]
   },
   {
-    name: "Whisk 1",
-    equipmentType: "Whisk"
+    equipmentType: "Oven",
+    equipment: [
+      {
+        name: "Oven 1",
+        status: "Available"
+      },
+
+      {
+        name: "Oven 2",
+        status: "Available"
+      }
+    ]
   },
   {
-    name: "Whisk 2",
-    equipmentType: "whisk"
-  },
-  {
-    name: "Oven 1",
-    equipmentType: "Oven"
-  },
-  {
-    name: "Oven 2",
-    equipmentType: "Oven"
-  },
-  {
-    name: "Blender 1",
-    equipmentType: "Blender"
-  },
-  {
-    name: "Blender 2",
-    equipmentType: "Blender"
-  },
-  {
-    name: "Round Cake Pan 1",
-    equipmentType: "Round Cake Pan"
-  },
-  {
-    name: "Round Cske Pan 2",
-    equipmentType: "Round Cake Pan"
-  },
-  {
-    name: "Cooling Rack 1",
-    equipmentType: "Cooling Rack"
-  },
-  {
-    name: "Cooling Rack 2",
-    equipmentType: "Cooling Rack"
+    equipmentType: "Spoon",
+    equipment: [
+      {
+        name: "Spoon 1",
+        status: "Available"
+      },
+
+      {
+        name: "Spoon 2",
+        status: "Available"
+      }
+    ]
   }
 ];
 
