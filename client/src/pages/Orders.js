@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Jumbotron
+  Card, CardText, CardBody,
+  CardTitle, Button
 } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
@@ -10,21 +10,56 @@ import axios from "axios";
 import OrderCard from "../components/OrderCards";
 import AddOrderForm from "../components/AddOrderForm";
 
-
 class Orders extends Component {
   state = {
-    newOrders: [],
+    activeOrders: [],
     queuedOrders: [],
-    completeOrders: [],
+    completedOrders: [],
+    productName:"",
+    unitsNeeded:"",
+    unitsAvailable:"",
+    addUnitsNeeded:"",
+    dueDate:"",
+    customerName:"",
+    address:"",
+    city:"",
+    state:"",
+    zip:""
   };
 
   componentDidMount() {
     // this.loadBooks();
   }
 
+  // handlePostMaterial = () => {
+  //   axios.post("/api/orders/POST", {
+  //     productName:productName,
+  //     unitsNeeded:unitsNeeded,
+  //     unitsAvailable:unitsAvailable,
+  //     addUnitsNeeded:addUnitsNeeded,
+  //     dueDate:dueDate,
+  //     customerName:customerName,
+  //     address:address,
+  //     address2:address2,
+  //     city:city,
+  //     state:state,
+  //     zip:zip
+  //   }).then(res => {
+  //     console.log(res.data);
+  //     let newArr = this.state.orderObj;
+  //     newArr.push(res.data);
+  //     this.setState({ orderObj: newArr });
+  //   })
+  // }
+  loadMaterial = () => {
+    axios.get("/api/orders/GET").then((res) => {
+      this.setState({ orders: res.data });
+    })
+  }
+
   render() {
     return (
-      <div className="container">
+      <div className="container">dxk
         <Container fluid>
           <Row>
             <Col size="md-12">
@@ -42,9 +77,7 @@ class Orders extends Component {
               </Card>
             </Col>
             <Col size="md-3">
-              <OrderCard>
-                A card for each Active order in the database.
-            </OrderCard>
+            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -54,9 +87,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-              <OrderCard>
-                A card for each Queued order in the database.
-            </OrderCard>
+            {this.state.queuedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -66,9 +97,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-              <OrderCard>
-                A card for each Completed order in the database.
-            </OrderCard>
+            {this.state.completedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
