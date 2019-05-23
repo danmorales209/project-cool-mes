@@ -7,7 +7,7 @@ const orderSchema = new Schema({
     unique: true,
     required: true
   },
-  inProgress: {
+  inProgress: { // status
     type: Boolean,
     default: false
   },
