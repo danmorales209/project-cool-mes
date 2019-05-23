@@ -1,19 +1,30 @@
 import React from "react";
-import {
-    Card, CardText, CardBody,
-    CardTitle
-} from 'reactstrap';
+import { Table} from 'reactstrap';
 
 const MaterialCard = (props) => {
     return (
-        <Card key={props.key}>
-            <CardBody>
-                <CardTitle>Name: {props.obj.name}</CardTitle>
-                <CardText>Quantity: {props.obj.quantity}</CardText>
-                <CardText>Units: {props.obj.units}</CardText>
+        <Table>
+            <thead>
+                <tr>
 
-            </CardBody>
-        </Card>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.obj.map((el, i) =>
+                    <tr key={i}>
+                        <th scrope="row">{i}</th>
+                        <td>{el.name}</td>
+                        <td>{el.quantity}</td>
+                        <td>{el.units}</td>
+                    </tr>
+                )}
+
+            </tbody>
+        </Table>
     );
 };
 

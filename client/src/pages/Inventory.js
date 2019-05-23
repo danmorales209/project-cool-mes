@@ -4,6 +4,7 @@ import { InputGroup, Input, Button } from 'reactstrap';
 
 import axios from "axios";
 // import API from "../utils/API";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import MaterialCard from "../components/MaterialResponse/index";
 import EquipmentCard from "../components/EquipmentResponse/index"
@@ -16,7 +17,7 @@ class Inventory extends Component {
     materialUnit: '',
     equipmentName: '',
     equipmentType: '',
-    materialObj: [],
+    materailObj: [],
     equipmentObj: [],
   };
 
@@ -27,14 +28,14 @@ class Inventory extends Component {
       units: this.state.materialUnit
     }).then(res => {
       console.log(res.data);
-      let newArr = this.state.materialObj;
+      let newArr = this.state.materailObj;
       newArr.push(res.data);
-      this.setState({ materialObj: newArr });
+      this.setState({ materailObj: newArr });
     })
   }
   loadMaterial = () => {
     axios.get("/api/inventory/GET").then((res) => {
-      this.setState({ materialObj: res.data });
+      this.setState({ materailObj: res.data });
     })
   }
   loadEquipment = () => {
@@ -96,8 +97,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                
-                <Button color="success" disabled={(this.state.materialName === '' || this.state.materialQuantity === '' || this.state.materialUnit === '') ? true : false} onClick={this.handlePostMaterial} >Add</Button>
+                <Button color="success" onClick={this.handlePostMaterial} >Update</Button>
               </Jumbotron>
             </Col>
             <Col size="md-6">
@@ -119,14 +119,14 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostEquipment} disabled={(this.state.equipmentName === "" || this.state.equipmentType === "" ? true: false)}>Add</Button>
+                <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
               </Jumbotron>
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
               <Jumbotron>
-              {this.state.materialObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
+              <MaterialCard obj={this.state.materailObj}/>
               </Jumbotron>
             </Col>
             <Col size="md-6">
