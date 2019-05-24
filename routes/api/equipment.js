@@ -8,6 +8,7 @@ router.route("/POST").post(equipmentController.create);
 // Matches with "/api/equipment/:id"
 router.route("/GET/:id").get(equipmentController.findById);
 router.route("/POST/:id").post(equipmentController.update);
+router.route("/TYPE/:type").get(equipmentController.findByType)
 // .route("/equipment:id")
 // .get(equipmentController.findById)
 // .put(equipmentController.update)
