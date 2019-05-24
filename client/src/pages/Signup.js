@@ -26,11 +26,18 @@ export default class Signup extends React.Component {
 
   handleSubmit = () => {
     console.clear();
-    let data = {
+
+    if (this.state.email !== this.state.verify) {
+
+      document.querySelector("#verifyMessage").textContent="WOOWOOWOWOWOWOWOWO";
+      
+    }
+
+    /* let data = {
       email: this.state.email,
       password: this.state.password
     };
-    this.handleSignUp(data);
+    this.handleSignUp(data); */
   }
 
 
@@ -65,12 +72,12 @@ export default class Signup extends React.Component {
             </Col>
             <Col size="md-6">
               <FormGroup>
-                <Label for="verifyPassword">Password</Label>
+                <Label id="verifyMessage" for="verifyPassword">Please Verify Your Password</Label>
                 <Input type="password" name="password" id="verifyPassword" placeholder="Please verify your password " onChange={(e) => this.handleVerifyChange(e)} />
               </FormGroup>
             </Col>
           </Row>
-          <Button onClick={() => this.handleSubmit()}>Sign in</Button>
+          <Button onClick={() => this.handleSubmit()}>Sign up</Button>
         </Form>
       </div>
     );

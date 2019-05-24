@@ -7,11 +7,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   findById: function (req, res) {
     db.Equipment.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   findByType: function (req, res) {
     db.Equipment.findOne({
       where: { equipmentType: req.params.type}
@@ -20,15 +22,19 @@ module.exports = {
   },
 
   create: function (req, res) {
+    console.log(req.body);
+
     db.Equipment.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   update: function (req, res) {
     db.Equipment.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   remove: function (req, res) {
     db.Equipment.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

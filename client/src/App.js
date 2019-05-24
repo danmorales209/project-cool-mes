@@ -8,6 +8,7 @@ import Orders from "./pages/Orders";
 import Manufacturing from "./pages/Manufacturing";
 import Inventory from "./pages/Inventory";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 class App extends React.Component {
@@ -47,7 +48,7 @@ class App extends React.Component {
       this.setState({ user: response.data.email, token: response.data.token }, () => {
         console.log(this.state);
 
-        this.validUser();
+        console.log(this.validUser());
 
       });
 
@@ -81,11 +82,11 @@ class App extends React.Component {
         <div>
           <Nav />
           <Switch>
-            <Route>
-            {!this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
-            </Route>
-            
             <Route exact path="/signup"
+              render={(props) => !this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
+            />
+
+            <Route exact path="/login"
               render={(props) => <Login {...props} handleLogin={this.handleLogin} />}
             />
             <Route exact path="/" component={Home} />
