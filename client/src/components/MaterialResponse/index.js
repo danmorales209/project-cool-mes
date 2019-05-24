@@ -1,12 +1,11 @@
 import React from "react";
-import { Table} from 'reactstrap';
+import { Table } from 'reactstrap';
 
 const MaterialCard = (props) => {
     return (
         <Table>
             <thead>
                 <tr>
-
                     <th>#</th>
                     <th>Name</th>
                     <th>Quantity</th>
