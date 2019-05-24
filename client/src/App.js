@@ -81,8 +81,11 @@ class App extends React.Component {
         <div>
           <Nav />
           <Switch>
-            {this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
-            <Route exact path="/login"
+            <Route>
+            {!this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
+            </Route>
+            
+            <Route exact path="/signup"
               render={(props) => <Login {...props} handleLogin={this.handleLogin} />}
             />
             <Route exact path="/" component={Home} />
