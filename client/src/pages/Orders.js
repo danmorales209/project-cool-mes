@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
-  Card, CardText, CardBody,
-  CardTitle, Button
+  Card, CardText, CardBody, CardTitle, Button
 } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
@@ -15,45 +14,48 @@ class Orders extends Component {
     activeOrders: [],
     queuedOrders: [],
     completedOrders: [],
-    productName:"",
-    unitsNeeded:"",
-    unitsAvailable:"",
-    addUnitsNeeded:"",
-    dueDate:"",
-    customerName:"",
-    address:"",
-    city:"",
-    state:"",
-    zip:""
+    productName: "",
+    unitsNeeded: "",
+    unitsAvailable: "",
+    addUnitsNeeded: "",
+    dueDate: "",
+    customerName: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: ""
   };
 
   componentDidMount() {
-    // this.loadBooks();
+    this.loadOrders();
   }
 
-  // handlePostMaterial = () => {
-  //   axios.post("/api/orders/POST", {
-  //     productName:productName,
-  //     unitsNeeded:unitsNeeded,
-  //     unitsAvailable:unitsAvailable,
-  //     addUnitsNeeded:addUnitsNeeded,
-  //     dueDate:dueDate,
-  //     customerName:customerName,
-  //     address:address,
-  //     address2:address2,
-  //     city:city,
-  //     state:state,
-  //     zip:zip
-  //   }).then(res => {
-  //     console.log(res.data);
-  //     let newArr = this.state.orderObj;
-  //     newArr.push(res.data);
-  //     this.setState({ orderObj: newArr });
-  //   })
-  // }
-  loadMaterial = () => {
+  handlePostOrder = () => {
+    axios.post("/api/orders/POST", {
+      productName: this.state.productName,
+      unitsNeeded: this.state.unitsNeeded,
+      unitsAvailable: this.state.unitsAvailable,
+      addUnitsNeeded: this.state.addUnitsNeeded,
+      dueDate: this.state.dueDate,
+      customerName: this.state.customerName,
+      address: this.state.address,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip
+    }).then(res => {
+      console.log(res.data);
+      let newArr = this.state.orderObj;
+      newArr.push(res.data);
+      this.setState({ orderObj: newArr });
+    })
+  }
+  loadOrders = () => {
     axios.get("/api/orders/GET").then((res) => {
-      this.setState({ orders: res.data });
+      this.setState({
+        activeOrders: res.data,
+        queuedOrders: res.data,
+        completedOrders: res.data,
+      });
     })
   }
 
@@ -81,7 +83,7 @@ class Orders extends Component {
               </Card>
             </Col>
             <Col size="md-3">
-            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -91,7 +93,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.queuedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.queuedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -101,7 +103,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.completedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.completedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -111,7 +113,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-6">
-              <AddOrderForm />
+              <AddOrderForm onChange={n => this.setState({productName: n})}/>
             </Col>
           </Row>
         </Container>
