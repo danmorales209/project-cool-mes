@@ -39,18 +39,6 @@ class Inventory extends Component {
       this.setState({ equipmentObj: res.data });
     })
   }
-  checkType = () => {
-    let equipmentType = this.state.equipmentType;
-    let url = "/api/equipment/TYPE/"+ equipmentType;
-    console.log(url)
-    axios.get(url).then((res) => {
-      console.log(res)
-    })
-
-
-    // if type already exists, add item to that object
-    // If not, create new type object and put item in there
-  }
   handlePostEquipment = () => {
     axios.post("/api/equipment/POST", {
       equipmentType: this.state.equipmentType,
@@ -58,7 +46,7 @@ class Inventory extends Component {
         name: this.state.equipmentName,
       }
     }).then(res => {
-      console.log(res.data)
+
       let newArr = this.state.equipmentObj;
       newArr.push(res.data);
       this.setState({ equipmentObj: newArr });
@@ -70,6 +58,12 @@ class Inventory extends Component {
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+  increaseMaterial = (id) => {
+    axios.post("/api/inventory/POST/" + id).then(res => {
+      console.log(res);
+      this.componentDidMount()
+    })
   }
 
   render() {
@@ -106,7 +100,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostMaterial}  disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
+                <Button color="success" onClick={this.handlePostMaterial} disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
               </Jumbotron>
             </Col>
             <Col size="md-6">
@@ -128,14 +122,14 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.checkType} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
+                <Button color="success" onClick={this.checkType} disabled={this.state.equipmentName === "" || this.state.equipmentType === "" ? true : false} >Update</Button>
               </Jumbotron>
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
               <Jumbotron>
-                <MaterialCard obj={this.state.materailObj} />
+                <MaterialCard obj={this.state.materailObj} increaseBtn={this.increaseMaterial} />
               </Jumbotron>
             </Col>
             <Col size="md-6">
