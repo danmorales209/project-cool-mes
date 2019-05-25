@@ -1,12 +1,11 @@
 import React from "react";
-import { Table} from 'reactstrap';
+import { Table } from 'reactstrap';
 
 const MaterialCard = (props) => {
     return (
         <Table>
             <thead>
                 <tr>
-
                     <th>#</th>
                     <th>Name</th>
                     <th>Quantity</th>
@@ -16,7 +15,7 @@ const MaterialCard = (props) => {
             <tbody>
                 {props.obj.map((el, i) =>
                     <tr key={i}>
-                        <th scrope="row">{i}</th>
+                        <th scope="row">{i+1}</th>
                         <td>{el.name}</td>
                         <td>{el.quantity}</td>
                         <td>{el.units}</td>

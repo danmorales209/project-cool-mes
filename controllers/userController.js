@@ -9,9 +9,9 @@ module.exports = {
   validateToken: function(req, res) {
     return jwt.verify(req.body.token, "shhhhh", function(err, decoded) {
       if (err) {
-        return res.status(400).send({ msg: "yo token is bad!" });
+        return res.status(400).send({ valid: false });
       }
-      return res.status(200).send({ msg: "yo token is good!" });
+      return res.status(200).send({ valid: true });
     });
   },
 
