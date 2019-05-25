@@ -4,25 +4,25 @@ const db = require("../models");
 // This file empties the Equipment collection and adds the items below
 
 // connect to heroku DB for seeding
-// mongoose.connect(
-//   "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
-//   { useNewUrlParser: true }
-// );
+mongoose.connect(
+  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+  { useNewUrlParser: true }
+);
 
 //connect to local DB for seeding
-mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const instructionSeed = [
   {
     name: "Mix dry ingredients",
     directions:
       "Place all dry ingredient in bowl; mix with whisk until thoroughly combined.",
-    inventory: [
-      "5ce3572393924e4978e3f196",
-      "5ce3572393924e4978e3f199",
-      "5ce3572393924e4978e3f19b"
+    stepInventory: [
+      { inventory: "5ce8c9524ed9330d483950a7", quantity: 1 },
+      { inventory: "5ce8c9524ed9330d483950aa", quantity: 1 },
+      { inventory: "5ce8c9524ed9330d483950ac", quantity: 1 }
     ],
-    equipment: ["5ce3571794248168d016c8f5", "5ce3571794248168d016c8f7"],
+    equipmentType: ["5ce8c904b676f120142571fe", "5ce8c904b676f120142571ff"],
     duration: 0.083
   }
 ];

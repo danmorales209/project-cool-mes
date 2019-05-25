@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
-import LogInCarousel from "../components/LogInCarousel";
+//import LogInCarousel from "../components/LogInCarousel";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ export default class Login extends React.Component {
   }
 
   handleSubmit = () => {
+    console.clear();
     let data = {
       email: this.state.email,
       password: this.state.password
@@ -35,7 +36,7 @@ export default class Login extends React.Component {
       <div className="container">
         <Row>
           <Col size="md-12">
-            <LogInCarousel></LogInCarousel>
+            {/* <LogInCarousel></LogInCarousel> */}
           </Col>
         </Row>
         <Row>
