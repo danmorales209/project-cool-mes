@@ -17,7 +17,9 @@ const recipeSchema = new Schema({
       type: Schema.ObjectId,
       ref: "Instructions"
     }
-  ]
+  ],
+
+  yield: Number
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);

@@ -12,17 +12,20 @@ const instructionsSchema = new Schema({
     required: true
   },
 
-  inventory: [
+  stepInventory: [
     {
-      type: Schema.ObjectId,
-      ref: "Inventory"
+      inventory: {
+        type: Schema.ObjectId,
+        ref: "Inventory"
+      },
+      quantity: Number
     }
   ],
 
-  equipment: [
+  equipmentType: [
     {
       type: Schema.ObjectId,
-      ref: "Equpiment"
+      ref: "Equipment"
     }
   ],
   duration: {

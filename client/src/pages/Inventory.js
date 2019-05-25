@@ -3,11 +3,9 @@ import { Jumbotron } from 'reactstrap';
 import { InputGroup, Input, Button } from 'reactstrap';
 
 import axios from "axios";
-// import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import MaterialCard from "../components/MaterialResponse/index";
-import EquipmentCard from "../components/EquipmentResponse/index"
+import EquipmentCard from "../components/EquipmentResponse/index";
 
 
 class Inventory extends Component {
@@ -20,14 +18,12 @@ class Inventory extends Component {
     materailObj: [],
     equipmentObj: [],
   };
-
   handlePostMaterial = () => {
     axios.post("/api/inventory/POST", {
       name: this.state.materialName,
       quantity: this.state.materialQuantity,
       units: this.state.materialUnit
     }).then(res => {
-      console.log(res.data);
       let newArr = this.state.materailObj;
       newArr.push(res.data);
       this.setState({ materailObj: newArr });
@@ -43,10 +39,24 @@ class Inventory extends Component {
       this.setState({ equipmentObj: res.data });
     })
   }
+  checkType = () => {
+    let equipmentType = this.state.equipmentType;
+    let url = "/api/equipment/TYPE/"+ equipmentType;
+    console.log(url)
+    axios.get(url).then((res) => {
+      console.log(res)
+    })
+
+
+    // if type already exists, add item to that object
+    // If not, create new type object and put item in there
+  }
   handlePostEquipment = () => {
     axios.post("/api/equipment/POST", {
-      name: this.state.equipmentName,
-      equipmentType: this.state.equipmentType
+      equipmentType: this.state.equipmentType,
+      equipment: {
+        name: this.state.equipmentName,
+      }
     }).then(res => {
       console.log(res.data)
       let newArr = this.state.equipmentObj;
@@ -60,7 +70,6 @@ class Inventory extends Component {
   }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-
   }
 
   render() {
@@ -119,19 +128,19 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostEquipment} >Update</Button>
+                <Button color="success" onClick={this.checkType} >Update</Button>
               </Jumbotron>
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
               <Jumbotron>
-              {this.state.materailObj.map((el, i) => <MaterialCard obj={el} key={i} ></MaterialCard>)}
+                <MaterialCard obj={this.state.materailObj} />
               </Jumbotron>
             </Col>
             <Col size="md-6">
               <Jumbotron>
-              {this.state.equipmentObj.map((el, i) => <EquipmentCard obj={el} key={i} ></EquipmentCard>)}
+                <EquipmentCard equipmentObj={this.state.equipmentObj}></EquipmentCard>
               </Jumbotron>
             </Col>
           </Row>
