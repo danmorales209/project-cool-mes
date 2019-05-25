@@ -57,15 +57,20 @@ class Inventory extends Component {
   }
 
   handlePostEquipment = () => {
-    axios.post("/api/equipment/POST", {
-      equipmentType: this.state.equipmentType,
-      name: this.state.equipmentName
-    }).then(res => {
-      console.log(res.data)
-      let newArr = this.state.equipmentObj;
-      newArr.push(res.data);
-      this.setState({ equipmentObj: newArr });
-    })
+
+    if (this.state.equipmentName !== "" && this.state.equipmentType !== "") {
+      axios.post("/api/equipment/POST", {
+        equipmentType: this.state.equipmentType,
+        name: this.state.equipmentName
+      }).then(res => {
+        console.log(res.data)
+        let newArr = this.state.equipmentObj;
+        newArr.push(res.data);
+        this.setState({ equipmentObj: newArr });
+      })
+
+    }
+
   }
 
   componentDidMount() {
@@ -94,7 +99,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                
+
                 <InputGroup className="p-2">
                   <h2 className="p-1">Amount of Material </h2>
                   <Input
@@ -124,7 +129,7 @@ class Inventory extends Component {
             </Col>
 
             <Col size="md-6">
-            {/* Equipment Inventory */}
+              {/* Equipment Inventory */}
               <Jumbotron>
                 <h1>Equipment Inventory</h1>
                 <InputGroup className="p-2">

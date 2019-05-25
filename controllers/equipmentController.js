@@ -57,11 +57,13 @@ module.exports = {
         db.Equipment.updateOne({
           equipmentType: req.body.equipmentType
         }, {
-          equipment: {
-            $push: {
+          $push: {
+            equipment: {
               name: req.body.name
             }
           }
+        }, {
+
         }, (err, doc) => {
 
           if (err) {
