@@ -34,8 +34,9 @@ class Products extends Component {
             <Col size="md-3">
               <Card>
                 <CardBody>
-                  <CardTitle>New Product Name</CardTitle>
-                  <CardText>New Description</CardText>
+                  <CardTitle>New Product Name:</CardTitle>
+                  <CardText>New Product Description:</CardText>
+                  <CardText>Steps:</CardText>
                   <Button>Create Product</Button>
                 </CardBody>
               </Card>
