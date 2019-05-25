@@ -12,12 +12,12 @@ const orderSchema = new Schema({
     type: Boolean,
     default: false
   },
-  Customer: {
+  customer: {
     name: String,
-    Address: String,
-    City: String,
-    State: String,
-    Zip: Number
+    address: String,
+    city: String,
+    state: String,
+    zip: Number
   },
   dueDate: Date,
   qtyNeeded: Number
