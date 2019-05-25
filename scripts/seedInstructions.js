@@ -4,13 +4,13 @@ const db = require("../models");
 // This file empties the Equipment collection and adds the items below
 
 // connect to heroku DB for seeding
-// mongoose.connect(
-//   "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
-//   { useNewUrlParser: true }
-// );
+mongoose.connect(
+  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+  { useNewUrlParser: true }
+);
 
 //connect to local DB for seeding
-mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const instructionSeed = [
   {
@@ -18,11 +18,11 @@ const instructionSeed = [
     directions:
       "Place all dry ingredient in bowl; mix with whisk until thoroughly combined.",
     stepInventory: [
-      { inventory: "5ce60e586403324578b010af", quantity: 1 },
-      { inventory: "5ce60e586403324578b010b2", quantity: 1 },
-      { inventory: "5ce60e586403324578b010b4", quantity: 1 }
+      { inventory: "5ce8c9524ed9330d483950a7", quantity: 1 },
+      { inventory: "5ce8c9524ed9330d483950aa", quantity: 1 },
+      { inventory: "5ce8c9524ed9330d483950ac", quantity: 1 }
     ],
-    equipmentType: ["5ce6093338e20b3ce411581a", "5ce6093338e20b3ce411581b"],
+    equipmentType: ["5ce8c904b676f120142571fe", "5ce8c904b676f120142571ff"],
     duration: 0.083
   }
 ];
