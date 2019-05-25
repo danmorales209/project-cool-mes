@@ -15,11 +15,9 @@ class Orders extends Component {
     queuedOrders: [],
     completedOrders: [],
     productName: "",
-    unitsNeeded: "",
-    unitsAvailable: "",
-    addUnitsNeeded: "",
+    qtyNeeded: "",
     dueDate: "",
-    customerName: "",
+    name: "",
     address: "",
     city: "",
     state: "",
@@ -32,16 +30,15 @@ class Orders extends Component {
 
   handlePostOrder = () => {
     axios.post("/api/orders/POST", {
-      productName: this.state.productName,
-      unitsNeeded: this.state.unitsNeeded,
-      unitsAvailable: this.state.unitsAvailable,
-      addUnitsNeeded: this.state.addUnitsNeeded,
       dueDate: this.state.dueDate,
-      customerName: this.state.customerName,
+      qtyNeeded: this.state.qtyNeeded,
+      customer:{
+      name: this.state.customerName,
       address: this.state.address,
       city: this.state.city,
       state: this.state.state,
       zip: this.state.zip
+      }
     }).then(res => {
       console.log(res.data);
       let newArr = this.state.orderObj;
@@ -113,7 +110,7 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-6">
-              <AddOrderForm onChange={n => this.setState({productName: n})}/>
+              <AddOrderForm onChange={n => this.setState({})}/>
             </Col>
           </Row>
         </Container>
