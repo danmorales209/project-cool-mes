@@ -60,7 +60,7 @@ export default class EquipmentCard extends React.Component {
                         {
                             this.state.equipmentArray.map((el, i) =>
                             <tr key={i}>
-                                <th scope="row">{i}</th>
+                                <th scope="row">{i+1}</th>
                                 <td>{el.name}</td>
                                 {console.log(el[i])}
                                 <td>{el.status}</td>
