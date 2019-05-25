@@ -8,26 +8,55 @@ import Orders from "./pages/Orders";
 import Manufacturing from "./pages/Manufacturing";
 import Inventory from "./pages/Inventory";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 class App extends React.Component {
   state = {
     user: "",
-    token: {}
+    token: ""
   }
 
-  login = (route, data, cb = this.setState, state = this.state) => {
+  login = (route, data) => {
+
+    console.log("trying to log in...")
+
     axios.post(route, data).then((response) => {
-      console.log(response.data);
-      cb({ user: response.data.email, token: response.data.email }).then(() => console.log(state));
-    }).catch(err => console.error(err));
+      console.log("Trying to send some data to login")
+
+      this.setState({ user: response.data.email, token: response.data.token }, () => {
+        console.log(this.state);
+
+        this.validUser();
+
+      })
+    });
   };
 
   handleLogin = (data) => {
 
     console.log(data)
-    
+
     this.login("/user/login", data);
+  };
+
+  signup = (route, data) => {
+    console.log("trying to sign-up");
+
+    axios(route, data).then(response => {
+
+      this.setState({ user: response.data.email, token: response.data.token }, () => {
+        console.log(this.state);
+
+        console.log(this.validUser());
+
+      });
+
+    });
+  };
+
+  handleSignUp = (data) => {
+    this.signup("/user/signup", data);
   }
 
   componentDidMount = () => {
@@ -35,12 +64,28 @@ class App extends React.Component {
 
   };
 
+  validUser = () => {
+
+    axios.post("/user/validate", this.state.token).then((response) => {
+
+      console.log(response.valid)
+
+      return response.valid;
+    });
+
+  };
+
   render() {
+
     return (
       <Router>
         <div>
           <Nav />
           <Switch>
+            <Route exact path="/signup"
+              render={(props) => !this.validUser() && <Signup {...props} handleSignUp={this.handleSignUp} />}
+            />
+
             <Route exact path="/login"
               render={(props) => <Login {...props} handleLogin={this.handleLogin} />}
             />
