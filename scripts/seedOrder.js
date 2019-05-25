@@ -14,10 +14,7 @@ mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const orderSeed = [
   {
-    product: "5ce8b21df465f242a42678c3"
-  },
-
-  {
+    product: "5ce8b21df465f242a42678c3",
     customer: [
       {
         name: "Joe Jones",
@@ -26,12 +23,8 @@ const orderSeed = [
         state: "California",
         zip: 95824
       }
-    ]
-  },
-  {
-    dueDate: 2019 - 06 - 11
-  },
-  {
+    ],
+    dueDate: 2019 - 06 - 11,
     qtyNeeded: 1
   }
 ];
