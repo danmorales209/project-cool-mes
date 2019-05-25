@@ -18,6 +18,7 @@ class Inventory extends Component {
     materailObj: [],
     equipmentObj: [],
   };
+
   handlePostMaterial = () => {
     axios.post("/api/inventory/POST", {
       name: this.state.materialName,
@@ -28,16 +29,19 @@ class Inventory extends Component {
       newArr.push(res.data);
       this.setState({ materailObj: newArr });
     })
-  }
+  };
+
   loadMaterial = () => {
     axios.get("/api/inventory/GET").then((res) => {
       this.setState({ materailObj: res.data });
     })
-  }
+  };
+
   loadEquipment = () => {
     axios.get("/api/equipment/GET").then((res) => {
       this.setState({ equipmentObj: res.data });
     })
+
   }
   handlePostEquipment = () => {
     axios.post("/api/equipment/POST", {
@@ -52,10 +56,12 @@ class Inventory extends Component {
       this.setState({ equipmentObj: newArr });
     })
   }
+
   componentDidMount() {
     this.loadMaterial();
     this.loadEquipment();
   }
+
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -71,6 +77,7 @@ class Inventory extends Component {
       <div className="container">
         <Container fluid>
           <Row>
+            {/* Material Inventory */}
             <Col size="md-6">
               <Jumbotron>
                 <h1 >Raw Materials Inventory</h1>
@@ -82,6 +89,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
+
                 <InputGroup className="p-2">
                   <h2 className="p-1">Amount of Material </h2>
                   <Input
@@ -91,6 +99,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
+
                 <InputGroup className="p-2">
                   <h2 className="p-1">Unit of Measure </h2>
                   <Input
@@ -100,10 +109,17 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostMaterial} disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
+
+                <Button color="success" onClick={this.handlePostMaterial}  disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
+
+
+                
               </Jumbotron>
+
             </Col>
+
             <Col size="md-6">
+              {/* Equipment Inventory */}
               <Jumbotron>
                 <h1>Equipment Inventory</h1>
                 <InputGroup className="p-2">
@@ -114,6 +130,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
+
                 <InputGroup className="p-2">
                   <h2 className="p-1">Equipment Type </h2>
                   <Input
@@ -122,7 +139,9 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.checkType} disabled={this.state.equipmentName === "" || this.state.equipmentType === "" ? true : false} >Update</Button>
+
+                <Button color="success" onClick={this.handlePostEquipment} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
+
               </Jumbotron>
             </Col>
           </Row>

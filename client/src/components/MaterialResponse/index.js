@@ -15,7 +15,7 @@ const MaterialCard = (props) => {
             <tbody>
                 {props.obj.map((el, i) =>
                     <tr key={i}>
-                        <th scope="row">{i}</th>
+                        <th scope="row">{i+1}</th>
                         <td>{el.name}</td>
                         <td>{el.quantity}</td>
                         <td>{el.units}</td>
