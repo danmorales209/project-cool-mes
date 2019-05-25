@@ -150,7 +150,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
 
-                <Button color="success" onClick={this.checkType} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
+                <Button color="success" onClick={this.handlePostEquipment} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
 
               </Jumbotron>
             </Col>
