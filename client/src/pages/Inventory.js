@@ -106,7 +106,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.handlePostMaterial} >Update</Button>
+                <Button color="success" onClick={this.handlePostMaterial}  disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
               </Jumbotron>
             </Col>
             <Col size="md-6">
@@ -128,7 +128,7 @@ class Inventory extends Component {
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button color="success" onClick={this.checkType} >Update</Button>
+                <Button color="success" onClick={this.checkType} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
               </Jumbotron>
             </Col>
           </Row>
