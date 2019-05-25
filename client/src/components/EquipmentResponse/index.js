@@ -23,7 +23,7 @@ export default class EquipmentCard extends React.Component {
         let id = e.target.id;
         axios.get("/api/equipment/GET/" + id)
             .then(res => {
-                this.setState({equipmentArray: res.data.equipment})
+                this.setState({ equipmentArray: res.data.equipment })
             })
     }
 
@@ -40,14 +40,19 @@ export default class EquipmentCard extends React.Component {
                             <>
                                 {/* <DropdownItem key={i}>Name: {el.name}</DropdownItem> */}
                                 {/* {console.log(el)} */}
-                                <DropdownItem name={el.equipmentType} key={i} id={el._id} onClick={this.select}>Type: {el.equipmentType}</DropdownItem>
+                                <DropdownItem
+                                    name={el.equipmentType}
+                                    key={i} id={el._id}
+                                    onClick={this.select}>Type:
+                                    {el.equipmentType}
+                                </DropdownItem>
                                 <DropdownItem divider />
                             </>
                         )}
 
                     </DropdownMenu>
                 </Dropdown>
-                
+
                 <Table>
                     <thead>
                         <tr>
@@ -59,14 +64,22 @@ export default class EquipmentCard extends React.Component {
                     <tbody>
                         {
                             this.state.equipmentArray.map((el, i) =>
+<<<<<<< HEAD
+                                <tr key={i}>
+                                    <th scope="row">{i}</th>
+                                    <td>{el.name}</td>
+                                    {console.log(el[i])}
+                                    <td>{el.status}</td>
+=======
                             <tr key={i}>
                                 <th scope="row">{i+1}</th>
                                 <td>{el.name}</td>
                                 {console.log(el[i])}
                                 <td>{el.status}</td>
+>>>>>>> b052ccbbeefd8804ea47532ab3891821e20cb6d7
 
-                            </tr>
-                        )}
+                                </tr>
+                            )}
 
                     </tbody>
                 </Table>
