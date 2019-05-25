@@ -14,8 +14,18 @@ mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const orderSeed = [
   {
-    name: "Order 0001A",
-    recipe: "5ce369db2dc1352b103ba519"
+    product: "5ce8b21df465f242a42678c3",
+    customer: [
+      {
+        name: "Joe Jones",
+        address: "45 Caroline Blvd.",
+        city: "Sacramento",
+        state: "California",
+        zip: 95824
+      }
+    ],
+    dueDate: 2019 - 06 - 11,
+    qtyNeeded: 1
   }
 ];
 
