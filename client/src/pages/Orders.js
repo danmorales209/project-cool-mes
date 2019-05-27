@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import {
-  Card, CardText, CardBody, CardTitle, Button
-} from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
-import AddOrderForm from "../components/AddOrderForm";
+import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-class Orders extends Component {
+class Orders extends React.Component {
   state = {
     activeOrders: [],
     queuedOrders: [],
@@ -17,7 +14,7 @@ class Orders extends Component {
     productName: "",
     qtyNeeded: "",
     dueDate: "",
-    name: "",
+    customerName: "",
     address: "",
     city: "",
     state: "",
@@ -29,16 +26,16 @@ class Orders extends Component {
   }
 
   handlePostOrder = () => {
-    axios.post("/api/orders/POST", {
-      productName:this.state.productName,
+    axios.post("/api/order/POST", {
+      productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
-      customer:{
-      name: this.state.customerName,
-      address: this.state.address,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip
+      customer: {
+        name: this.state.customerName,
+        address: this.state.address,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip
       }
     }).then(res => {
       console.log(res.data);
@@ -48,7 +45,7 @@ class Orders extends Component {
     })
   }
   loadOrders = () => {
-    axios.get("/api/orders/GET").then((res) => {
+    axios.get("/api/order/GET").then((res) => {
       this.setState({
         activeOrders: res.data,
         queuedOrders: res.data,
@@ -111,7 +108,41 @@ class Orders extends Component {
           </Row>
           <Row>
             <Col size="md-6">
-              <AddOrderForm onChange={n => this.setState({})}/>
+              <Form>
+                <FormGroup>
+                  <Label for="productName">Product Name</Label>
+                  <Input type="" name="productName" id="productName" value={this.state.productName} onChange={this.handleInputChange} placeholder="Product Name" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="unitsNeeded">Total Units Needed</Label>
+                  <Input type="" name="qtyNeeded" id="qtyNeeded" value={this.state.qtyNeeded} onChange={this.handleInputChange} placeholder="Total Units Needed" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="dueDate">Due Date</Label>
+                  <Input type="" name="dueDate" id="dueDate" value={this.state.dueDate} onChange={this.handleInputChange} placeholder="Due Date" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="customerName">Customer Name</Label>
+                  <Input type="text" name="customerName" id="customerName" value={this.state.customerName} onChange={this.handleInputChange} placeholder="Jane Doe" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleAddress">Address</Label>
+                  <Input type="text" name="address" id="address" value={this.state.address} onChange={this.handleInputChange} placeholder="1234 Main St" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleCity">City</Label>
+                  <Input type="text" name="city" value={this.state.city} onChange={this.handleInputChange} />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleState">State</Label>
+                  <Input type="text" name="state" value={this.state.state} onChange={this.handleInputChange} id="exampleState" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleZip">Zip</Label>
+                  <Input type="text" name="zip" value={this.state.zip} onChange={this.handleInputChange} id="exampleZip" />
+                </FormGroup>
+                <Button color="success" onClick={this.handlePostOrder}>Submit</Button>
+              </Form>
             </Col>
           </Row>
         </Container>
