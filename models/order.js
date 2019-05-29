@@ -11,6 +11,11 @@ const orderSchema = new Schema(
       type: String,
       default: "New" //In Progress, Completed
     },
+    priority : {
+      type: Number,
+      required: true,
+      default: 0
+    },
     customer: {
       name: String,
       address: String,
@@ -18,7 +23,7 @@ const orderSchema = new Schema(
       state: String,
       zip: Number
     },
-    dueDate: Date,
+    dueDate: String,
     qtyNeeded: Number
   }
 );
