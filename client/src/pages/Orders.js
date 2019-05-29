@@ -4,7 +4,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
-import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Orders extends React.Component {
   state = {
@@ -125,7 +125,7 @@ class Orders extends React.Component {
               <Form>
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                   <DropdownToggle caret>
-                    Dropdown
+                    Choose a Product
                     </DropdownToggle>
                   <DropdownMenu>
                     {this.state.products.map((el, i) =>
