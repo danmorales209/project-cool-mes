@@ -29,5 +29,48 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+  check: function (req, res) {
+    let recipeInv = {};
+    let recipeEquip = [];
+
+    db.Recipe.findById(req.body.product)
+      .then(response => {
+
+        // Loop over steps
+        response.steps.forEach(step => {
+
+          // Loop over stepInventory
+          step.stepInventory.forEach(inventoryItem => {
+
+            let name = inventoryItem.inventory;
+
+            
+            // Key-value pair exists in recipe inventory
+            if (recipeInv.hasOwnProperty(name)) {
+              recipeInv[name].quantity += inventoryItem.quantity;
+            }
+
+            // Key-value pair does not exist in recipe inventory
+            else {
+              recipeInv[`${name}`] = {quantity: inventoryItem.quantity};
+            }
+          });
+
+          // Loop over equipment
+          step.equipmentType.forEach(equipmentItem => {
+            recipeEquip.push(equipmentItem)
+          });
+        })
+
+        let dummy = {
+          inventory: recipeInv,
+          equipment: recipeEquip
+        }
+
+        res.json(dummy);
+
+      })
   }
 };
