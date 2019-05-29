@@ -11,7 +11,7 @@ class Orders extends React.Component {
     newOrders: [],
     inProgressOrders: [],
     completedOrders: [],
-    productName: "",
+    product: "",
     qtyNeeded: "",
     dueDate: "",
     customerName: "",
@@ -30,11 +30,11 @@ class Orders extends React.Component {
 
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
-      productName: this.state.productName,
+      product:this.state.objectID,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
-        name: this.state.customerName,
+        name: this.state.name,
         address: this.state.address,
         city: this.state.city,
         state: this.state.state,
