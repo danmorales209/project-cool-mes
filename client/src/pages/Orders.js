@@ -4,7 +4,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
-import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, Dropdown, DropdownItem, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Orders extends React.Component {
   state = {
@@ -19,7 +19,8 @@ class Orders extends React.Component {
     city: "",
     state: "",
     zip: "",
-    products:[]
+    product:"",
+    products: []
   };
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class Orders extends React.Component {
 
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
-      product:this.state.objectID,
+      product: this.state.product,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
@@ -47,10 +48,15 @@ class Orders extends React.Component {
       this.setState({ orderObj: newArr });
     })
   }
+
+  productOnClick=(e)=> {
+      this.setState({ product: e.target.value })
+  }
+
   loadProducts = () => {
     axios.get("/api/recipe/GET").then((res) => {
       this.setState({
-        products:res.data
+        products: res.data
       });
     })
   }
@@ -62,6 +68,20 @@ class Orders extends React.Component {
         completedOrders: res.data,
       });
     })
+  }
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
 
   handleInputChange = (e) => {
@@ -119,10 +139,27 @@ class Orders extends React.Component {
           <Row>
             <Col size="md-6">
               <Form>
-                <FormGroup>
-                  <Label for="productName">Product Name</Label>
-                  <Input type="" name="productName" id="productName" value={this.state.productName} onChange={this.handleInputChange} placeholder="Product Name" />
-                </FormGroup>
+                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret>
+                    Dropdown
+                    </DropdownToggle>
+                  <DropdownMenu>
+                    {this.state.products.map((el, i) =>
+                      <>
+                        {/* <DropdownItem key={i}>Name: {el.name}</DropdownItem> */}
+                        {/* {console.log(el)} */}
+                        <DropdownItem 
+                        onClick={this.productOnClick}
+                        value={el._id}
+                        name={el.name}
+                        >
+                          Product Name: {el.name}
+                        </DropdownItem>
+                        <DropdownItem divider />
+                      </>
+                    )}
+                  </DropdownMenu>
+                </Dropdown>
                 <FormGroup>
                   <Label for="unitsNeeded">Total Units Needed</Label>
                   <Input type="" name="qtyNeeded" id="qtyNeeded" value={this.state.qtyNeeded} onChange={this.handleInputChange} placeholder="Total Units Needed" />
