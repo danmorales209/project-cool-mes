@@ -15,11 +15,6 @@ const recipeSchema = new Schema(
 
     steps: [
       {
-        name: {
-          type: String,
-          required: true
-        },
-
         directions: {
           type: String,
           required: true

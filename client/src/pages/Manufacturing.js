@@ -14,17 +14,21 @@ class Manufacturing extends Component {
     recipe:{},
   };
 
-  // componentDidMount() {
-  //   // this.loadBooks();
-  // }
-
-  // handleGetOrders = () => {
-  //   axios.get("/api/orders", {
-  //     activeOrders: this.state.activeOrders,
-  //   }).then(res => {
-  //     console.log(res.data)
-  //   })
-  // }
+  componentDidMount() {
+    this.loadOrders();
+  }
+  loadOrders = () => {
+    axios.get("/api/order/GET").then((res) => {
+      this.setState({
+        newOrders: res.data.filter(orders => orders.priority ===0),
+        inProgressOrders: res.data.filter(orders => orders.priority ===1),
+      },
+      ()=>{
+        console.log(this.state.newOrders);
+      }
+      );
+    })
+  }
 
   // handlePostCompleted = () => {
   //   axios.post("/api/Manufacturing/POST", {
