@@ -67,7 +67,7 @@ export default class EquipmentCard extends React.Component {
                             <tr key={i}>
                                 <th scope="row">{i+1}</th>
                                 <td>{el.name}</td>
-                                {console.log(el[i])}
+                                {console.log(el)}
                                 <td>{el.status}</td>
 
                                 </tr>
