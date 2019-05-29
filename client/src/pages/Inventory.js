@@ -46,9 +46,9 @@ class Inventory extends Component {
   handlePostEquipment = () => {
     axios.post("/api/equipment/POST", {
       equipmentType: this.state.equipmentType,
-      equipment: {
-        name: this.state.equipmentName,
-      }
+
+      name: this.state.equipmentName,
+
     }).then(res => {
 
       let newArr = this.state.equipmentObj;
@@ -110,10 +110,10 @@ class Inventory extends Component {
                   />
                 </InputGroup>
 
-                <Button color="success" onClick={this.handlePostMaterial}  disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
+                <Button color="success" onClick={this.handlePostMaterial} disabled={this.state.materialName === "" || this.state.materialQuantity === "" || this.state.materialUnit === "" ? true : false}>Update</Button>
 
 
-                
+
               </Jumbotron>
 
             </Col>
@@ -140,7 +140,7 @@ class Inventory extends Component {
                   />
                 </InputGroup>
 
-                <Button color="success" onClick={this.handlePostEquipment} disabled={this.state.equipmentName === "" || this.state.equipmentType === ""  ? true : false} >Update</Button>
+                <Button color="success" onClick={this.handlePostEquipment} disabled={this.state.equipmentName === "" || this.state.equipmentType === "" ? true : false} >Update</Button>
 
               </Jumbotron>
             </Col>
