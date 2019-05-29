@@ -9,8 +9,8 @@ const orderSchema = new Schema({
     }
   ],
   inProgress: {
-    type: Boolean,
-    default: false
+    type: String,
+    default: "New" //In Progress, Completed
   },
   customer: {
     name: String,
