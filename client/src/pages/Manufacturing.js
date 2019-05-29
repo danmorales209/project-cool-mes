@@ -16,12 +16,13 @@ class Manufacturing extends Component {
   }
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
+      console.log(res.data)
       this.setState({
         newOrders: res.data.filter(orders => orders.priority ===0),
         inProgressOrders: res.data.filter(orders => orders.priority ===1),
       },
       ()=>{
-        console.log(this.state.newOrders);
+        console.log(this.state.newOrders, "line 25");
       }
       );
     })
