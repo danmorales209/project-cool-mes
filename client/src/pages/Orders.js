@@ -8,30 +8,33 @@ import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, In
 
 class Orders extends React.Component {
   state = {
-    activeOrders: [],
-    queuedOrders: [],
+    newOrders: [],
+    inProgressOrders: [],
     completedOrders: [],
-    productName: "",
+    product: "",
     qtyNeeded: "",
     dueDate: "",
     customerName: "",
     address: "",
     city: "",
     state: "",
-    zip: ""
+    zip: "",
+    products:[]
   };
 
   componentDidMount() {
     this.loadOrders();
   }
 
+  // handleOrderOpen= () =>
+
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
-      productName: this.state.productName,
+      product:this.state.objectID,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
-        name: this.state.customerName,
+        name: this.state.name,
         address: this.state.address,
         city: this.state.city,
         state: this.state.state,
@@ -44,11 +47,18 @@ class Orders extends React.Component {
       this.setState({ orderObj: newArr });
     })
   }
+  loadProducts = () => {
+    axios.get("/api/recipe/GET").then((res) => {
+      this.setState({
+        products:res.data
+      });
+    })
+  }
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        activeOrders: res.data,
-        queuedOrders: res.data,
+        newOrders: res.data,
+        inProgressOrders: res.data,
         completedOrders: res.data,
       });
     })
@@ -78,7 +88,7 @@ class Orders extends React.Component {
               </Card>
             </Col>
             <Col size="md-3">
-              {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.newOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -88,7 +98,7 @@ class Orders extends React.Component {
           </Row>
           <Row>
             <Col size="md-3">
-              {this.state.queuedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.inProgressOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -98,7 +108,7 @@ class Orders extends React.Component {
           </Row>
           <Row>
             <Col size="md-3">
-              {this.state.completedOrders.map((el, i) => <OrderCard obj={el} key={i} ></OrderCard>)}
+              {this.state.completedOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
