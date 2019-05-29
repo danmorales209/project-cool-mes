@@ -8,8 +8,8 @@ import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, In
 
 class Orders extends React.Component {
   state = {
-    activeOrders: [],
-    queuedOrders: [],
+    newOrders: [],
+    inProgressOrders: [],
     completedOrders: [],
     productName: "",
     qtyNeeded: "",
@@ -80,7 +80,7 @@ class Orders extends React.Component {
               </Card>
             </Col>
             <Col size="md-3">
-              {this.state.activeOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
+              {this.state.newOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -90,7 +90,7 @@ class Orders extends React.Component {
           </Row>
           <Row>
             <Col size="md-3">
-              {this.state.queuedOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
+              {this.state.inProgressOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
           </Row>
           <Row>

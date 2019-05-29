@@ -9,7 +9,7 @@ const OrderCard = (props) => {
     <div>
       {/* <Card>
         <CardBody>
-          <CardTitle>Order Number:{data.orderNumber}</CardTitle>
+          <CardTitle>Order Number:{data.orderNumber} Status: {data.status}</CardTitle>
           <CardSubtitle>Product Name:{data.productName} Units:{data.qtyNeeded}</CardSubtitle>
           <CardText>Due Date:{data.dueDate},
             Customer Name:{data.customerName},
