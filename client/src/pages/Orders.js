@@ -4,7 +4,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
-import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, CardText, CardBody, CardTitle, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Orders extends React.Component {
   state = {
@@ -19,7 +19,7 @@ class Orders extends React.Component {
     city: "",
     state: "",
     zip: "",
-    products:[]
+    products: []
   };
 
   componentDidMount() {
@@ -30,7 +30,7 @@ class Orders extends React.Component {
 
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
-      product:this.state.objectID,
+      product: this.state.objectID,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
@@ -50,17 +50,21 @@ class Orders extends React.Component {
   loadProducts = () => {
     axios.get("/api/recipe/GET").then((res) => {
       this.setState({
-        products:res.data
+        products: res.data
       });
     })
   }
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        newOrders: res.data,
-        inProgressOrders: res.data,
-        completedOrders: res.data,
-      });
+        newOrders: res.data.filter(orders => orders.priority === 0),
+        inProgressOrders: res.data.filter(orders => orders.priority === 1),
+        completedOrders: res.data.filter(orders => orders.priority === 2),
+      },
+        () => {
+          console.log(this.state.newOrders);
+        }
+      );
     })
   }
 
@@ -119,10 +123,27 @@ class Orders extends React.Component {
           <Row>
             <Col size="md-6">
               <Form>
-                <FormGroup>
-                  <Label for="productName">Product Name</Label>
-                  <Input type="" name="productName" id="productName" value={this.state.productName} onChange={this.handleInputChange} placeholder="Product Name" />
-                </FormGroup>
+                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret>
+                    Choose a Product
+                    </DropdownToggle>
+                  <DropdownMenu>
+                    {this.state.products.map((el, i) =>
+                      <>
+                        {/* <DropdownItem key={i}>Name: {el.name}</DropdownItem> */}
+                        {/* {console.log(el)} */}
+                        <DropdownItem
+                          onClick={this.productOnClick}
+                          value={el._id}
+                          name={el.name}
+                        >
+                          Product Name: {el.name}
+                        </DropdownItem>
+                        <DropdownItem divider />
+                      </>
+                    )}
+                  </DropdownMenu>
+                </Dropdown>
                 <FormGroup>
                   <Label for="unitsNeeded">Total Units Needed</Label>
                   <Input type="" name="qtyNeeded" id="qtyNeeded" value={this.state.qtyNeeded} onChange={this.handleInputChange} placeholder="Total Units Needed" />
@@ -151,7 +172,7 @@ class Orders extends React.Component {
                   <Label for="exampleZip">Zip</Label>
                   <Input type="text" name="zip" value={this.state.zip} onChange={this.handleInputChange} id="exampleZip" />
                 </FormGroup>
-                <Button color="success" onClick={this.handlePostOrder}>Submit</Button>
+                <Button color="success" onSubmit={this.loadOrders} onClick={this.handlePostOrder}>Submit</Button>
               </Form>
             </Col>
           </Row>

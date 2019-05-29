@@ -12,15 +12,18 @@ class Manufacturing extends Component {
   };
 
   componentDidMount() {
-    this.handleGetOrders();
+    this.loadOrders();
   }
-
-  handleGetOrders = () => {
-    axios.get("/api/order/GET").then(res => {
-      let newArr = this.state.newOrders;
-      newArr.push(res.data);
-      this.setState({newOrders: newArr})
-      console.log(this.state.newOrders, "line 23")
+  loadOrders = () => {
+    axios.get("/api/order/GET").then((res) => {
+      this.setState({
+        newOrders: res.data.filter(orders => orders.priority ===0),
+        inProgressOrders: res.data.filter(orders => orders.priority ===1),
+      },
+      ()=>{
+        console.log(this.state.newOrders);
+      }
+      );
     })
   }
 
