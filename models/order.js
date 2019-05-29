@@ -8,7 +8,7 @@ const orderSchema = new Schema({
       ref: "Recipe"
     }
   ],
-  inProgress: {
+  status: {
     type: String,
     default: "New" //In Progress, Completed
   },
