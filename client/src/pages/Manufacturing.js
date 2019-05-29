@@ -9,7 +9,8 @@ import { Col, Row, Container } from "../components/Grid";
 
 class Manufacturing extends Component {
   state = {
-    activeOrders: [],
+    newOrders: [],
+    inProgressOrders:[],
     recipe:{},
   };
 
@@ -41,12 +42,22 @@ class Manufacturing extends Component {
         <Container fluid>
           <Row>
             <Col size="md-6">
-              <h1>Incomplete Orders</h1>
+              <h1>New Orders</h1>
             </Col>
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.activeOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
+            {this.state.newOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              <h1>In Progress Orders</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-3">
+            {this.state.inProgressOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
             </Col>
           </Row>
           <Row>

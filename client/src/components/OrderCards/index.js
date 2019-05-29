@@ -1,18 +1,23 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 const OrderCard = (props) => {
   return (
     <div>
-      <Card>
+      {/* <Card>
         <CardBody>
-          <CardTitle>Pass in Order Number</CardTitle>
-          <CardSubtitle>Product Name and Units</CardSubtitle>
-          <CardText>Due Date, Customer Name, Customer Address, Customer Phone Number</CardText>
+          <CardTitle>Order Number:{data.orderNumber} Status: {data.status}</CardTitle>
+          <CardSubtitle>Product Name:{data.productName} Units:{data.qtyNeeded}</CardSubtitle>
+          <CardText>Due Date:{data.dueDate},
+            Customer Name:{data.customerName},
+            Customer Address:{data.address} {data.city}, {data.state} {data.zip}
+          </CardText>
           <Button>Edit Order</Button>
         </CardBody>
-      </Card>
+      </Card> */}
     </div>
   );
 };
