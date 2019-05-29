@@ -18,7 +18,8 @@ class Orders extends React.Component {
     address: "",
     city: "",
     state: "",
-    zip: ""
+    zip: "",
+    products:[]
   };
 
   componentDidMount() {
@@ -46,11 +47,18 @@ class Orders extends React.Component {
       this.setState({ orderObj: newArr });
     })
   }
+  loadProducts = () => {
+    axios.get("/api/recipe/GET").then((res) => {
+      this.setState({
+        products:res.data
+      });
+    })
+  }
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        activeOrders: res.data,
-        queuedOrders: res.data,
+        newOrders: res.data,
+        inProgressOrders: res.data,
         completedOrders: res.data,
       });
     })
