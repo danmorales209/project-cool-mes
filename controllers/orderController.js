@@ -49,12 +49,12 @@ module.exports = {
             
             // Key-value pair exists in recipe inventory
             if (recipeInv.hasOwnProperty(name)) {
-              recipeInv[name].quantity += inventoryItem.quantity;
+              recipeInv[name] += inventoryItem.quantity;
             }
 
             // Key-value pair does not exist in recipe inventory
             else {
-              recipeInv[name] = {quantity: inventoryItem.quantity};
+              recipeInv[name] =  inventoryItem.quantity;
             }
           });
 
@@ -62,14 +62,9 @@ module.exports = {
           step.equipmentType.forEach(equipmentItem => {
             recipeEquip.push(equipmentItem)
           });
-        })
+        });
 
-        let dummy = {
-          inventory: recipeInv,
-          equipment: recipeEquip
-        }
-
-        res.json(dummy);
+        console.log(Object.keys(recipeInv))
 
       })
   }
