@@ -25,9 +25,7 @@ class Inventory extends Component {
       quantity: this.state.materialQuantity,
       units: this.state.materialUnit
     }).then(res => {
-      let newArr = this.state.materailObj;
-      newArr.push(res.data);
-      this.setState({ materailObj: newArr });
+      this.setState({ materailObj: [...this.state.materailObj, res.data] });
     })
   };
 

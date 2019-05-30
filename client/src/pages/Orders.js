@@ -42,9 +42,9 @@ class Orders extends React.Component {
       }
     }).then(res => {
       console.log(res.data);
-      let newArr = this.state.orderObj;
-      newArr.push(res.data);
-      this.setState({ orderObj: newArr });
+      // let newArr = this.state.orderObj;
+      // newArr.push(res.data);
+      // this.setState({ orderObj: newArr });
     })
   }
   loadProducts = () => {
