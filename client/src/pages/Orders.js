@@ -12,6 +12,7 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
+    productName: "",
     priority: "",
     qtyNeeded: "",
     dueDate: "",
@@ -33,6 +34,7 @@ class Orders extends React.Component {
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
+      productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       priority: this.state.priority,
@@ -67,13 +69,34 @@ class Orders extends React.Component {
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(this.state.product, " line 74")
   }
 
   toggle = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
     }));
+  }
+
+  handleStartOrder = (id) => {
+    axios.post("/api/order/POST/" + id, {
+      priority: 1,
+      inProgress: "In Progress"
+    }).then(res => {
+      console.log(res.data)
+      this.loadOrders();
+
+    })
+  }
+  handleCompleteOrder = (id) => {
+    console.log(id);
+    axios.post("/api/order/POST/" + id, {
+      priority: 2,
+      inProgress: "Completed"
+    }).then(res => {
+      console.log(res.data)
+      this.loadOrders();
+
+    })
   }
 
   render() {
@@ -86,7 +109,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-              {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
+            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} clicked={(d) => this.handleStartOrder(d)}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -94,7 +117,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-              {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
+            {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} clicked={(d) => this.handleCompleteOrder(d)}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -102,7 +125,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-              {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
+            {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -123,6 +146,7 @@ class Orders extends React.Component {
                           onClick={this.handleInputChange}
                           value={el._id}
                           name="product"
+                          productName={el.name}
                         >
                           Product Name: {el.name}
                         </DropdownItem>
