@@ -77,28 +77,6 @@ class Orders extends React.Component {
     }));
   }
 
-  handleStartOrder = (id) => {
-    axios.post("/api/order/POST/" + id, {
-      priority: 1,
-      inProgress: "In Progress"
-    }).then(res => {
-      console.log(res.data)
-      this.loadOrders();
-
-    })
-  }
-  handleCompleteOrder = (id) => {
-    console.log(id);
-    axios.post("/api/order/POST/" + id, {
-      priority: 2,
-      inProgress: "Completed"
-    }).then(res => {
-      console.log(res.data)
-      this.loadOrders();
-
-    })
-  }
-
   render() {
     return (
       <div className="container">
@@ -109,7 +87,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} clicked={(d) => this.handleStartOrder(d)}></OrderCard></Col>)}
+            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -117,7 +95,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} clicked={(d) => this.handleCompleteOrder(d)}></OrderCard></Col>)}
+            {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
