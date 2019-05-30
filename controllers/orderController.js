@@ -47,7 +47,7 @@ module.exports = {
 
             let name = inventoryItem.inventory;
 
-            
+
             // Key-value pair exists in recipe inventory
             if (recipeInv.hasOwnProperty(name)) {
               recipeInv[name] += inventoryItem.quantity;
@@ -55,7 +55,7 @@ module.exports = {
 
             // Key-value pair does not exist in recipe inventory
             else {
-              recipeInv[name] =  inventoryItem.quantity;
+              recipeInv[name] = inventoryItem.quantity;
             }
           });
 
@@ -66,12 +66,23 @@ module.exports = {
         });
 
         let inventoryIDs = Object.keys(recipeInv).map(e => new mongoose.Types.ObjectId(e));
+        let inventoryQuanity = Object.values(recipeInv);
 
-        console.log(inventoryIDs)
+        console.log(recipeInv)
 
-        db.Inventory.find(inventoryIDs)
-        .then( resp => res.json(resp));
-       
+        db.Inventory.find({
+          _id: {
+
+            $in: inventoryIDs
+
+          }
+        })
+          .then(resp => {
+
+            console.log(resp);
+            
+          });
+
       })
   }
 };
