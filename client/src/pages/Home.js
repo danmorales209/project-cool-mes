@@ -55,6 +55,7 @@ class Home extends Component {
                                         </CardBody>
                                     </Card>
                                 </Col>
+                                
                                 <Col size="md-6">
                                     <Card>
                                         <CardImg top src="./images/inventory.jpg" alt="Card image cap" />
