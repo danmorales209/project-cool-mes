@@ -10,9 +10,7 @@ const orderSchema = new Schema(
     },
 
     productName: {
-      type: Schema.name,
-      ref: "Recipe",
-      required: true
+      type: String
     },
 
     inProgress: {
