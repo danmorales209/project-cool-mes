@@ -91,7 +91,7 @@ export default class Example extends React.Component {
             onChange={this.handleDescription}
             name="productDescription"
             id="productDescription"
-            placeholder="Add some info..."
+            placeholder="Add a description..."
           />
         </FormGroup>
         <FormGroup>
@@ -103,19 +103,10 @@ export default class Example extends React.Component {
                 value={this.state.steps[index]}
                 id={index}
                 key={index}
-                name={"stepsInput" + index}
-                placeholder="Step Name"
-                onChange={this.handleChange}
-              />
-              <Input
-                value={this.state.steps[index]}
-                id={index}
-                key={index}
                 name={"directionsInput" + index}
                 placeholder="Directions"
                 onChange={this.handleChange}
               />
-
               <Dropdown
                 isOpen={this.state.dropdownOpen}
                 toggle={this.toggleInventory}
