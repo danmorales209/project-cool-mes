@@ -12,7 +12,7 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
-    priority:"",
+    priority: "",
     qtyNeeded: "",
     dueDate: "",
     name: "",
@@ -61,11 +61,7 @@ class Orders extends React.Component {
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1),
         completedOrders: res.data.filter(orders => orders.priority === 2),
-      },
-        () => {
-          console.log(this.state.newOrders);
-        }
-      );
+      });
     })
   }
 
@@ -90,9 +86,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.newOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+              {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -100,9 +94,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.inProgressOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+              {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -110,9 +102,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.completedOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+              {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i} ></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
