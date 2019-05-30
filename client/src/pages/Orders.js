@@ -12,7 +12,8 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
-    priority:"",
+    productName: "",
+    priority: "",
     qtyNeeded: "",
     dueDate: "",
     name: "",
@@ -33,6 +34,7 @@ class Orders extends React.Component {
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
+      productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       priority: this.state.priority,
@@ -61,17 +63,12 @@ class Orders extends React.Component {
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1),
         completedOrders: res.data.filter(orders => orders.priority === 2),
-      },
-        () => {
-          console.log(this.state.newOrders);
-        }
-      );
+      });
     })
   }
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(this.state.product, " line 74")
   }
 
   toggle = () => {
@@ -90,9 +87,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.newOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -100,9 +95,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.inProgressOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+            {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -110,9 +103,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              {this.state.completedOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
-            </Col>
+            {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -133,6 +124,7 @@ class Orders extends React.Component {
                           onClick={this.handleInputChange}
                           value={el._id}
                           name="product"
+                          productName={el.name}
                         >
                           Product Name: {el.name}
                         </DropdownItem>
