@@ -6,19 +6,26 @@ import {
 
 const OrderCard = (props) => {
   return (
-    <div>
+    <>
       <Card>
         <CardBody>
           <CardTitle>Order Number:{props.obj.orderNumber} Status: {props.obj.status}</CardTitle>
-          <CardSubtitle>Product Name:{props.obj.productName} Units:{props.obj.qtyNeeded}</CardSubtitle>
-          <CardText>Due Date:{props.obj.dueDate},
-            Customer Name:{props.obj.customerName},
-            Customer Address:{props.obj.address} {props.obj.city}, {props.obj.state} {props.obj.zip}
+          <CardSubtitle>Product Name:{props.obj.productName}
+          <br></br>
+           Units:{props.obj.qtyNeeded}</CardSubtitle>
+          <CardText>
+            Due Date: {props.obj.dueDate}
+            <br></br>
+            Customer Name: {props.obj.customer.name}
+            <br></br>
+            Customer Address: 
+            <br></br>
+            {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
           <Button>Edit Order</Button>
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 };
 
