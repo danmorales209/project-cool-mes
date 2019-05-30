@@ -71,6 +71,10 @@ class Orders extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  handleProductName = (e) => {
+    this.setState({ productName: e.target.productName })
+  }
+
   toggle = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
@@ -121,7 +125,7 @@ class Orders extends React.Component {
                     {this.state.products.map((el, i) =>
                       <>
                         <DropdownItem
-                          onClick={this.handleInputChange}
+                          onClick={(e) => { this.handleInputChange(e); this.handleProductName(e) }}
                           value={el._id}
                           name="product"
                           productName={el.name}
