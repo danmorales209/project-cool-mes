@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
 const MaterialCard = (props) => {
     return (
@@ -10,15 +10,19 @@ const MaterialCard = (props) => {
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Units</th>
+                    <th>Add More</th>
                 </tr>
             </thead>
             <tbody>
                 {props.obj.map((el, i) =>
                     <tr key={i}>
-                        <th scope="row">{i+1}</th>
+                        <th scope="row">{i + 1}</th>
                         <td>{el.name}</td>
                         <td>{el.quantity}</td>
                         <td>{el.units}</td>
+                        <td>
+                            <Button onClick={() => props.increaseBtn(el._id)}>Add 1</Button>
+                        </td>
                     </tr>
                 )}
 
