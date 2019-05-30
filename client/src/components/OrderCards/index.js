@@ -26,11 +26,11 @@ const OrderCard = (props) => {
           <CardText>
             Due Date: {props.obj.dueDate}
             <br></br>
-            Customer Name: {props.obj.customer.name}
+            {/* Customer Name: {props.obj.customer.name} */}
             <br></br>
             Customer Address:
             <br></br>
-            {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip}
+            {/* {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip} */}
           </CardText>
           {btnFunc(props)}
         </CardBody>

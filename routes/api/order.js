@@ -9,6 +9,7 @@ router.route("/POST").post(orderController.create);
 // Matches with "/api/inventory/:id"
 router.route("/GET/:id").get(orderController.findById);
 router.route("/POST/:id").post(orderController.update);
+router.route("/CHECK").post(orderController.check);
 // .route("/inventory:id")
 // .get(orderController.findById)
 // .put(orderController.update)
