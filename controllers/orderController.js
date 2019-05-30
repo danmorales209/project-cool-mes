@@ -21,7 +21,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.Order.findOneAndUpdate({ _id: req.params.id }, {$set: {"inProgress": req.body.progress, "priority": req.body.priority}})
+    db.Order.findOneAndUpdate({ _id: req.params.id }, { $set: { "inProgress": req.body.progress, "priority": req.body.priority } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -65,22 +65,29 @@ module.exports = {
           });
         });
 
-        let inventoryIDs = Object.keys(recipeInv).map(e => new mongoose.Types.ObjectId(e));
-        let inventoryQuanity = Object.values(recipeInv);
+        console.log(recipeEquip);
 
-        console.log(recipeInv)
+        let inventoryIDs = Object.keys(recipeInv).map(e => new mongoose.Types.ObjectId(e));
+        let invQuantity = Object.values(recipeInv);
 
         db.Inventory.find({
           _id: {
-
             $in: inventoryIDs
-
           }
         })
           .then(resp => {
 
-            console.log(resp);
-            
+            let inventoryDifference = resp
+              .map((e, index) => e.quantity - invQuantity[index])
+              .filter(x => x <= 0)
+              .length;
+
+            if (inventoryDifference != 0) {
+              console.log("not empty")
+            }
+            else {
+              console.log("empty");
+            }
           });
 
       })
