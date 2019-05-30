@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Button } from 'reactstrap';
 import AddManufacturing from "../components/AddManufacturing";
 import OrderCard from "../components/OrderCards";
-// import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 
@@ -14,17 +11,22 @@ class Manufacturing extends Component {
     recipe:{},
   };
 
-  // componentDidMount() {
-  //   // this.loadBooks();
-  // }
-
-  // handleGetOrders = () => {
-  //   axios.get("/api/orders", {
-  //     activeOrders: this.state.activeOrders,
-  //   }).then(res => {
-  //     console.log(res.data)
-  //   })
-  // }
+  componentDidMount() {
+    this.loadOrders();
+  }
+  loadOrders = () => {
+    axios.get("/api/order/GET").then((res) => {
+      console.log(res.data)
+      this.setState({
+        newOrders: res.data.filter(orders => orders.priority ===0),
+        inProgressOrders: res.data.filter(orders => orders.priority ===1),
+      },
+      ()=>{
+        console.log(this.state.newOrders, "line 25");
+      }
+      );
+    })
+  }
 
   // handlePostCompleted = () => {
   //   axios.post("/api/Manufacturing/POST", {
@@ -65,11 +67,11 @@ class Manufacturing extends Component {
                 <AddManufacturing steps={this.recipe}/>
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col size="md-6">
               <Button color="success" onClick={this.handlePostCompleted} >Update</Button>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </div>
     );
