@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import AddManufacturing from "../components/AddManufacturing";
-import OrderCard from "../components/OrderCards";
+import OrderCard from "../components/OrderCards/manufacturingCard";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 
 class Manufacturing extends Component {
   state = {
     newOrders: [],
-    inProgressOrders:[],
-    recipe:{},
+    inProgressOrders: [],
+    recipe: {},
   };
 
   componentDidMount() {
@@ -16,27 +16,41 @@ class Manufacturing extends Component {
   }
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
-      console.log(res.data)
+      console.log(res.data, "line 19")
       this.setState({
-        newOrders: res.data.filter(orders => orders.priority ===0),
-        inProgressOrders: res.data.filter(orders => orders.priority ===1),
+        newOrders: res.data.filter(orders => orders.priority === 0),
+        inProgressOrders: res.data.filter(orders => orders.priority === 1),
       },
-      ()=>{
-        console.log(this.state.newOrders, "line 25");
-      }
+        () => {
+          // console.log(this.state.newOrders, "line 25");
+        }
       );
     })
   }
+  handleStartOrder = (id) => {
+    axios.post("/api/order/POST/" + id, {
+      priority: 1,
+      inProgress: "In Progress"
+    }).then(res => {
+      console.log(res.data)
+      this.loadOrders();
 
-  // handlePostCompleted = () => {
-  //   axios.post("/api/Manufacturing/POST", {
-  //     name: this.state.materialName,
-  //     quantity: this.state.materialQuantity,
-  //     units: this.state.materialUnit
-  //   }).then(res => {
-  //     console.log(res.data)
-  //   })
-  // }
+    })
+  }
+  handleCompleteOrder = (id) => {
+    console.log(id);
+    axios.post("/api/order/POST/" + id, {
+      priority: 2,
+      inProgress: "Completed"
+    }).then(res => {
+      console.log(res.data)
+      this.loadOrders();
+
+    })
+  }
+  handleShowSteps = (id) => {
+    console.log(id)
+  }
 
   render() {
     return (
@@ -49,7 +63,7 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.newOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
+              {this.state.newOrders.map((el, i) => <OrderCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleStartOrder(d)}></OrderCard>)}
             </Col>
           </Row>
           <Row>
@@ -59,19 +73,14 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-            {this.state.inProgressOrders.map((el, i) => <OrderCard obj={el} key={i}></OrderCard>)}
+              {this.state.inProgressOrders.map((el, i) => <OrderCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleCompleteOrder(d)}></OrderCard>)}
             </Col>
           </Row>
           <Row>
             <Col size="md-6">
-                <AddManufacturing steps={this.recipe}/>
+              <AddManufacturing steps={this.recipe} />
             </Col>
           </Row>
-          {/* <Row>
-            <Col size="md-6">
-              <Button color="success" onClick={this.handlePostCompleted} >Update</Button>
-            </Col>
-          </Row> */}
         </Container>
       </div>
     );
