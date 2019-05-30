@@ -69,8 +69,8 @@ module.exports = {
 
         console.log(inventoryIDs)
 
-        // db.Inventory.find(Object.keys(inventoryIDs))
-        // .then( resp => res.json(resp));
+        db.Inventory.find(inventoryIDs)
+        .then( resp => res.json(resp));
        
       })
   }
