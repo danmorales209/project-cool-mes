@@ -12,9 +12,10 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
+    priority:"",
     qtyNeeded: "",
     dueDate: "",
-    customerName: "",
+    name: "",
     address: "",
     city: "",
     state: "",
@@ -34,6 +35,7 @@ class Orders extends React.Component {
       product: this.state.product,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
+      priority: this.state.priority,
       customer: {
         name: this.state.name,
         address: this.state.address,
@@ -42,10 +44,8 @@ class Orders extends React.Component {
         zip: this.state.zip
       }
     }).then(res => {
-      console.log(res.data);
-      // let newOrder = this.state.orderObj;
-      // newArr.push(res.data);
-      // this.setState({ orderObj: newArr });
+      console.log(res);
+      this.loadOrders()
     })
   }
   loadProducts = () => {
@@ -146,12 +146,16 @@ class Orders extends React.Component {
                   <Input type="" name="qtyNeeded" id="qtyNeeded" value={this.state.qtyNeeded} onChange={this.handleInputChange} placeholder="Total Units Needed" />
                 </FormGroup>
                 <FormGroup>
+                  <Label for="priority">Priority Level</Label>
+                  <Input type="" name="priority" id="priority" value={this.state.priority} onChange={this.handleInputChange} placeholder="0,1,or 2" />
+                </FormGroup>
+                <FormGroup>
                   <Label for="dueDate">Due Date</Label>
                   <Input type="" name="dueDate" id="dueDate" value={this.state.dueDate} onChange={this.handleInputChange} placeholder="Due Date" />
                 </FormGroup>
                 <FormGroup>
                   <Label for="customerName">Customer Name</Label>
-                  <Input type="text" name="customerName" id="customerName" value={this.state.customerName} onChange={this.handleInputChange} placeholder="Jane Doe" />
+                  <Input type="text" name="name" id="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Jane Doe" />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleAddress">Address</Label>
