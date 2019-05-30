@@ -24,13 +24,14 @@ class Orders extends React.Component {
 
   componentDidMount() {
     this.loadOrders();
+    this.loadProducts();
   }
 
   // handleOrderOpen= () =>
 
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
-      product: this.state.objectID,
+      product: this.state.product,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
@@ -42,9 +43,9 @@ class Orders extends React.Component {
       }
     }).then(res => {
       console.log(res.data);
-      let newArr = this.state.orderObj;
-      newArr.push(res.data);
-      this.setState({ orderObj: newArr });
+      // let newOrder = this.state.orderObj;
+      // newArr.push(res.data);
+      // this.setState({ orderObj: newArr });
     })
   }
   loadProducts = () => {
@@ -70,6 +71,13 @@ class Orders extends React.Component {
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+    console.log(this.state.product, " line 74")
+  }
+
+  toggle = () => {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
   }
 
   render() {
@@ -82,15 +90,6 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-3">
-              <Card>
-                <CardBody>
-                  <CardTitle>New Order</CardTitle>
-                  <CardText>New Order</CardText>
-                  <Button>Start New Order</Button>
-                </CardBody>
-              </Card>
-            </Col>
             <Col size="md-3">
               {this.state.newOrders.map((data, i) => <OrderCard obj={data} key={i} ></OrderCard>)}
             </Col>
@@ -130,12 +129,10 @@ class Orders extends React.Component {
                   <DropdownMenu>
                     {this.state.products.map((el, i) =>
                       <>
-                        {/* <DropdownItem key={i}>Name: {el.name}</DropdownItem> */}
-                        {/* {console.log(el)} */}
                         <DropdownItem
-                          onClick={this.productOnClick}
+                          onClick={this.handleInputChange}
                           value={el._id}
-                          name={el.name}
+                          name="product"
                         >
                           Product Name: {el.name}
                         </DropdownItem>
