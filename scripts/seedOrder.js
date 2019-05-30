@@ -24,7 +24,7 @@ const orderSeed = [
         zip: 95824
       }
     ],
-    dueDate: 2019 - 06 - 11,
+    dueDate: "2019-06-11",
     qtyNeeded: 1
   }
 ];
