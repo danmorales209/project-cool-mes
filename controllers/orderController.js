@@ -1,4 +1,5 @@
 const db = require("../models");
+const mongoose = require("mongoose")
 
 module.exports = {
   // Find all based upon query, and return sorted based upon status
@@ -64,8 +65,13 @@ module.exports = {
           });
         });
 
-        console.log(Object.keys(recipeInv))
+        let inventoryIDs = Object.keys(recipeInv).map(e => new mongoose.Types.ObjectId(e));
 
+        console.log(inventoryIDs)
+
+        // db.Inventory.find(Object.keys(inventoryIDs))
+        // .then( resp => res.json(resp));
+       
       })
   }
 };
