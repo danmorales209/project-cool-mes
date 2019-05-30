@@ -15,7 +15,8 @@ export default class Example extends React.Component {
     steps: [],
     productName: "",
     productDescription: "",
-    equipment: []
+    equipment: [],
+    inventory: []
   };
 
   toggleInventory = () => {
