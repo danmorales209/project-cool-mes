@@ -14,8 +14,36 @@ const recipeSchema = new Schema({
 
   steps: [
     {
-      type: Schema.ObjectId,
-      ref: "Instructions"
+      name: {
+        type: String,
+        required: true
+      },
+
+      directions: {
+        type: String,
+        required: true
+      },
+
+      stepInventory: [
+        {
+          inventory: {
+            type: Schema.ObjectId,
+            ref: "Inventory"
+          },
+          quantity: Number
+        }
+      ],
+
+      equipmentType: [
+        {
+          type: Schema.ObjectId,
+          ref: "Equipment"
+        }
+      ],
+      duration: {
+        type: Number,
+        required: true
+      }
     }
   ],
 
