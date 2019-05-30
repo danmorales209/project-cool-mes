@@ -54,7 +54,7 @@ module.exports = {
 
             // Key-value pair does not exist in recipe inventory
             else {
-              recipeInv[`${name}`] = {quantity: inventoryItem.quantity};
+              recipeInv[name] = {quantity: inventoryItem.quantity};
             }
           });
 
