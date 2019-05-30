@@ -19,7 +19,7 @@ const OrderCard = (props) => {
     <>
       <Card>
         <CardBody>
-          <CardTitle>Order Number:{props.obj.orderNumber} Status: {props.obj.status}</CardTitle>
+          <CardTitle>Status: {props.obj.status}</CardTitle>
           <CardSubtitle>Product Name:{props.obj.productName}
             <br></br>
             Units:{props.obj.qtyNeeded}</CardSubtitle>
