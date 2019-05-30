@@ -8,19 +8,20 @@ const orderSchema = new Schema(
       ref: "Recipe",
       required: true
     },
+
     productName: {
       type: Schema.name,
       ref: "Recipe",
       required: true
     },
-    
+
     inProgress: {
       type: String,
       default: "New", //In Progress, Completed
       required: true
     },
 
-    priority : {
+    priority: {
       type: Number,
       required: true,
       default: 0
@@ -35,7 +36,7 @@ const orderSchema = new Schema(
     },
 
     dueDate: String,
-    qtyNeeded: 
+    qtyNeeded:
     {
       type: Number,
       default: 1
