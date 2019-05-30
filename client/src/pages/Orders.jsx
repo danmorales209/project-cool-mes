@@ -72,6 +72,20 @@ class Orders extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  toggle = () => {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+
+  // select = (e) => {
+  //   // console.log(e.target.id)
+  //   axios.get("/api/recipe/GET")
+  //     .then(res => {
+  //       this.setState({ products: res.data })
+  //     })
+  // }
+
   render() {
     return (
       <div className="container">
