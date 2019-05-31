@@ -49,10 +49,8 @@ class Manufacturing extends Component {
   }
   handleShowSteps = (id) => {
     //this.setState({ recipeObj: {} })
-
     axios.get("/api/order/GET/" + id)
       .then(res => {
-
         axios.get("/api/recipe/GET/" + res.data.product)
           .then(res => {
             this.setState({ recipeObj: res.data })
