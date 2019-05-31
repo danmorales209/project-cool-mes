@@ -13,7 +13,7 @@ const orderSchema = new Schema(
       type: String
     },
 
-    inProgress: {
+    status: {
       type: String,
       default: "New", //In Progress, Completed
       required: true

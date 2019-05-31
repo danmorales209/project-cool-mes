@@ -4,26 +4,28 @@ const db = require("../models");
 // This file empties the Equipment collection and adds the items below
 
 // connect to heroku DB for seeding
-mongoose.connect(
-  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
-  { useNewUrlParser: true }
-);
+// mongoose.connect(
+//   "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
+//   { useNewUrlParser: true }
+// );
 
 //connect to local DB for seeding
-// mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
 const orderSeed = [
   {
     product: "5ce8cae9cfa6ba66ac570a99",
-    customer: [
+    productName: "Birthday Cake",
+    status: "New",
+    priority: 0,
+    customer: 
       {
         name: "Joe Jones",
         address: "45 Caroline Blvd.",
         city: "Sacramento",
         state: "California",
         zip: 95824
-      }
-    ],
+      },
     dueDate: "2019-06-11",
     qtyNeeded: 1
   }
