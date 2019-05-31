@@ -34,7 +34,9 @@ module.exports = {
 
   check: function (req, res) {
     let recipeInv = {};
-    let recipeEquip = [];
+    let recipeEquip = {};
+    let enoughInventory = false;
+    let enoughEquipment = false;
 
     db.Recipe.findById(req.body.product)
       .then(response => {
@@ -45,25 +47,37 @@ module.exports = {
           // Loop over stepInventory
           step.stepInventory.forEach(inventoryItem => {
 
-            let name = inventoryItem.inventory;
+            let invName = inventoryItem.inventory;
 
 
             // Key-value pair exists in recipe inventory
-            if (recipeInv.hasOwnProperty(name)) {
-              recipeInv[name] += inventoryItem.quantity;
+            if (recipeInv.hasOwnProperty(invName)) {
+              recipeInv[invName] += inventoryItem.quantity;
             }
 
             // Key-value pair does not exist in recipe inventory
             else {
-              recipeInv[name] = inventoryItem.quantity;
+              recipeInv[invName] = inventoryItem.quantity;
             }
           });
+          // End loop over stepInventory
 
           // Loop over equipment
           step.equipmentType.forEach(equipmentItem => {
-            recipeEquip.push(equipmentItem)
+            
+            let equipName = equipmentItem;
+            
+            if (recipeEquip.hasOwnProperty(equipName)) {
+              recipeEquip[equipName]++; 
+            }
+            else {
+              recipeEquip[equipName] = 1;
+            }
           });
+          // End loop over equipment
+
         });
+        // End Loop over steps
 
         console.log(recipeEquip);
 
@@ -79,17 +93,27 @@ module.exports = {
 
             let inventoryDifference = resp
               .map((e, index) => e.quantity - invQuantity[index])
-              .filter(x => x <= 0)
+              .filter(x => x < 0)
               .length;
 
             if (inventoryDifference != 0) {
-              console.log("not empty")
+              console.log("Not enough inventory");
+
             }
             else {
-              console.log("empty");
+              enoughInventory = true;
             }
           });
 
-      })
+      });
+
+      //let equipmentIDs = recipeEquip.map(e => new mongoose.Types.ObjectId(e));
+
+      /* db.Equipment.find({
+        _id : {
+          $in : 
+        }
+      }) */
+
   }
 };
