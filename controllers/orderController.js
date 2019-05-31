@@ -21,7 +21,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.Order.findOneAndUpdate({ _id: req.params.id }, { $set: { "inProgress": req.body.progress, "priority": req.body.priority } })
+    db.Order.findOneAndUpdate({ _id: req.params.id }, { $set: { "status": req.body.progress, "priority": req.body.priority } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
