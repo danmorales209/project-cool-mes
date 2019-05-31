@@ -12,7 +12,7 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
-    productName: "0000",
+    productName: "",
     priority: "",
     qtyNeeded: "",
     dueDate: "",
