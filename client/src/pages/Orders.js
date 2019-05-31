@@ -12,7 +12,7 @@ class Orders extends React.Component {
     inProgressOrders: [],
     completedOrders: [],
     product: "",
-    productName: "",
+    productName: "0000",
     priority: "",
     qtyNeeded: "",
     dueDate: "",
@@ -34,7 +34,7 @@ class Orders extends React.Component {
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
-      productName: this.state.productName,
+      // productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       priority: this.state.priority,
@@ -69,6 +69,12 @@ class Orders extends React.Component {
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleProductName = (d) => {
+    console.log(d)
+    
+    this.setState({ productName:  d})
   }
 
   toggle = () => {
@@ -121,10 +127,9 @@ class Orders extends React.Component {
                     {this.state.products.map((el, i) =>
                       <>
                         <DropdownItem
-                          onClick={this.handleInputChange}
+                          onClick={(e) => { this.handleInputChange(e); this.handleProductName(el.name) }}
                           value={el._id}
                           name="product"
-                          productName={el.name}
                         >
                           Product Name: {el.name}
                         </DropdownItem>
