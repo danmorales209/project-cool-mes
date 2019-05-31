@@ -14,7 +14,7 @@ mongoose.connect(
 
 const orderSeed = [
   {
-    product: "5ce8cae9cfa6ba66ac570a99",
+    product: "5cf08b687658bb4150091aaa",
     customer: [
       {
         name: "Joe Jones",
@@ -25,7 +25,7 @@ const orderSeed = [
       }
     ],
     dueDate: "2019-06-11",
-    qtyNeeded: 1
+    qtyNeeded: 4
   }
 ];
 
