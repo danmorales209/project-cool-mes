@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import AddManufacturing from "../components/AddManufacturing";
 import OrderCard from "../components/OrderCards/manufacturingCard";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
+import RecipeSteps from "../components/RecipeSteps/index"
 
 class Manufacturing extends Component {
   state = {
     newOrders: [],
     inProgressOrders: [],
-    recipe: {},
+    // recipe: {},
+    recipeObj: "",
   };
 
   componentDidMount() {
@@ -34,7 +35,6 @@ class Manufacturing extends Component {
     }).then(res => {
       console.log(res.data)
       this.loadOrders();
-
     })
   }
   handleCompleteOrder = (id) => {
@@ -49,7 +49,17 @@ class Manufacturing extends Component {
     })
   }
   handleShowSteps = (id) => {
-    console.log(id)
+    //this.setState({ recipeObj: {} })
+
+    axios.get("/api/order/GET/" + id)
+      .then(res => {
+
+        axios.get("/api/recipe/GET/" + res.data.product)
+          .then(res => {
+            this.setState({ recipeObj: res.data })
+            console.log(this.state.recipeObj, "recipe object")
+          })
+      })
   }
 
   render() {
@@ -78,7 +88,8 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-6">
-              <AddManufacturing steps={this.recipe} />
+              {this.state.recipeObj === ""? "empty" : <RecipeSteps obj={this.state.recipeObj} />}
+              
             </Col>
           </Row>
         </Container>

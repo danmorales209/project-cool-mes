@@ -34,7 +34,7 @@ class Orders extends React.Component {
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
-      productName: this.state.productName,
+      // productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
