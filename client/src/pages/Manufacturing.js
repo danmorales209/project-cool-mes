@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import OrderCard from "../components/OrderCards/manufacturingCard";
+import OrderCard from "../components/ManufacturingCard";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 import RecipeSteps from "../components/RecipeSteps/index"
