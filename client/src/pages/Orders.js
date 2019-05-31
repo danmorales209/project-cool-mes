@@ -4,7 +4,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
-import { Card, CardText, CardBody, CardTitle, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Orders extends React.Component {
   state = {
@@ -37,7 +37,6 @@ class Orders extends React.Component {
       productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
-      priority: this.state.priority,
       customer: {
         name: this.state.name,
         address: this.state.address,
@@ -48,6 +47,18 @@ class Orders extends React.Component {
     }).then(res => {
       console.log(res);
       this.loadOrders()
+      this.setState({
+        product: "",
+        productName: "",
+        qtyNeeded: "",
+        dueDate: "",
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
+      })
+      console.log(this.state)
     })
   }
   loadProducts = () => {
@@ -73,8 +84,7 @@ class Orders extends React.Component {
 
   handleProductName = (d) => {
     console.log(d)
-    
-    this.setState({ productName:  d})
+    this.setState({ productName: d })
   }
 
   toggle = () => {
@@ -143,10 +153,6 @@ class Orders extends React.Component {
                   <Input type="number" name="qtyNeeded" id="qtyNeeded" value={this.state.qtyNeeded} onChange={this.handleInputChange} placeholder="Total Units Needed" />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="priority">Priority Level</Label>
-                  <Input type="number" name="priority" id="priority" value={this.state.priority} onChange={this.handleInputChange} placeholder="0,1,or 2" />
-                </FormGroup>
-                <FormGroup>
                   <Label for="dueDate">Due Date</Label>
                   <Input type="" name="dueDate" id="dueDate" value={this.state.dueDate} onChange={this.handleInputChange} placeholder="Due Date" />
                 </FormGroup>
@@ -170,7 +176,7 @@ class Orders extends React.Component {
                   <Label for="exampleZip">Zip</Label>
                   <Input type="number" name="zip" value={this.state.zip} onChange={this.handleInputChange} id="exampleZip" />
                 </FormGroup>
-                <Button color="success" onSubmit={this.loadOrders} onClick={this.handlePostOrder}>Submit</Button>
+                <Button color="success" onClick={() => {this.handlePostOrder(); this.loadOrders()}}>Submit</Button>
               </Form>
             </Col>
           </Row>
