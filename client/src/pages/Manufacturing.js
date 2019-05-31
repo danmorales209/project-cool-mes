@@ -1,32 +1,31 @@
 import React, { Component } from "react";
-import AddManufacturing from "../components/AddManufacturing";
 import OrderCard from "../components/OrderCards/manufacturingCard";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
+import RecipeSteps from "../components/RecipeSteps/index"
 
 class Manufacturing extends Component {
   state = {
     newOrders: [],
     inProgressOrders: [],
-    recipe: {},
+    // recipe: {},
+    recipeObj: "",
   };
 
   componentDidMount() {
     this.loadOrders();
   }
+
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       console.log(res.data, "line 19")
       this.setState({
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1),
-      },
-        () => {
-          // console.log(this.state.newOrders, "line 25");
-        }
-      );
+      });
     })
   }
+
   handleStartOrder = (id) => {
     axios.post("/api/order/POST/" + id, {
       priority: 1,
@@ -34,9 +33,9 @@ class Manufacturing extends Component {
     }).then(res => {
       console.log(res.data)
       this.loadOrders();
-
     })
   }
+
   handleCompleteOrder = (id) => {
     console.log(id);
     axios.post("/api/order/POST/" + id, {
@@ -49,7 +48,17 @@ class Manufacturing extends Component {
     })
   }
   handleShowSteps = (id) => {
-    console.log(id)
+    //this.setState({ recipeObj: {} })
+
+    axios.get("/api/order/GET/" + id)
+      .then(res => {
+
+        axios.get("/api/recipe/GET/" + res.data.product)
+          .then(res => {
+            this.setState({ recipeObj: res.data })
+            console.log(this.state.recipeObj, "recipe object")
+          })
+      })
   }
 
   render() {
@@ -78,7 +87,8 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-6">
-              <AddManufacturing steps={this.recipe} />
+              {this.state.recipeObj === ""? "empty" : <RecipeSteps obj={this.state.recipeObj} />}
+              
             </Col>
           </Row>
         </Container>

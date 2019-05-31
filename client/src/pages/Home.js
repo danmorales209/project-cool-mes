@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    CardTitle, CardSubtitle, Button, Jumbotron
 } from 'reactstrap';
 import axios from "axios";
-import { Jumbotron } from 'reactstrap';
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -16,6 +15,7 @@ import { Col, Row, Container } from "../components/Grid";
 class Home extends Component {
     state = {
         activeOrders: "",
+        inProgressOrders:"",
         completedOrders: "",
         productAInv: "",
         productBInv: "",
@@ -29,10 +29,11 @@ class Home extends Component {
     handleGetDash = () => {
         axios.get("/api/dashboard", {
           activeOrders: this.state.activeOrders,
+          inProgressOrders: this.state.inProgressOrders,
           completedOrders: this.state.completedOrders,
-          productAInv: this.state.productAInv,
-          productBInv: this.state.productBInv,
-          productCInv: this.state.productCInv
+        //   productAInv: this.state.productAInv,
+        //   productBInv: this.state.productBInv,
+        //   productCInv: this.state.productCInv
         }).then(res => {
           console.log(res.data)
         })
@@ -93,10 +94,11 @@ class Home extends Component {
                         <Col size="md-4">
                             <Jumbotron>
                                 <h2>Dashboard</h2>
-                                <p>Product A Inventory</p>
+                                {/* <p>Product A Inventory</p>
                                 <p>Product B Inventory</p>
-                                <p>Product C Inventory</p>
-                                <p>active activeOrders</p>
+                                <p>Product C Inventory</p> */}
+                                <p>activeOrders</p>
+                                <p>inProgressOrders</p>
                                 <p>completedOrders</p>
                                 <p>any alerts</p>
                             </Jumbotron>
