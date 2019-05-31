@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import OrderCard from "../components/ManufacturingCard";
+import ManufacturingCard from "../components/ManufacturingCard/manufacturingCard";
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 import RecipeSteps from "../components/RecipeSteps/index"
@@ -72,7 +72,7 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-              {this.state.newOrders.map((el, i) => <OrderCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleStartOrder(d)}></OrderCard>)}
+              {this.state.newOrders.map((el, i) => <ManufacturingCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleStartOrder(d)}></ManufacturingCard>)}
             </Col>
           </Row>
           <Row>
@@ -82,7 +82,7 @@ class Manufacturing extends Component {
           </Row>
           <Row>
             <Col size="md-3">
-              {this.state.inProgressOrders.map((el, i) => <OrderCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleCompleteOrder(d)}></OrderCard>)}
+              {this.state.inProgressOrders.map((el, i) => <ManufacturingCard obj={el} key={i} clickSteps={(id) => this.handleShowSteps(id)} clickPost={(d) => this.handleCompleteOrder(d)}></ManufacturingCard>)}
             </Col>
           </Row>
           <Row>

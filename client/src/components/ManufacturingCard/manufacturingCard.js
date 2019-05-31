@@ -14,7 +14,7 @@ const btnFunc = (props) => {
   }
 }
 
-const OrderCard = (props) => {
+const ManufacturingCard = (props) => {
   return (
     <>
       <Card>
@@ -40,4 +40,4 @@ const OrderCard = (props) => {
   );
 };
 
-export default OrderCard;
+export default ManufacturingCard;
