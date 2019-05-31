@@ -15,19 +15,17 @@ class Manufacturing extends Component {
   componentDidMount() {
     this.loadOrders();
   }
+
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       console.log(res.data, "line 19")
       this.setState({
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1),
-      },
-        () => {
-          // console.log(this.state.newOrders, "line 25");
-        }
-      );
+      });
     })
   }
+
   handleStartOrder = (id) => {
     axios.post("/api/order/POST/" + id, {
       priority: 1,
@@ -37,6 +35,7 @@ class Manufacturing extends Component {
       this.loadOrders();
     })
   }
+
   handleCompleteOrder = (id) => {
     console.log(id);
     axios.post("/api/order/POST/" + id, {
