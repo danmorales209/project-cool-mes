@@ -1,59 +1,62 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Equipment collection and adds the items below
+module.exports = seedRecipe = (path) => {
 
-// connect to heroku DB for seeding
-mongoose.connect(
-  "mongodb://production_seeds:Thisisourpassword123@ds349455.mlab.com:49455/heroku_sr0htsjk",
-  { useNewUrlParser: true }
-);
+  // This file empties the Equipment collection and adds the items below
 
-//connect to local DB for seeding
-// mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
+  // connect to heroku DB for seeding
+  mongoose.connect(
+    path,
+    { useNewUrlParser: true }
+  );
 
-const recipeSeed = [
-  {
-    name: "Birthday Cake",
+  //connect to local DB for seeding
+  // mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
 
-    description:
-      "A yellow cake with chocolate buttercream frosting and colorful sprinkles",
+  const recipeSeed = [
+    {
+      name: "Birthday Cake",
 
-    steps: [
-      {
-        directions:
-          "Place all dry ingredient in bowl; mix with whisk until thoroughly combined.",
-        stepInventory: [
-          { inventory: "5cf08936570f5a42f8c98459", quantity: 2 },
-          { inventory: "5cf08936570f5a42f8c9845c", quantity: 1 },
-          { inventory: "5cf08936570f5a42f8c9845e", quantity: 3 }
-        ],
-        equipmentType: ["5cf08923fa6c5d1f3c193750", "5cf08923fa6c5d1f3c193751"],
-        duration: 0.083
-      },
+      description:
+        "A yellow cake with chocolate buttercream frosting and colorful sprinkles",
 
-      {
-        directions:
-          "Place all wet ingredient in bowl; mix with whisk until thoroughly combined.",
-        stepInventory: [
-          { inventory: "5cf08936570f5a42f8c9845a", quantity: 1 },
-          { inventory: "5cf08936570f5a42f8c9845b", quantity: 2 },
-          { inventory: "5cf08936570f5a42f8c9845d", quantity: 3 }
-        ],
-        equipmentType: ["5cf08923fa6c5d1f3c193750", "5cf08923fa6c5d1f3c193751"],
-        duration: 0.083
-      }
-    ]
-  }
-];
+      steps: [
+        {
+          directions:
+            "Place all dry ingredient in bowl; mix with whisk until thoroughly combined.",
+          stepInventory: [
+            { inventory: "5cf08936570f5a42f8c98459", quantity: 2 },
+            { inventory: "5cf08936570f5a42f8c9845c", quantity: 1 },
+            { inventory: "5cf08936570f5a42f8c9845e", quantity: 3 }
+          ],
+          equipmentType: ["5cf08923fa6c5d1f3c193750", "5cf08923fa6c5d1f3c193751"],
+          duration: 0.083
+        },
 
-db.Recipe.remove({})
-  .then(() => db.Recipe.collection.insertMany(recipeSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+        {
+          directions:
+            "Place all wet ingredient in bowl; mix with whisk until thoroughly combined.",
+          stepInventory: [
+            { inventory: "5cf08936570f5a42f8c9845a", quantity: 1 },
+            { inventory: "5cf08936570f5a42f8c9845b", quantity: 2 },
+            { inventory: "5cf08936570f5a42f8c9845d", quantity: 3 }
+          ],
+          equipmentType: ["5cf08923fa6c5d1f3c193750", "5cf08923fa6c5d1f3c193751"],
+          duration: 0.083
+        }
+      ]
+    }
+  ];
+
+  db.Recipe.remove({})
+    .then(() => db.Recipe.collection.insertMany(recipeSeed))
+    .then(data => {
+      console.log(data.result.n + " records inserted!");
+      process.exit(0);
+    })
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
+}
