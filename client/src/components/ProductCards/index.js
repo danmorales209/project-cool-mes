@@ -11,7 +11,7 @@ const ProductCard = (props) => {
                 <CardBody>
                     <CardTitle>Product Name: {props.obj.name}</CardTitle>
                     <CardText>Product Description: {props.obj.description}</CardText>
-                    <Button onClick={this.openProduct}>Open</Button>
+                    <Button>Open</Button>
                 </CardBody>
             </Card>
         </div>
