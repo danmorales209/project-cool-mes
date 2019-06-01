@@ -27,3 +27,12 @@ nav{
 .navbar-toggler.toggler-example {
 cursor: pointer;
 }
+.longer{
+    min-width: 50px;
+}
+h3{
+    margin:10px;
+}
+.moveDown{
+    margin-top: 23px;
+}
