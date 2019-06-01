@@ -173,12 +173,12 @@ class Products extends Component {
                           {this.state.allInventory.map((el, i) => (
                             <>
                               <DropdownItem
-                                name={el.inventory}
+                                name={el.name}
                                 key={i}
                                 id={el._id}
                                 onClick={this.select}
                               >
-                                Type: {el.inventory}
+                                Type: {el.name}
                               </DropdownItem>
                               <DropdownItem divider />
                             </>
@@ -197,12 +197,12 @@ class Products extends Component {
                           {this.state.allEquipment.map((el, i) => (
                             <>
                               <DropdownItem
-                                name={el.equipment.name}
+                                name={el.equipmentType}
                                 key={i}
                                 id={el._id}
                                 onClick={this.select}
                               >
-                                Type: {el.equipment.name}
+                                Type: {el.equipmentType}
                               </DropdownItem>
                               <DropdownItem divider />
                             </>
