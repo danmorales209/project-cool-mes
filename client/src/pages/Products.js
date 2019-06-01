@@ -1,23 +1,36 @@
 import React, { Component } from "react";
 import {
-  Button, Form, FormGroup, Label, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table
+  Button, Form, FormGroup, Label, Input, ListGroup, ListGroupItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table
 } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
 import ProductCard from "../components/ProductCards";
+import ListStuff from "../components/ListStuff";
 
 class Products extends Component {
   state = {
-    allProducts: [],
-    steps: [],
     productName: '',
     description: '',
-    equipment: "",
-    inventory: "",
+    currEquip: "",
+    currInvent: "",
+    dropdownOpen: "",
+    arrayNewEquip: [],
+    arrayNewInvent: [],
     allEquipment: [],
     allInventory: [],
-    dropdownOpen:"",
+    allProducts: [],
+    steps: [],
   };
+
+  // handlePostProduct = () => {
+  //   axios.post("/api/recipe/POST", {
+
+  //   }).then(res => {
+  //     this.setState({
+
+  //     })
+  //   })
+  // }
 
   componentDidMount() {
     this.loadEquipment();
@@ -36,7 +49,7 @@ class Products extends Component {
   }
   loadProducts = () => {
     axios.get("/api/recipe/GET").then((res) => {
-      this.setState({ allProducts: res.data }, ()=>{(console.log(this.state.allProducts,"line 39"))});
+      this.setState({ allProducts: res.data }, () => { (console.log(this.state.allProducts, "line 39")) });
     })
   }
   toggleInventory = () => {
@@ -128,6 +141,12 @@ class Products extends Component {
                         placeholder="Directions"
                         onChange={this.handleChange}
                       />
+                      <ListGroup>
+                        <h5>Added Inventory</h5>
+                        <Row>
+                          {this.state.arrayNewEquip.map((data, i) => <Col size="md-3"><ListStuff obj={data} key={i}></ListStuff></Col>)}
+                        </Row>
+                      </ListGroup>
                       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleInventory}>
                         <DropdownToggle caret>Add Ingredients</DropdownToggle>
                         <DropdownMenu>
@@ -146,6 +165,12 @@ class Products extends Component {
                           ))}
                         </DropdownMenu>
                       </Dropdown>
+                      <ListGroup>
+                        <h5>Added Equipment</h5>
+                        <Row>
+                          {this.state.arrayNewInvent.map((data, i) => <Col size="md-3"><ListStuff obj={data} key={i}></ListStuff ></Col>)}
+                        </Row>
+                      </ListGroup>
                       <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleEquipment}>
                         <DropdownToggle caret>Add Equpiment</DropdownToggle>
                         <DropdownMenu>
@@ -169,7 +194,7 @@ class Products extends Component {
                   ))}
                   <Button onClick={this.handleAddStep}>Add Step</Button>
                 </FormGroup>
-                <Button onClick={this.handleSubmit}>Submit</Button>
+                <Button color="success" onClick={() => { this.handlePostProduct(); this.loadProducts() }}>Submit</Button>
               </Form>
             </Col>
           </Row>
