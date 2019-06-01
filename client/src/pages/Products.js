@@ -37,34 +37,46 @@ class Products extends Component {
     this.loadInventory();
     this.loadProducts();
   }
+
   loadEquipment = () => {
     axios.get("/api/equipment/GET").then(res => {
       this.setState({ allEquipment: res.data });
     });
   }
+
   loadInventory = () => {
     axios.get("/api/inventory/GET").then(res => {
       this.setState({ allInventory: res.data });
     });
   }
+
   loadProducts = () => {
     axios.get("/api/recipe/GET").then((res) => {
       this.setState({ allProducts: res.data }, () => { (console.log(this.state.allProducts, "line 39")) });
     })
   }
+
   toggleInventory = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
     }));
   };
+
   toggleEquipment = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
     }));
   };
+
   handleAddStep = () => {
     let steps = this.state.steps;
-    steps.push("");
+    steps.push({
+      directions: "",
+      stepInventory: [],
+      equipmentType: [],
+      duration: 0
+    });
+    
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
       this.setState({
@@ -72,24 +84,29 @@ class Products extends Component {
       })
     )
   }
+
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
+
   handleChange = (e) => {
     let steps = this.state.steps;
     let index = e.target.id;
     steps[index] = e.target.value;
     this.setState({ steps: steps })
   }
+
   handleDelete = (e) => {
     let steps = this.state.steps;
     let id = e.target.id;
     steps = steps.filter((el, index) => index !== +id)
     this.setState({ steps: steps })
   }
+
   handleSubmit = () => {
     console.log(this.state.steps)
   }
+
   render() {
     return (
       <div className="container">
@@ -133,6 +150,7 @@ class Products extends Component {
                   <br />
                   {this.state.steps.map((el, index) => (
                     <div>
+                      <h3>Description</h3>
                       <Input
                         value={this.state.steps[index]}
                         id={index}
