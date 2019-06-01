@@ -33,7 +33,13 @@ const orderSchema = new Schema(
       zip: Number
     },
 
+    currentStep: {
+      type: Number,
+      default : 0
+    },
+
     dueDate: String,
+
     qtyNeeded:
     {
       type: Number,
