@@ -13,7 +13,8 @@ class Products extends Component {
     description: '',
     currEquip: "",
     currInvent: "",
-    dropdownOpen: "",
+    openEquip: "",
+    openInvent: "",
     directions:"",
     arrayNewEquip: [],
     arrayNewInvent: [],
@@ -55,12 +56,12 @@ class Products extends Component {
   }
   toggleInventory = () => {
     this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
+      openInvent: !prevState.openInvent
     }));
   };
   toggleEquipment = () => {
     this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
+      openEquip: !prevState.openEquip
     }));
   };
   handleAddStep = () => {
@@ -148,7 +149,7 @@ class Products extends Component {
                           {this.state.arrayNewEquip.map((data, i) => <Col size="md-3"><ListStuff obj={data} key={i}></ListStuff></Col>)}
                         </Row>
                       </ListGroup>
-                      <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleInventory}>
+                      <Dropdown isOpen={this.state.openInvent} toggle={this.toggleInventory}>
                         <DropdownToggle caret>Add Ingredients</DropdownToggle>
                         <DropdownMenu>
                           {this.state.allInventory.map((el, i) => (
@@ -172,7 +173,7 @@ class Products extends Component {
                           {this.state.arrayNewInvent.map((data, i) => <Col size="md-3"><ListStuff obj={data} key={i}></ListStuff ></Col>)}
                         </Row>
                       </ListGroup>
-                      <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleEquipment}>
+                      <Dropdown isOpen={this.state.openEquip} toggle={this.toggleEquipment}>
                         <DropdownToggle caret>Add Equpiment</DropdownToggle>
                         <DropdownMenu>
                           {this.state.allEquipment.map((el, i) => (
