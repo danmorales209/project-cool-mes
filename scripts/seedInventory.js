@@ -1,20 +1,5 @@
-const mongoose = require("mongoose");
-const db = require("../models");
 
-module.exports = seedInventory = (path) => {
-
-  // This file empties the Inventory collection and adds the items below
-
-  // connect to heroku DB for seeding
-  mongoose.connect(
-   path,
-    { useNewUrlParser: true }
-  );
-
-  //connect to local DB for seeding
-  // mongoose.connect("mongodb://localhost/mesData", { useNewUrlParser: true });
-
-  const inventorySeed = [
+module.exports = [
     {
       name: "sugar",
       quantity: "500",
@@ -56,16 +41,3 @@ module.exports = seedInventory = (path) => {
       unit: "lbs"
     }
   ];
-
-  db.Inventory.remove({})
-    .then(() => db.Inventory.collection.insertMany(inventorySeed))
-    .then(data => {
-      console.log(data.result.n + " records inserted!");
-      process.exit(0);
-    })
-    .catch(err => {
-      console.error(err);
-      process.exit(1);
-    });
-}
-

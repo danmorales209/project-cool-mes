@@ -1,4 +1,6 @@
 const path = "mongodb://localhost/mesData";
+const db = require("../models");
+const mongoose = require("mongoose");
 
 const orderSeeds = require("./seedOrder")
 const recipeSeeds = require("./seedRecipe")
@@ -10,15 +12,48 @@ mongoose.connect(
     { useNewUrlParser: true }
 );
 
+var inventory, equipment, recipe;
 
-db.Inventory.removeMany({})
-    .then(() => db.Inventory.collection.insertMany(inventorySeed))
-    .then(data => {
-        console.log(data.result.n + " records inserted!");
-        process.exit(0);
-    })
-    .catch(err => {
-        console.error(err);
-        process.exit(1);
+
+db.Inventory.deleteMany({})
+    .then(() => {
+        db.Inventory.collection.insertMany(inventorySeeds)
+            .then(response => {
+                inventory = response.ops;
+                console.log(response.result.n + ' inventory records created');
+
+            }).then(() => {
+                db.Equipment.deleteMany({})
+
+                    .then(() => {
+
+                        db.Equipment.collection.insertMany(equipmentSeeds)
+                            .then(response => {
+                                equipment = response.ops;
+                                console.log(response.result.n + ' equipmqnt records created');
+                            })
+                            .then(() => {
+                                db.Recipe.deleteMany({})
+                                    .then(() => {
+                                        db.Recipe.collection.insertMany(recipeSeeds(inventory.map(inv => inv._id), equipment.map(eqp => eqp._id)))
+                                            .then(response => {
+                                                recipe = response.ops
+                                                console.log(response.result.n + ' recipe records created');
+                                            })
+                                            .then(() => {
+                                                db.Order.deleteMany({})
+                                                    .then(() => {
+                                                        db.Order.collection.insertMany(orderSeeds(recipe.map(rec => rec._id)))
+                                                            .then(response => {
+                                                                console.log(response.result.n + ' order records created');
+                                                            })
+                                                            .then(() => {
+                                                                process.exit(0);
+                                                            });
+                                                    });
+                                            });
+                                    });
+                            });
+                    });
+            });
     });
-
