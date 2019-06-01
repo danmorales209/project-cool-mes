@@ -64,11 +64,11 @@ module.exports = {
 
           // Loop over equipment
           step.equipmentType.forEach(equipmentItem => {
-            
+
             let equipName = equipmentItem;
-            
+
             if (recipeEquip.hasOwnProperty(equipName)) {
-              recipeEquip[equipName]++; 
+              recipeEquip[equipName]++;
             }
             else {
               recipeEquip[equipName] = 1;
@@ -78,8 +78,6 @@ module.exports = {
 
         });
         // End Loop over steps
-
-        console.log(recipeEquip);
 
         let inventoryIDs = Object.keys(recipeInv).map(e => new mongoose.Types.ObjectId(e));
         let invQuantity = Object.values(recipeInv);
@@ -102,18 +100,31 @@ module.exports = {
             }
             else {
               enoughInventory = true;
+              console.log("Enough inventory");
             }
           });
 
-      });
+      }).then(() => {
 
-      //let equipmentIDs = recipeEquip.map(e => new mongoose.Types.ObjectId(e));
+        console.log(recipeEquip)
 
-      /* db.Equipment.find({
-        _id : {
-          $in : 
-        }
-      }) */
+        let equipmentIDs = Object.keys(recipeEquip).map(e => new mongoose.Types.ObjectId(e));
+        let equipQuantity = Object.values(recipeEquip);
+
+        db.Equipment.find({
+          _id: {
+            $in: equipmentIDs
+          }
+        }).then(response => {
+          console.log(response);
+
+          let equipmentDifference = response
+            .map((el, index) => el.equipment.length - equipQuantity[index])
+            .filter(num => num < 0)
+            .length;
+        })
+
+      })
 
   }
 };
