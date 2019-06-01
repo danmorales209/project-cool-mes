@@ -29,8 +29,6 @@ class Orders extends React.Component {
     this.loadProducts();
   }
 
-  // handleOrderOpen= () =>
-
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
