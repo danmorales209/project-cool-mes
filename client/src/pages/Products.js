@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Button, Form, FormGroup, Label, Input, ListGroup, ListGroupItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table
+  Button, Form, FormGroup, Label, Input, ListGroup, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table
 } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
@@ -14,6 +14,7 @@ class Products extends Component {
     currEquip: "",
     currInvent: "",
     dropdownOpen: "",
+    directions:"",
     arrayNewEquip: [],
     arrayNewInvent: [],
     allEquipment: [],
@@ -49,7 +50,7 @@ class Products extends Component {
   }
   loadProducts = () => {
     axios.get("/api/recipe/GET").then((res) => {
-      this.setState({ allProducts: res.data }, () => { (console.log(this.state.allProducts, "line 39")) });
+      this.setState({ allProducts: res.data });
     })
   }
   toggleInventory = () => {
@@ -64,7 +65,7 @@ class Products extends Component {
   };
   handleAddStep = () => {
     let steps = this.state.steps;
-    steps.push("");
+    steps.push({});
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
       this.setState({
