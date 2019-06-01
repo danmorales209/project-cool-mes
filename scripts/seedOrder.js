@@ -14,6 +14,7 @@ module.exports = seedOrder = (recipeInv) => {
         state: "California",
         zip: 95824
       },
+      currentStep: 0,
       dueDate: "2019-06-11",
       qtyNeeded: 4
     }
