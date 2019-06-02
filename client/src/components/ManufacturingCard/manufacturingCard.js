@@ -9,13 +9,7 @@ import {
   Button
 } from "reactstrap";
 
-const btnFunc = props => {
-  if (props.obj.priority === 0) {
-    return (
-      <Button onClick={() => props.clickPost(props.obj._id)}>Start</Button>
-    );
-  }
-};
+
 
 const ManufacturingCard = props => {
   return (
@@ -43,7 +37,7 @@ const ManufacturingCard = props => {
           <Button onClick={() => props.clickSteps(props.obj._id)}>
             Start Order
           </Button>
-          {btnFunc(props)}
+ 
         </CardBody>
       </Card>
     </>
