@@ -71,14 +71,18 @@ class Manufacturing extends Component {
   };
 
   render() {
+
     return (
+
       <div className="container">
+        
         <Container fluid>
           <Row>
             <Col size="md-6">
               <h1>New Orders</h1>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-3">
               {this.state.newOrders.map((el, i) => (
@@ -91,11 +95,13 @@ class Manufacturing extends Component {
               ))}
             </Col>
           </Row>
+
           <Row>
             <Col size="md-6">
               <h1>In Progress Orders</h1>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-3">
               {this.state.inProgressOrders.map((el, i) => (
@@ -108,6 +114,7 @@ class Manufacturing extends Component {
               ))}
             </Col>
           </Row>
+
           <Row>
             <Col size="md-6">
               {this.state.recipeObj === "" ? (
@@ -120,7 +127,9 @@ class Manufacturing extends Component {
               )}
             </Col>
           </Row>
+
         </Container>
+
       </div>
     );
   }

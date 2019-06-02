@@ -116,14 +116,28 @@ module.exports = {
             $in: equipmentIDs
           }
         }).then(response => {
-          console.log(response);
 
           let equipmentDifference = response
             .map((el, index) => el.equipment.length - equipQuantity[index])
             .filter(num => num < 0)
             .length;
+
+          if (equipmentDifference !== 0) {
+            console.log("Not enough equipment");
+          }
+          else {
+            enoughEquipment = true;
+            console.log("Enough equipment");
+          }
         })
 
+      }).then( () => {
+
+        console.log("inventory?", enoughInventory)
+        console.log("equipment?", enoughEquipment)
+        if (enoughEquipment && enoughInventory) {
+          console.log( "enough stuff to do some stuff");
+        }
       })
 
   }
