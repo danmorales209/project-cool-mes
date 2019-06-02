@@ -8,8 +8,8 @@ class Manufacturing extends Component {
   state = {
     newOrders: [],
     inProgressOrders: [],
-    // recipe: {},
-    recipeObj: ""
+    recipeObj: {},
+    currentStep: 0
   };
 
   componentDidMount() {
@@ -18,7 +18,6 @@ class Manufacturing extends Component {
 
   loadOrders = () => {
     axios.get("/api/order/GET").then(res => {
-      console.log(res.data, "line 19");
       this.setState({
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1)
@@ -38,25 +37,15 @@ class Manufacturing extends Component {
       });
   };
 
-  handleCompleteOrder = id => {
-    console.log(id);
-    axios
-      .post("/api/order/POST/" + id, {
-        priority: 2,
-        inProgress: "Completed"
-      })
-      .then(res => {
-        console.log(res.data);
-        this.loadOrders();
-      });
-  };
-
   handleShowSteps = id => {
-    //this.setState({ recipeObj: {} })
+    let step;
     axios.get("/api/order/GET/" + id).then(res => {
+      console.log(res.data)
+      step = res.data.currentStep;
       axios.get("/api/recipe/GET/" + res.data.product).then(res => {
-        this.setState({ recipeObj: res.data });
-        console.log(this.state.recipeObj, "recipe object");
+        this.setState({ recipeObj: res.data, currentStep: step }, () => {
+          console.log(this.state.currentStep)
+        });
       });
     });
   };
@@ -71,11 +60,10 @@ class Manufacturing extends Component {
   };
 
   render() {
-
     return (
 
       <div className="container">
-        
+
         <Container fluid>
           <Row>
             <Col size="md-6">
@@ -89,8 +77,9 @@ class Manufacturing extends Component {
                 <ManufacturingCard
                   obj={el}
                   key={i}
+                  index={i}
                   clickSteps={id => this.handleShowSteps(id)}
-                  clickPost={d => this.handleStartOrder(d)}
+                //clickPost={d => this.handleStartOrder(d)}
                 />
               ))}
             </Col>
@@ -109,7 +98,7 @@ class Manufacturing extends Component {
                   obj={el}
                   key={i}
                   clickSteps={id => this.handleShowSteps(id)}
-                  clickPost={d => this.handleCompleteOrder(d)}
+                //clickPost={d => this.handleCompleteOrder(d)}
                 />
               ))}
             </Col>
@@ -117,14 +106,14 @@ class Manufacturing extends Component {
 
           <Row>
             <Col size="md-6">
-              {this.state.recipeObj === "" ? (
-                "empty"
-              ) : (
-                <RecipeSteps
-                  obj={this.state.recipeObj}
-                  handleDelete={this.handleDelete}
-                />
-              )}
+              {
+                Object.keys(this.state.recipeObj).length === 0 ? <></> :
+                  <RecipeSteps
+                    obj={this.state.recipeObj}
+                    handleDelete={this.handleDelete}
+                    currentStep={this.state.currentStep}
+                  />
+              }
             </Col>
           </Row>
 

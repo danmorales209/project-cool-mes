@@ -2,6 +2,9 @@ import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 const RecipeSteps = props => {
+  
+  console.log(props)
+
   return (
     <>
       <h3>Product:</h3>
@@ -11,7 +14,7 @@ const RecipeSteps = props => {
       <h3>Manufacturing Steps:</h3>
       <ListGroup>
         {/* {props.obj.steps[0].directions} */}
-        {props.obj.steps.map((el, i) => (
+        {props.obj.steps[props.currentStep].map((el, i) => (
           <ListGroupItem key={i}>
             <br />
             {el.directions}{" "}
