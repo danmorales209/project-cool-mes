@@ -99,10 +99,9 @@ class Products extends Component {
       equipmentType: [...this.state.equipmentType, e.target.id],
     })
   }
+  // pushIngred = () => {
 
-  pushIngred = () => {
-
-  }
+  // }
 
   changeValueIngred = (e) => {
     this.setState({ ingredient: e.target.id })
@@ -248,7 +247,19 @@ class Products extends Component {
                 </Row>
                 <Row>
                   <ListGroup>
-                    {this.state.equipmentType.map((data, i) => <ListGroupItem obj={data} key={i}>{this.state.allEquipment.find(equip=>this.obj)}</ListGroupItem>)}
+                    {this.state.equipmentType.map((data, i) => {
+                      <ListGroupItem obj={data} key={i}>
+                        
+                        
+                        
+                        {/* {allEquipment.filter(
+                          e=> (return this.indexOf(e) === data.id)
+                        } */}
+                        {/* {this.state.allEquipment.forEach(elem => {
+                          (elem._id === data.id) ? elem.equipmentType : null;
+                        })} */}
+                      </ListGroupItem>
+                    )}}
                   </ListGroup>
                 </Row>
                 <Row>
