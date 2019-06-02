@@ -42,21 +42,24 @@ class Manufacturing extends Component {
     axios.get("/api/order/GET/" + id).then(res => {
       console.log(res.data)
       step = res.data.currentStep;
-      axios.get("/api/recipe/GET/" + res.data.product).then(res => {
+      axios.get("/api/recipe/GET/5cf45e55faa753110c803be0" /* + res.data.product */).then(res => {
+        console.log(res)
         this.setState({ recipeObj: res.data, currentStep: step }, () => {
-          console.log(this.state.currentStep)
+          console.log(this.state)
         });
       });
     });
   };
 
-  handleDelete = e => {
-    let steps = this.state.recipeObj.steps;
-    console.log(steps);
-    let index = e.target.index;
-    steps.splice(index, 1);
-    this.setState({ steps: steps });
-    console.log(steps);
+  handleNextStep = e => {
+    let steps = this.state.recipeObj.steps.length;
+    
+    if (this.state.currentStep < steps) {
+      this.setState({currentStep : this.state.currentStep +1})
+    }
+    else {
+      alert("all Done");
+    }
   };
 
   render() {
@@ -77,9 +80,7 @@ class Manufacturing extends Component {
                 <ManufacturingCard
                   obj={el}
                   key={i}
-                  index={i}
                   clickSteps={id => this.handleShowSteps(id)}
-                //clickPost={d => this.handleStartOrder(d)}
                 />
               ))}
             </Col>
@@ -110,7 +111,7 @@ class Manufacturing extends Component {
                 Object.keys(this.state.recipeObj).length === 0 ? <></> :
                   <RecipeSteps
                     obj={this.state.recipeObj}
-                    handleDelete={this.handleDelete}
+                    nextStep={this.handleNextStep}
                     currentStep={this.state.currentStep}
                   />
               }

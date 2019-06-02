@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 
 const RecipeSteps = props => {
   
-  console.log(props)
+  console.log(props.obj)
 
   return (
     <>
@@ -14,11 +14,11 @@ const RecipeSteps = props => {
       <h3>Manufacturing Steps:</h3>
       <ListGroup>
         {/* {props.obj.steps[0].directions} */}
-        {props.obj.steps[props.currentStep].map((el, i) => (
-          <ListGroupItem key={i}>
-            <br />
-            {el.directions}{" "}
-            <button index={i} onClick={e => props.handleDelete(e)}>
+        {props.obj.steps.splice(props.currentStep, 1).map((el) => (
+          <ListGroupItem key={props.currentStep}>
+            <p>{`Step : ${props.currentStep + 1}`}</p>
+            <p>{el.directions}</p>
+            <button index={props.currentStep} onClick={props.nextStep}>
               Step Complete
             </button>
           </ListGroupItem>
