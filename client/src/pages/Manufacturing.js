@@ -8,8 +8,8 @@ class Manufacturing extends Component {
   state = {
     newOrders: [],
     inProgressOrders: [],
-    // recipe: {},
-    recipeObj: ""
+    recipeObj: {},
+    currentStep: 0
   };
 
   componentDidMount() {
@@ -18,7 +18,6 @@ class Manufacturing extends Component {
 
   loadOrders = () => {
     axios.get("/api/order/GET").then(res => {
-      console.log(res.data, "line 19");
       this.setState({
         newOrders: res.data.filter(orders => orders.priority === 0),
         inProgressOrders: res.data.filter(orders => orders.priority === 1)
@@ -38,47 +37,43 @@ class Manufacturing extends Component {
       });
   };
 
-  handleCompleteOrder = id => {
-    console.log(id);
-    axios
-      .post("/api/order/POST/" + id, {
-        priority: 2,
-        inProgress: "Completed"
-      })
-      .then(res => {
-        console.log(res.data);
-        this.loadOrders();
-      });
-  };
-
   handleShowSteps = id => {
-    //this.setState({ recipeObj: {} })
+    let step;
     axios.get("/api/order/GET/" + id).then(res => {
-      axios.get("/api/recipe/GET/" + res.data.product).then(res => {
-        this.setState({ recipeObj: res.data });
-        console.log(this.state.recipeObj, "recipe object");
+      console.log(res.data)
+      step = res.data.currentStep;
+      axios.get("/api/recipe/GET/ + res.data.product).then(res => {
+        console.log(res)
+        this.setState({ recipeObj: res.data, currentStep: step }, () => {
+          console.log(this.state)
+        });
       });
     });
   };
 
-  handleDelete = e => {
-    let steps = this.state.recipeObj.steps;
-    console.log(steps);
-    let index = e.target.index;
-    steps.splice(index, 1);
-    this.setState({ steps: steps });
-    console.log(steps);
+  handleNextStep = e => {
+    let steps = this.state.recipeObj.steps.length;
+    
+    if (this.state.currentStep < steps) {
+      this.setState({currentStep : this.state.currentStep +1})
+    }
+    else {
+      alert("all Done");
+    }
   };
 
   render() {
     return (
+
       <div className="container">
+
         <Container fluid>
           <Row>
             <Col size="md-6">
               <h1>New Orders</h1>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-3">
               {this.state.newOrders.map((el, i) => (
@@ -86,16 +81,17 @@ class Manufacturing extends Component {
                   obj={el}
                   key={i}
                   clickSteps={id => this.handleShowSteps(id)}
-                  clickPost={d => this.handleStartOrder(d)}
                 />
               ))}
             </Col>
           </Row>
+
           <Row>
             <Col size="md-6">
               <h1>In Progress Orders</h1>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-3">
               {this.state.inProgressOrders.map((el, i) => (
@@ -103,24 +99,27 @@ class Manufacturing extends Component {
                   obj={el}
                   key={i}
                   clickSteps={id => this.handleShowSteps(id)}
-                  clickPost={d => this.handleCompleteOrder(d)}
+                //clickPost={d => this.handleCompleteOrder(d)}
                 />
               ))}
             </Col>
           </Row>
+
           <Row>
             <Col size="md-6">
-              {this.state.recipeObj === "" ? (
-                "empty"
-              ) : (
-                <RecipeSteps
-                  obj={this.state.recipeObj}
-                  handleDelete={this.handleDelete}
-                />
-              )}
+              {
+                Object.keys(this.state.recipeObj).length === 0 ? <></> :
+                  <RecipeSteps
+                    obj={this.state.recipeObj}
+                    nextStep={this.handleNextStep}
+                    currentStep={this.state.currentStep}
+                  />
+              }
             </Col>
           </Row>
+
         </Container>
+
       </div>
     );
   }
