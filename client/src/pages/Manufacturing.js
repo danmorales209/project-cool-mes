@@ -42,12 +42,12 @@ class Manufacturing extends Component {
     axios.get("/api/order/GET/" + id).then(res => {
       console.log(res.data)
       step = res.data.currentStep;
-      axios.get("/api/recipe/GET/5cf45e55faa753110c803be0" /* + res.data.product */).then(res => {
-        console.log(res)
+      axios.get("/api/recipe/GET/" + res.data.product .then(res => {
+        console.log(res);
         this.setState({ recipeObj: res.data, currentStep: step }, () => {
-          console.log(this.state)
+          console.log(this.state);
         });
-      });
+      }))
     });
   };
 
