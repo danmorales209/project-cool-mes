@@ -110,7 +110,7 @@ class Products extends Component {
     this.setState({
       equipmentID: e.target.id,
       equipmentName: e.target.name
-    })
+    }, this.renderEquip)
   }
 
   pushIngred = () => {
@@ -313,7 +313,7 @@ class Products extends Component {
 
                 <Row>
                   <ListGroup>
-                    {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}></ListGroupItem>)}
+                    {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}>{data}</ListGroupItem>)}
                   </ListGroup>
                 </Row>
 
@@ -330,7 +330,7 @@ class Products extends Component {
                               name={el.equipmentType}
                               key={i}
                               id={el._id}
-                              onClick={() => { this.changeValueEquip(); this.renderEquip() }}
+                              onClick={(e) => { this.changeValueEquip(e)}}
                             >
                               Type: {el.equipmentType}
                             </DropdownItem>
