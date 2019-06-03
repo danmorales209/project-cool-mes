@@ -75,7 +75,12 @@ class Orders extends React.Component {
       });
     })
   }
-
+  handleDeleteOrder = id => {
+    console.log(id, "order card line 25")
+    axios.post("/api/order/DELETE/" + id).then(res => {
+      this.loadOrders();
+    })
+  }
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -101,7 +106,7 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
+            {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
@@ -174,7 +179,7 @@ class Orders extends React.Component {
                   <Label for="exampleZip">Zip</Label>
                   <Input type="number" name="zip" value={this.state.zip} onChange={this.handleInputChange} id="exampleZip" />
                 </FormGroup>
-                <Button color="success" onClick={() => {this.handlePostOrder(); this.loadOrders()}}>Submit</Button>
+                <Button color="success" onClick={() => { this.handlePostOrder(); this.loadOrders() }}>Submit</Button>
               </Form>
             </Col>
           </Row>
