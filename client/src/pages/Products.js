@@ -45,8 +45,8 @@ class Products extends Component {
       yield: this.state.yield
     }).then(res => {
       this.setState({
-        productName: '',
-        description: '',
+        productName: "",
+        description: "",
         yield: "",
         steps: [],
       })
