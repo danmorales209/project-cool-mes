@@ -41,7 +41,6 @@ module.exports = {
     let recipeEquip = {};
     let enoughInventory = false;
     let enoughEquipment = false;
-    let order;
 
     db.Recipe.findById(req.body.product)
       .then(response => {
@@ -147,11 +146,20 @@ module.exports = {
             }).then(data => {
               console.log(data);
 
-              /* db.Inventory.updateMany
-              res.json({
-                check: "pass",
-                RecipeInventoryId: data._id
-              }); */
+              console.log(data.items.map(e => new mongoose.Types.ObjectId(e._id)))
+              console.log(data.items.map(e => e.quantity))
+
+              db.Inventory.update({
+                _id: {
+                  $in: data.items.map(e => new mongoose.Types.ObjectId(e._id))
+                }
+              },
+                {
+                  quantity: {
+                    $dec: data.items.map(e => e.quantity)
+                  }
+                }).then(resp => console.log(resp));
+
             })
 
           }
