@@ -329,9 +329,6 @@ class Products extends Component {
                   <Col size="md-4">
                     <h3>Added Equipment</h3>
                   </Col>
-                  <Col size="md-3">
-                    <h3>Step Duration</h3>
-                  </Col>
                 </Row>
 
                 <Row>
@@ -342,7 +339,6 @@ class Products extends Component {
 
                 <Row>
                   <Col size="md-4">
-
                     <Dropdown className="longer" isOpen={this.state.openEquip} toggle={this.toggleEquipment}>
                       <DropdownToggle caret>Add Equipment</DropdownToggle>
                       <DropdownMenu>
@@ -378,7 +374,6 @@ class Products extends Component {
                         placeholder="Step Duration (in minutes)"
                       />
                     </FormGroup>
-
                   </Col>
                 </Row>
 
