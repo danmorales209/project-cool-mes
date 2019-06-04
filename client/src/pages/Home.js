@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Jumbotron
+    CardTitle, CardSubtitle, Button, Jumbotron, Alert
 } from 'reactstrap';
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
@@ -13,10 +13,12 @@ class Home extends Component {
         newOrders: [],
         inProgressOrders: [],
         completedOrders: [],
+        inventoryAlerts: [],
     };
 
     componentDidMount() {
         this.loadOrders();
+        this.loadInventory();
     }
     loadOrders = () => {
         axios.get("/api/order/GET").then((res) => {
@@ -27,13 +29,39 @@ class Home extends Component {
             });
         })
     }
+    loadInventory = () => {
+        axios.get("/api/inventory/GET").then(res => {
+            console.log(res.data);
+            this.setState({
+                inventoryAlerts: res.data.filter(inventory => inventory.quantity < 300)
+            })
+        })
+    }
 
     render() {
-        console.log(this.state.newOrders)
+        console.log(this.state.inventoryAlerts, "line 42")
         return (
             <div className="container">
                 <Container fluid>
                     <Row>
+                        <Col size="md-4">
+                            <Row >
+                                <Jumbotron style={{ width: "100%", marginLeft: "0px", marginRight: "0px" }}>
+                                    <h2>Dashboard</h2>
+
+                                    <p>New Orders: {this.state.newOrders.length}</p>
+                                    <p>Orders In Progress: {this.state.inProgressOrders.length}</p>
+                                    <p>Completed Orders: {this.state.completedOrders.length}</p>
+
+
+                                </Jumbotron>
+                            </Row>
+                            <Row >
+
+                                {this.state.inventoryAlerts.map(el => <Alert style={{ backgroundColor: "#f44242", color: "white", width: "100%" }}> <h4>Alert</h4>
+                                    <p>{el.name} has low quantity<br></br> quantity: {el.quantity}</p> </Alert>)}
+                            </Row>
+                        </Col>
                         <Col size="md-8">
                             <Row>
                                 <Col size="md-6">
@@ -81,17 +109,8 @@ class Home extends Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col size="md-4">
-                            <Jumbotron>
-                                <h2>Dashboard</h2>
-                                {/* <p>Product A Inventory</p>
-                                <p>Product B Inventory</p>
-                                <p>Product C Inventory</p> */}
-                                <p>New Orders: {this.state.newOrders.length}</p>
-                                <p>Orders In Progress: {this.state.inProgressOrders.length}</p>
-                                <p>Completed Orders: {this.state.completedOrders.length}</p>
-                            </Jumbotron>
-                        </Col>
+
+
                     </Row>
                 </Container>
             </div>
