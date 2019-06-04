@@ -101,7 +101,22 @@ class Products extends Component {
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
       this.setState({
-        steps: steps
+        steps: steps,
+        duration: "",
+        directions: "",
+        equipmentType: [],
+        stepInventory: [],
+
+        ingredientID: "",
+        ingredientName: "",
+        quantity: "",
+        ingredAndQuant: {},
+
+        equipmentID: "",
+        equipmentName: "",
+
+        renderEquipArray: [],
+        renderIngredArray: [],
       })
     )
   }
@@ -337,7 +352,7 @@ class Products extends Component {
                               name={el.equipmentType}
                               key={i}
                               id={el._id}
-                              onClick={(e) => { this.changeValueEquip(e)}}
+                              onClick={(e) => { this.changeValueEquip(e) }}
                             >
                               Type: {el.equipmentType}
                             </DropdownItem>
