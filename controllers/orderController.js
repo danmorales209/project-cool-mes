@@ -1,5 +1,5 @@
 const db = require("../models");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 module.exports = {
   // Find all based upon query, and return sorted based upon status
@@ -10,21 +10,25 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   findById: function (req, res) {
     db.Order.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   create: function (req, res) {
     db.Order.create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   update: function (req, res) {
     db.Order.findOneAndUpdate({ _id: req.params.id }, { $set: { "status": req.body.progress, "priority": req.body.priority } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   remove: function (req, res) {
     db.Order.findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
@@ -106,8 +110,6 @@ module.exports = {
 
       }).then(() => {
 
-        console.log(recipeEquip)
-
         let equipmentIDs = Object.keys(recipeEquip).map(e => new mongoose.Types.ObjectId(e));
         let equipQuantity = Object.values(recipeEquip);
 
@@ -129,15 +131,46 @@ module.exports = {
             enoughEquipment = true;
             console.log("Enough equipment");
           }
+        }).then(() => {
+
+          if (enoughEquipment && enoughInventory) {
+
+            db.RecipeInventory.create({
+              order: req.body.order,
+              items: Object.entries(recipeInv).map(e => {
+                return {
+                  _id: e[0],
+                  quantity: e[1]
+                }
+              })
+            }).then(data => {
+              Promise.all(
+                data.items.map(e => {
+                  db.Inventory.updateOne({ _id: e._id }, {
+                    $inc: {
+                      quantity: Number(e.quantity * -1)
+                    }
+                  }).then((res) => console.log("Woohoo ", res))
+                    .catch(err => console.error(err))
+                })
+              ).then(() => {
+                console.log("Done updating equipment");
+                res.status(200).json({
+                  check: "true",
+                  RecipeInventoryId: data._id
+                })
+              })
+
+
+            });
+
+          }
+          else {
+            res.json({ check: "fail" })
+          }
+
         })
 
-      }).then( () => {
-
-        console.log("inventory?", enoughInventory)
-        console.log("equipment?", enoughEquipment)
-        if (enoughEquipment && enoughInventory) {
-          console.log( "enough stuff to do some stuff");
-        }
       })
 
   }
