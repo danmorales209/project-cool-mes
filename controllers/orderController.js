@@ -146,19 +146,22 @@ module.exports = {
             }).then(data => {
               console.log(data);
 
-              console.log(data.items.map(e => new mongoose.Types.ObjectId(e._id)))
-              console.log(data.items.map(e => e.quantity))
+              /* console.log(data.items.map(e => new mongoose.Types.ObjectId(e._id)))
+              console.log(data.items.map(e => e.quantity)) */
 
-              db.Inventory.update({
+              db.Inventory.updateMany({
                 _id: {
                   $in: data.items.map(e => new mongoose.Types.ObjectId(e._id))
                 }
               },
                 {
-                  quantity: {
-                    $dec: data.items.map(e => e.quantity)
+                  $in: {
+
+                    $inc: { quantity: data.items.map(e => Number(e.quantity) * -1) }
                   }
-                }).then(resp => console.log(resp));
+                }
+
+              ).then(resp => console.log(resp));
 
             })
 
