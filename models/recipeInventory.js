@@ -8,13 +8,15 @@ const recipeInventorySchema = new Schema(
       Ref: "Order",
       required: true
     },
+
     items: [
       {
-        id : {
-          type : Schema.ObjectId,
+        quantity: Number,
+
+        _id: {
+          type: Schema.ObjectId,
           ref: "Inventory"
-        },
-        quantity : Number
+        }
       }
     ]
   }
