@@ -12,6 +12,7 @@ const ProductCard = (props) => {
                     <CardTitle>Product Name: {props.obj.name}</CardTitle>
                     <CardText>Product Description: {props.obj.description}</CardText>
                     <Button>Open</Button>
+                    <Button onClick={() => props.delete(props.obj._id)}>Delete</Button>
                 </CardBody>
             </Card>
         </div>

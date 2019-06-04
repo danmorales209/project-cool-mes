@@ -7,7 +7,6 @@ import {
 import axios from "axios";
 import { Col, Row, Container } from "../components/Grid";
 
-
 class Home extends Component {
     state = {
         newOrders: [],
