@@ -144,26 +144,21 @@ module.exports = {
                 }
               })
             }).then(data => {
-              console.log(data);
 
-              /* console.log(data.items.map(e => new mongoose.Types.ObjectId(e._id)))
-              console.log(data.items.map(e => e.quantity)) */
+              console.log(data)
 
-              db.Inventory.updateMany({
-                _id: {
-                  $in: data.items.map(e => new mongoose.Types.ObjectId(e._id))
-                }
-              },
-                {
-                  $in: {
-
-                    $inc: { quantity: data.items.map(e => Number(e.quantity) * -1) }
+              Promise.all(data.items.map(e => {
+                db.Inventory.updateOne({ _id: e._id }, {
+                  $inc: {
+                    quantity: Number(e.quantity * -1)
                   }
-                }
+                }).then((res) => console.log("Woohoo ", res))
+                  .catch(err => console.error(err))
+              })
+              )
 
-              ).then(resp => console.log(resp));
 
-            })
+            });
 
           }
           else {
