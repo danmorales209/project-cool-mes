@@ -2,9 +2,6 @@ import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 const RecipeSteps = props => {
-
-  console.log(props.obj)
-
   return (
     <>
       <h3>Product:</h3>
