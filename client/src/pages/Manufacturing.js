@@ -53,9 +53,9 @@ class Manufacturing extends Component {
 
   handleNextStep = e => {
     let steps = this.state.recipeObj.steps.length;
-    
+
     if (this.state.currentStep < steps) {
-      this.setState({currentStep : this.state.currentStep +1})
+      this.setState({ currentStep: this.state.currentStep + 1 })
     }
     else {
       alert("all Done");
@@ -75,15 +75,16 @@ class Manufacturing extends Component {
           </Row>
 
           <Row>
-            <Col size="md-3">
-              {this.state.newOrders.map((el, i) => (
-                <ManufacturingCard
-                  obj={el}
-                  key={i}
-                  clickSteps={id => this.handleShowSteps(id)}
-                />
+            {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+              this.state.newOrders.map((el, i) => (
+                <Col size="md-3">
+                  <ManufacturingCard
+                    obj={el}
+                    key={i}
+                    clickSteps={id => this.handleShowSteps(id)}
+                  />
+                </Col>
               ))}
-            </Col>
           </Row>
 
           <Row>
@@ -93,16 +94,18 @@ class Manufacturing extends Component {
           </Row>
 
           <Row>
-            <Col size="md-3">
-              {this.state.inProgressOrders.map((el, i) => (
-                <ManufacturingCard
-                  obj={el}
-                  key={i}
-                  clickSteps={id => this.handleShowSteps(id)}
-                //clickPost={d => this.handleCompleteOrder(d)}
-                />
-              ))}
-            </Col>
+            {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+              this.state.inProgressOrders.map((el, i) => (
+                <Col size="md-3">
+                  <ManufacturingCard
+                    obj={el}
+                    key={i}
+                    clickSteps={id => this.handleShowSteps(id)}
+                  //clickPost={d => this.handleCompleteOrder(d)}
+                  />
+                </Col>
+              ))
+            }
           </Row>
 
           <Row>

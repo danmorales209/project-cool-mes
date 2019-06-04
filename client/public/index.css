@@ -13,7 +13,7 @@
     padding: 10px;
 }
 button{
-    margin: 2px
+    margin: 5px
 }
 nav{
     background-color: #29B6F6;
@@ -30,13 +30,18 @@ cursor: pointer;
 .longer{
     min-width: 50px;
 }
-h3{
-    margin:10px;
-}
 .moveDown{
-    margin-top: 23px;
+    margin-top: 27px;
 }
 .container{
     margin-top:50px;
     margin-bottom:50px;
+}
+.noOrder{
+    color: maroon;
+    margin: 5px;
+    margin-left: 25px
+}
+input{
+    margin:5px;
 }

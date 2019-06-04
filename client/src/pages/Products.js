@@ -364,14 +364,18 @@ class Products extends Component {
                       </DropdownMenu>
                     </Dropdown>
                   </Col>
-
                   <Col size="md-3">
+                    <Row>
+                      <Col size="md-3">
+                        <h3>Step Duration</h3>
+                      </Col>
+                    </Row>
                     <FormGroup>
                       <Input
                         onChange={this.handleInputChange}
                         name="duration"
                         id="duration"
-                        placeholder="Step Duration"
+                        placeholder="Step Duration (in minutes)"
                       />
                     </FormGroup>
 
