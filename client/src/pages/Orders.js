@@ -53,7 +53,8 @@ class Orders extends React.Component {
         address: "",
         city: "",
         state: "",
-        zip: ""
+        zip: "",
+        
       })
     })
   }

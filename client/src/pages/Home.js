@@ -10,28 +10,30 @@ import { Col, Row, Container } from "../components/Grid";
 
 class Home extends Component {
     state = {
-        activeOrders: "",
-        inProgressOrders:"",
-        completedOrders: "",
-        productAInv: "",
-        productBInv: "",
-        productCInv: "",
+        // activeOrders: "",
+        // inProgressOrders:"",
+        // completedOrders: "",
+        // productAInv: "",
+        // productBInv: "",
+        // productCInv: "",
+        productObj: {},
     };
 
     componentDidMount() {
-        // this.loadBooks();
+        this.handleGetDash();
     }
 
     handleGetDash = () => {
-        axios.get("/api/dashboard", {
-          activeOrders: this.state.activeOrders,
-          inProgressOrders: this.state.inProgressOrders,
-          completedOrders: this.state.completedOrders,
+        axios.get("/api/order/GET", {
+        //   activeOrders: this.state.activeOrders,
+        //   inProgressOrders: this.state.inProgressOrders,
+        //   completedOrders: this.state.completedOrders,
         //   productAInv: this.state.productAInv,
         //   productBInv: this.state.productBInv,
         //   productCInv: this.state.productCInv
         }).then(res => {
           console.log(res.data)
+          this.setState({productObj: res.data})
         })
       }
 
@@ -93,6 +95,7 @@ class Home extends Component {
                                 {/* <p>Product A Inventory</p>
                                 <p>Product B Inventory</p>
                                 <p>Product C Inventory</p> */}
+                                
                                 <p>activeOrders</p>
                                 <p>inProgressOrders</p>
                                 <p>completedOrders</p>
