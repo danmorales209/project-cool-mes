@@ -5,17 +5,26 @@ const orderSchema = new Schema(
   {
     product: {
       type: Schema.ObjectId,
-      ref: "Recipe"
+      ref: "Recipe",
+      required: true
     },
-    inProgress: {
+
+    productName: {
+      type: String
+    },
+
+    status: {
       type: String,
-      default: "New" //In Progress, Completed
+      default: "New", //In Progress, Completed
+      required: true
     },
-    priority : {
+
+    priority: {
       type: Number,
       required: true,
       default: 0
     },
+
     customer: {
       name: String,
       address: String,
@@ -23,8 +32,19 @@ const orderSchema = new Schema(
       state: String,
       zip: Number
     },
+
+    currentStep: {
+      type: Number,
+      default : 0
+    },
+
     dueDate: String,
-    qtyNeeded: Number
+
+    qtyNeeded:
+    {
+      type: Number,
+      default: 1
+    }
   }
 );
 
