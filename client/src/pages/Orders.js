@@ -43,7 +43,7 @@ class Orders extends React.Component {
         zip: this.state.zip
       }
     }).then(res => {
-      this.loadOrders()
+      this.loadOrders();
       this.setState({
         product: "",
         productName: "",
@@ -53,7 +53,8 @@ class Orders extends React.Component {
         address: "",
         city: "",
         state: "",
-        zip: ""
+        zip: "",
+        
       })
     })
   }
