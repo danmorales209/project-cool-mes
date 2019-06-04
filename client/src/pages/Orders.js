@@ -32,7 +32,7 @@ class Orders extends React.Component {
   handlePostOrder = () => {
     axios.post("/api/order/POST", {
       product: this.state.product,
-      // productName: this.state.productName,
+      productName: this.state.productName,
       dueDate: this.state.dueDate,
       qtyNeeded: this.state.qtyNeeded,
       customer: {
@@ -43,7 +43,6 @@ class Orders extends React.Component {
         zip: this.state.zip
       }
     }).then(res => {
-      console.log(res);
       this.loadOrders()
       this.setState({
         product: "",
@@ -56,7 +55,6 @@ class Orders extends React.Component {
         state: "",
         zip: ""
       })
-      console.log(this.state)
     })
   }
   loadProducts = () => {
@@ -76,7 +74,6 @@ class Orders extends React.Component {
     })
   }
   handleDeleteOrder = id => {
-    console.log(id, "order card line 25")
     axios.post("/api/order/DELETE/" + id).then(res => {
       this.loadOrders();
     })
@@ -86,7 +83,6 @@ class Orders extends React.Component {
   }
 
   handleProductName = (d) => {
-    console.log(d)
     this.setState({ productName: d })
   }
 
@@ -102,20 +98,20 @@ class Orders extends React.Component {
         <Container fluid>
           <Row>
             <Col size="md-12">
-              <h1>New Orders</h1>
+              <h1>Orders</h1>
             </Col>
           </Row>
           <Row>
             {this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
           </Row>
-          <Row>
+          {/* <Row>
             <Col size="md-12">
               <h1>Queued Orders</h1>
             </Col>
           </Row>
           <Row>
             {this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
-          </Row>
+          </Row> */}
           <Row>
             <Col size="md-12">
               <h1>Completed Orders</h1>

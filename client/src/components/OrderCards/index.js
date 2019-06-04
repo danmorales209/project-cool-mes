@@ -11,6 +11,7 @@ const OrderCard = (props) => {
       <Card>
         <CardBody>
           <CardTitle>Product Name: {props.obj.productName}</CardTitle>
+          <CardTitle>Order Status: {props.obj.status}</CardTitle>
           <CardSubtitle>
             Units: {props.obj.qtyNeeded}</CardSubtitle>
           <CardText>
