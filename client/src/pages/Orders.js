@@ -76,7 +76,6 @@ class Orders extends React.Component {
     })
   }
   handleDeleteOrder = id => {
-    console.log(id, "order card line 25")
     axios.post("/api/order/DELETE/" + id).then(res => {
       this.loadOrders();
     })
