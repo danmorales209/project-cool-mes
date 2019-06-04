@@ -31,7 +31,7 @@ const recipeSchema = new Schema({
         {
           type: Schema.ObjectId,
           ref: "Equipment"
-        }
+        },
       ],
       duration: {
         type: Number,
