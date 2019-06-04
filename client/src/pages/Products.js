@@ -12,8 +12,8 @@ class Products extends Component {
     productName: '',
     description: '',
     yield: "",
-
     steps: [],
+
     duration: "",
     directions: "",
     equipmentType: [],
@@ -36,15 +36,22 @@ class Products extends Component {
     allProducts: [],
   };
 
-  // handlePostProduct = () => {
-  //   axios.post("/api/recipe/POST", {
-
-  //   }).then(res => {
-  //     this.setState({
-
-  //     })
-  //   })
-  // }
+  handlePostProduct = () => {
+    this.handleNextStep();
+    axios.post("/api/recipe/POST", {
+      name: this.state.productName,
+      description: this.state.description,
+      steps: this.state.steps,
+      yield: this.state.yield
+    }).then(res => {
+      this.setState({
+        productName: '',
+        description: '',
+        yield: "",
+        steps: [],
+      })
+    })
+  }
 
   componentDidMount() {
     this.loadEquipment();
@@ -275,7 +282,7 @@ class Products extends Component {
                 </Row>
                 <Row>
                   <ListGroup>
-                  {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}></ListGroupItem>)}
+                    {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}></ListGroupItem>)}
                   </ListGroup>
                 </Row>
                 <Row>
