@@ -54,7 +54,7 @@ class Orders extends React.Component {
         city: "",
         state: "",
         zip: "",
-        
+
       })
     })
   }
@@ -103,17 +103,17 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-          {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-            this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
+            {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+              this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
           </Row>
-          {/* <Row>
+          <Row>
             <Col size="md-12">
               <h1>Queued Orders</h1>
             </Col>
           </Row>
           <Row>
-          {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-            this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
+            {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+              this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
