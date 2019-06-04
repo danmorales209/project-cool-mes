@@ -77,6 +77,12 @@ class Products extends Component {
     })
   }
 
+  handleDeleteRecipe = id => {
+    axios.post("/api/recipe/DELETE/" + id).then(res => {
+      this.loadProducts();
+    })
+  }
+
   toggleInventory = () => {
     this.setState(prevState => ({
       openIngred: !prevState.openIngred
@@ -101,7 +107,22 @@ class Products extends Component {
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
       this.setState({
-        steps: steps
+        steps: steps,
+        duration: "",
+        directions: "",
+        equipmentType: [],
+        stepInventory: [],
+
+        ingredientID: "",
+        ingredientName: "",
+        quantity: "",
+        ingredAndQuant: {},
+
+        equipmentID: "",
+        equipmentName: "",
+
+        renderEquipArray: [],
+        renderIngredArray: [],
       })
     )
   }
@@ -142,7 +163,6 @@ class Products extends Component {
       ingredientName: this.state.ingredientName,
       quantity: this.state.quantity
     };
-    console.log(renderIngred)
     this.setState({
       renderIngredArray: [...this.state.renderIngredArray, renderIngred],
     })
@@ -150,10 +170,6 @@ class Products extends Component {
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-  }
-
-  handleSubmit = () => {
-    console.log(this.state.steps)
   }
 
   render() {
@@ -169,7 +185,7 @@ class Products extends Component {
           </Row>
 
           <Row>
-            {this.state.allProducts.map((data, i) => <Col size="md-3"><ProductCard obj={data} key={i} /></Col>)}
+            {this.state.allProducts.map((data, i) => <Col size="md-3"><ProductCard delete={(id) => this.handleDeleteRecipe(id)} obj={data} key={i} /></Col>)}
           </Row>
 
           <Row>
@@ -337,7 +353,7 @@ class Products extends Component {
                               name={el.equipmentType}
                               key={i}
                               id={el._id}
-                              onClick={(e) => { this.changeValueEquip(e)}}
+                              onClick={(e) => { this.changeValueEquip(e) }}
                             >
                               Type: {el.equipmentType}
                             </DropdownItem>
