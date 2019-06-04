@@ -9,6 +9,7 @@ router.route("/POST").post(recipeController.create);
 // Matches with "/api/inventory/:id"
 router.route("/GET/:id").get(recipeController.findById);
 router.route("/POST/:id").post(recipeController.update);
+router.route("/DELETE/:id").post(recipeController.remove);
 // .route("/inventory:id")
 // .get(recipeController.findById)
 // .put(recipeController.update)
