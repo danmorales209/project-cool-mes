@@ -144,18 +144,22 @@ module.exports = {
                 }
               })
             }).then(data => {
-
-              console.log(data)
-
-              Promise.all(data.items.map(e => {
-                db.Inventory.updateOne({ _id: e._id }, {
-                  $inc: {
-                    quantity: Number(e.quantity * -1)
-                  }
-                }).then((res) => console.log("Woohoo ", res))
-                  .catch(err => console.error(err))
+              Promise.all(
+                data.items.map(e => {
+                  db.Inventory.updateOne({ _id: e._id }, {
+                    $inc: {
+                      quantity: Number(e.quantity * -1)
+                    }
+                  }).then((res) => console.log("Woohoo ", res))
+                    .catch(err => console.error(err))
+                })
+              ).then(() => {
+                console.log("Done updating equipment");
+                res.status(200).json({
+                  check: "true",
+                  RecipeInventoryId: data._id
+                })
               })
-              )
 
 
             });
