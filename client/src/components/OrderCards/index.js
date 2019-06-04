@@ -22,6 +22,7 @@ const OrderCard = (props) => {
             <br></br>
             {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
+          <Button onClick={() => props.delete(props.obj._id)}>Delete</Button>
         </CardBody>
       </Card>
     </>

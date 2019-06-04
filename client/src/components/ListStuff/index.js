@@ -2,9 +2,10 @@ import React from 'react';
 import { ListGroupItem } from 'reactstrap';
 
 const ListStuff = (props) => {
+  console.log(props)
   return (
     <>
-      <ListGroupItem>{props.obj.ingredient}X{props.obj.qtyNeeded}</ListGroupItem>
+      <ListGroupItem><span>{props.obj.ingredientName}</span> X <span>{props.obj.quantity}</span></ListGroupItem>
     </>
   );
 }

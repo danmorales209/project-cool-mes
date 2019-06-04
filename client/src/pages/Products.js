@@ -97,6 +97,7 @@ class Products extends Component {
       equipmentType: this.state.equipmentType,
       duration: this.state.duration,
     });
+
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
       this.setState({
@@ -107,7 +108,7 @@ class Products extends Component {
 
   renderEquip = (e) => {
     this.setState({
-      renderEquipArray: [...this.renderEquipArray, this.state.equipmentName],
+      renderEquipArray: [...this.state.renderEquipArray, this.state.equipmentName],
       equipmentType: [...this.state.equipmentType, this.state.equipmentID]
     })
   }
@@ -116,7 +117,7 @@ class Products extends Component {
     this.setState({
       equipmentID: e.target.id,
       equipmentName: e.target.name
-    })
+    }, this.renderEquip)
   }
 
   pushIngred = () => {
@@ -125,7 +126,7 @@ class Products extends Component {
       quantity: this.state.quantity
     };
     this.setState({
-      stepInventory: [...this.stepInventory, ingredAndQuant],
+      stepInventory: [...this.state.stepInventory, ingredAndQuant],
     })
   }
 
@@ -141,8 +142,9 @@ class Products extends Component {
       ingredientName: this.state.ingredientName,
       quantity: this.state.quantity
     };
+    console.log(renderIngred)
     this.setState({
-      renderIngredArray: [...this.renderIngredArray, renderIngred],
+      renderIngredArray: [...this.state.renderIngredArray, renderIngred],
     })
   }
 
@@ -155,22 +157,27 @@ class Products extends Component {
   }
 
   render() {
+
     return (
       <div className="container">
         <Container fluid>
+
           <Row>
             <Col size="md-12">
               <h1>Current Products</h1>
             </Col>
           </Row>
+
           <Row>
-            {this.state.allProducts.map((data, i) => <Col size="md-3"><ProductCard obj={data} key={i}></ProductCard></Col>)}
+            {this.state.allProducts.map((data, i) => <Col size="md-3"><ProductCard obj={data} key={i} /></Col>)}
           </Row>
+
           <Row>
             <Col size="md-12">
               <h1>Product Form</h1>
             </Col>
           </Row>
+
           <Form>
             <Row>
               <Col size="md-4">
@@ -183,6 +190,7 @@ class Products extends Component {
                 <h3>Yield</h3>
               </Col>
             </Row>
+
             <Row>
               <Col size="md-4">
                 <FormGroup>
@@ -194,6 +202,7 @@ class Products extends Component {
                   />
                 </FormGroup>
               </Col>
+
               <Col size="md-4">
                 <FormGroup>
                   <Input
@@ -204,6 +213,7 @@ class Products extends Component {
                   />
                 </FormGroup>
               </Col>
+
               <Col size="md-4">
                 <FormGroup>
                   <Input
@@ -214,7 +224,9 @@ class Products extends Component {
                   />
                 </FormGroup>
               </Col>
+
             </Row>
+
             <FormGroup>
               {<div>
                 <Row>
@@ -225,17 +237,29 @@ class Products extends Component {
                     placeholder="Directions"
                     onChange={this.handleInputChange}
                   />
+
                 </Row>
                 <h3>Added Inventory</h3>
                 <Row>
+
                   <ListGroup>
                     {this.state.renderIngredArray.map((data, i) => <ListStuff obj={data} key={i}></ListStuff>)}
                   </ListGroup>
+
                 </Row>
+
                 <Row>
+
                   <Col size="md-2">
-                    <Dropdown className="moveDown" isOpen={this.state.openIngred} toggle={this.toggleInventory}>
-                      <DropdownToggle caret>Add Ingredients</DropdownToggle>
+                    <Dropdown
+                      className="moveDown"
+                      isOpen={this.state.openIngred}
+                      toggle={this.toggleInventory}>
+
+                      <DropdownToggle caret>
+                        Add Ingredients
+                      </DropdownToggle>
+
                       <DropdownMenu>
                         {this.state.allInventory.map((el, i) => (
                           <>
@@ -251,17 +275,29 @@ class Products extends Component {
                             <DropdownItem divider />
                           </>
                         ))}
+
                       </DropdownMenu>
+
                     </Dropdown>
-                    <Button color="success" onClick={() => { this.pushIngred(); this.renderIngred() }}>Add Ingredient and Quantity</Button>
+
+                    <Button
+                      color="success"
+                      onClick={() => {
+                        this.pushIngred(); this.renderIngred()
+                      }}>
+                      Add Ingredient and Quantity
+                    </Button>
+
                   </Col>
+
                   <Col size="sm-1">
                     <h1 className="moveDown">X</h1>
                   </Col>
+
                   <Col size="md-6">
                     <Form>
                       <FormGroup>
-                        <Label for="quantity"></Label>
+                        <h3>Quantity</h3>
                         <Input
                           onChange={this.handleInputChange}
                           name="quantity"
@@ -272,6 +308,7 @@ class Products extends Component {
                     </Form>
                   </Col>
                 </Row>
+
                 <Row>
                   <Col size="md-4">
                     <h3>Added Equipment</h3>
@@ -280,32 +317,38 @@ class Products extends Component {
                     <h3>Step Duration</h3>
                   </Col>
                 </Row>
+
                 <Row>
                   <ListGroup>
-                    {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}></ListGroupItem>)}
+                    {this.state.renderEquipArray.map((data, i) => <ListGroupItem obj={data} key={i}>{data}</ListGroupItem>)}
                   </ListGroup>
                 </Row>
+
                 <Row>
                   <Col size="md-4">
+
                     <Dropdown className="longer" isOpen={this.state.openEquip} toggle={this.toggleEquipment}>
                       <DropdownToggle caret>Add Equipment</DropdownToggle>
                       <DropdownMenu>
+
                         {this.state.allEquipment.map((el, i) => (
                           <>
                             <DropdownItem
                               name={el.equipmentType}
                               key={i}
                               id={el._id}
-                              onClick={() => { this.changeValueEquip(); this.renderEquip() }}
+                              onClick={(e) => { this.changeValueEquip(e)}}
                             >
                               Type: {el.equipmentType}
                             </DropdownItem>
                             <DropdownItem divider />
                           </>
                         ))}
+
                       </DropdownMenu>
                     </Dropdown>
                   </Col>
+
                   <Col size="md-3">
                     <FormGroup>
                       <Input
@@ -315,14 +358,20 @@ class Products extends Component {
                         placeholder="Step Duration"
                       />
                     </FormGroup>
+
                   </Col>
                 </Row>
+
                 <Button onClick={this.handleNextStep}>Next Step</Button>
               </div>}
+
             </FormGroup>
+
             <Button color="success" onClick={() => { this.handlePostProduct(); this.loadProducts() }}>Submit</Button>
+
           </Form>
         </Container>
+
       </div>
     );
   }
