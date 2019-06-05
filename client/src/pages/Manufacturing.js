@@ -26,14 +26,14 @@ class Manufacturing extends Component {
     });
   };
 
-  handleStartOrder = id => {
+  handlePriority = (id, pri, pro) => {
     axios
       .post("/api/order/POST/" + id, {
-        priority: 1,
-        inProgress: "In Progress"
+        priority: pri,
+        progress: pro
       })
       .then(res => {
-        // console.log(res.data);
+
         this.loadOrders();
       });
 
@@ -57,17 +57,15 @@ class Manufacturing extends Component {
     let orderID = this.state.currentOrderId;
     axios.put("/api/order/PUT/" + orderID, {
       step: increaseSteps
-    }).then(res => {
-      console.log(res)
-    })
-
-    if (this.state.currentStep < steps) {
+    });
+    if (increaseSteps === steps){
+      this.handlePriority(orderID, 2, "Completed")
+      this.setState({recipeObj: {}})
+      // this.setState({inProgressOrders: []})
+      // this.loadOrders();
+    } else if (this.state.currentStep < steps) {
       this.setState({ currentStep: this.state.currentStep + 1 })
     }
-    else {
-      alert("all Done");
-    }
-    console.log("increase step", increaseSteps, "id", id, "state current step", this.state.currentStep)
 
   };
 
@@ -90,7 +88,7 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    clickStart={id => this.handleStartOrder(id)}
+                    clickStart={id => this.handlePriority(id, 1, "In Progress")}
 
                   />
                 </Col>

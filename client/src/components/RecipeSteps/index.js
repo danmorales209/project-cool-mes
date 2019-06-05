@@ -2,7 +2,6 @@ import React from "react";
 import { ListGroup, ListGroupItem, Button, Jumbotron } from "reactstrap";
 
 const RecipeSteps = props => {
-  console.log(props)
   return (
     <>
       <Jumbotron>
