@@ -73,10 +73,13 @@ class Inventory extends Component {
         console.log(res);
         this.loadMaterial();
         this.setState({ id: "" });
+
+        document.querySelector(`input[name="${id}"]`).value = "";
       });
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="container">
         <Container fluid>
@@ -174,6 +177,7 @@ class Inventory extends Component {
                   obj={this.state.materailObj}
                   increaseBtn={this.increaseMaterial}
                   onChange={this.handleInputChange}
+                  value={this.state._id}
                 />
               </Jumbotron>
             </Col>

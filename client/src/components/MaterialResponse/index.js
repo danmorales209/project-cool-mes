@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Button } from "reactstrap";
 
 const MaterialCard = props => {
+  console.log(props.value);
   return (
     <Table>
       <thead>
@@ -26,6 +27,7 @@ const MaterialCard = props => {
                 className="add-equipment-field"
                 onChange={e => props.onChange(e)}
                 name={el._id}
+                value={props.value}
               />
             </td>
             <td>
