@@ -35,6 +35,7 @@ class Manufacturing extends Component {
         console.log(res.data);
         this.loadOrders();
       });
+
   };
 
   handleShowSteps = id => {
@@ -81,7 +82,9 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    clickSteps={id => this.handleShowSteps(id)}
+                    // clickSteps={id => this.handleShowSteps(id)}
+                    clickStart={id => this.handleStartOrder(id)}
+
                   />
                 </Col>
               ))}
@@ -100,8 +103,9 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    clickSteps={id => this.handleShowSteps(id)}
-                  //clickPost={d => this.handleCompleteOrder(d)}
+                    // clickSteps={id => this.handleShowSteps(id)}
+                    clickStart={id => this.handleStartOrder(id)}
+                  // clickPost={d => this.handleCompleteOrder(d)}
                   />
                 </Col>
               ))

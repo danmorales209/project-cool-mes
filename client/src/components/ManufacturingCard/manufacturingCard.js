@@ -34,10 +34,11 @@ const ManufacturingCard = props => {
             {props.obj.customer.address}, {props.obj.customer.city},{" "}
             {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
-          <Button onClick={() => props.clickSteps(props.obj._id)}>
-            Start Order
+          
+          <Button onClick={() => props.clickStart(props.obj._id)}>
+          {props.obj.priority === 0? "Start Order": "Complete Order"}
           </Button>
- 
+
         </CardBody>
       </Card>
     </>
