@@ -149,6 +149,7 @@ module.exports = {
                 }
               })
             }).then(data => {
+
               Promise.all(
                 data.items.map(e => {
                   db.Inventory.updateOne({ _id: e._id }, {
@@ -158,14 +159,39 @@ module.exports = {
                   }).then((res) => console.log("Woohoo ", res))
                     .catch(err => console.error(err))
                 })
+
               ).then(() => {
-                console.log("Done updating equipment");
-                res.status(200).json({
-                  check: "true",
-                  RecipeInventoryId: data._id
-                })
+                Promise.all(
+                  Object.entries(recipeEquip).map(e => {
+
+                    console.log (e, e[0],e[1])
+                    db.Equipment.findOne({ _id: new mongoose.Types.ObjectId(e[0]) }).then(data => {
+
+                      equipment = data.equipment;
+
+                      for (i = 0; i < e[1]; i++) {
+
+                        console.log(equipment[i])
+
+                        if (equipment[i].status === "Available") {
+                          equipment[i].status = "Reserved"
+                        }
+                      }
+
+                      db.Equipment.updateOne({ _id: data._id }, { equipment: equipment }).then(resp => console.log(resp))
+
+                    })
+                  })
+                )
               })
 
+                .then(() => {
+                  console.log("Done updating equipment");
+                  res.status(200).json({
+                    check: "true",
+                    RecipeInventoryId: data._id
+                  })
+                })
 
             });
 
