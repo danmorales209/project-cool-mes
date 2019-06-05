@@ -28,6 +28,11 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  updateSteps: function (req, res) {
+    db.Order.updateOne({ _id: req.params.id }, { $set: { currentStep: req.body.step } })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 
   remove: function (req, res) {
     db.Order.findById({ _id: req.params.id })
