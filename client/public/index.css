@@ -103,13 +103,31 @@ input{
   position: fixed;
   bottom: 0 !important;
   width: 100%;
-  height: 50px;
+  height: 65px;
   background-color: #29b6f6;
   text-align: center;
+  align-content: center;
   z-index: 2;
+  line-height: 1rem;
 }
-.container-footer{
+.footerText{
   margin: 8px;
+  color: white;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.footer-nav li {
+  display: inline;
+  margin:10px;
+}
+
+.footer-nav a:hover{
+  color:black;
+}
+
+.footer-nav a{
+  text-decoration: none;
+  margin-right: 5px;
   color: white;
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
 }

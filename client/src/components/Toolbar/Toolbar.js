@@ -9,24 +9,24 @@ const toolbar = props => (
         <DrawerToggleButton click={props.drawerClickHandler} />
       </div>
       <div className="toolbar_logo">
-        <a href="/">MAKE.iT</a>
+        <a href="/home">MAKE.iT</a>
       </div>
       <div className="spacer" />
       <div className="toolbar_navigation_items">
         <ul>
-          <li>
+          <li className="page">
             <a href="/">Home</a>
           </li>
-          <li>
+          <li className="page">
             <a href="/products">Products</a>
           </li>
-          <li>
+          <li className="page">
             <a href="/orders">Orders</a>
           </li>
-          <li>
+          <li className="page">
             <a href="/inventory">Inventory</a>
           </li>
-          <li>
+          <li className="page">
             <a href="/manufacturing">Manufacturing</a>
           </li>
           <li>
