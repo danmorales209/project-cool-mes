@@ -18,7 +18,7 @@ body {
 }
 
 .jumbotron {
-  background-color: #95cee9;
+  background-color: #29b6f6;
   color: black;
   margin: 10px;
   padding: 10px;
@@ -75,6 +75,84 @@ h3 {
 }
 input {
   margin: 5px;
+}
+.Low {
+  color: orangered;
+  padding: 0 0;
+  margin: 0 0;
+}
+
+.Out {
+  color: red;
+  padding: 0 0;
+  margin: 0;
+}
+
+/* Container for flexboxes */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create four equal columns */
+.column {
+  flex: 25%;
+  padding: 20px;
+}
+.footer {
+  position: fixed;
+  bottom: 0 !important;
+  width: 100%;
+  height: 65px;
+  background-color: #29b6f6;
+  text-align: center;
+  align-content: center;
+  z-index: 2;
+  line-height: 1rem;
+}
+.footerText{
+  margin: 8px;
+  color: white;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+.footer-nav li {
+  display: inline;
+  margin:10px;
+}
+
+.footer-nav a:hover{
+  color:black;
+}
+
+.footer-nav a{
+  text-decoration: none;
+  margin-right: 5px;
+  color: white;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .column {
+    flex: 50%;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  /* .row {
+    flex-direction: column;
+  } */
+  .card{
+    max-width:  200px;
+  }
+  .container{
+    font-size: 78%;
+  }
+  h2{
+    font-size: 25px;
+  }
 }
 
 .add-equipment-field {
