@@ -23,8 +23,8 @@ body {
   margin: 10px;
   padding: 10px;
 }
-button{
-    margin: 5px
+button {
+  margin: 5px;
 }
 
 nav {
@@ -61,32 +61,23 @@ h3 {
   margin-bottom: 50px;
 }
 
-.moveDown{
-    margin-top: 27px;
+.moveDown {
+  margin-top: 27px;
 }
-.container{
-    margin-top:50px;
-    margin-bottom:50px;
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-.noOrder{
-    color: maroon;
-    margin: 5px;
-    margin-left: 25px
+.noOrder {
+  color: maroon;
+  margin: 5px;
+  margin-left: 25px;
 }
-input{
-    margin:5px;
-}
-
-
-.Low {
-  color: orangered;
-  padding: 0 0;
-  margin: 0 0;
+input {
+  margin: 5px;
 }
 
-.Out {
-  color: red;
-  padding: 0 0;
-  margin: 0;
+.add-equipment-field {
+  max-width: 50px;
+  min-width: 50px;
 }
-
