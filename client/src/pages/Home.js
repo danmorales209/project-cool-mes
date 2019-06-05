@@ -38,19 +38,18 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.state.inventoryAlerts, "line 42")
         return (
             <div className="container">
                 <Container fluid>
                     <Row>
-                        <Col size="md-4">
+                        <Col size="sm-4">
                             <Row >
                                 <Jumbotron style={{ width: "100%", marginLeft: "0px", marginRight: "0px" }}>
                                     <h2>Dashboard</h2>
 
-                                    <p>New Orders: {this.state.newOrders.length}</p>
-                                    <p>Orders In Progress: {this.state.inProgressOrders.length}</p>
-                                    <p>Completed Orders: {this.state.completedOrders.length}</p>
+                                    <h4>New Orders: {this.state.newOrders.length}</h4>
+                                    <h4>Orders In Progress: {this.state.inProgressOrders.length}</h4>
+                                    <h4>Completed Orders: {this.state.completedOrders.length}</h4>
 
 
                                 </Jumbotron>
@@ -58,12 +57,12 @@ class Home extends Component {
                             <Row >
 
                                 {this.state.inventoryAlerts.map(el => <Alert style={{ backgroundColor: "#f44242", color: "white", width: "100%" }}> <h4>Alert</h4>
-                                    <p>{el.name} has low quantity<br></br> quantity: {el.quantity}</p> </Alert>)}
+                                    <p>{el.name} has low quantity<br></br> quantity: {el.quantity} {el.unit} </p> </Alert>)}
                             </Row>
                         </Col>
-                        <Col size="md-8">
+                        <Col size="sm-8">
                             <Row>
-                                <Col size="md-6">
+                                <Col size="sm-6">
                                     <Card>
                                         <CardImg top src="./images/products2.jpg" alt="Card image cap" />
                                         <CardBody>
@@ -74,7 +73,7 @@ class Home extends Component {
                                     </Card>
                                 </Col>
 
-                                <Col size="md-6">
+                                <Col size="sm-6">
                                     <Card>
                                         <CardImg top src="./images/inventory.jpg" alt="Card image cap" />
                                         <CardBody>
@@ -86,7 +85,7 @@ class Home extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col size="md-6">
+                                <Col size="sm-6">
                                     <Card>
                                         <CardImg top src="./images/order.jpg" alt="Card image cap" />
                                         <CardBody>
@@ -96,7 +95,7 @@ class Home extends Component {
                                         </CardBody>
                                     </Card>
                                 </Col>
-                                <Col size="md-6">
+                                <Col size="sm-6">
                                     <Card>
                                         <CardImg top src="./images/manufacturing.jpg" alt="Card image cap" />
                                         <CardBody>
@@ -108,7 +107,6 @@ class Home extends Component {
                                 </Col>
                             </Row>
                         </Col>
-
 
                     </Row>
                 </Container>
