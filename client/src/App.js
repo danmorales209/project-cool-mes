@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import Nav from "./components/Nav";
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
@@ -30,9 +30,9 @@ class App extends React.Component {
       this.setState(
         { user: response.data.email, token: response.data.token },
         () => {
-          console.log(this.state);
-
-          this.validUser();
+          console.log(this.state.token);
+          localStorage.setItem("user", JSON.stringify(response.data.email));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
         }
       );
     });
@@ -64,11 +64,16 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    // console.log(this.state);
+
+    this.validUser();
   };
 
   validUser = () => {
-    axios.post("/user/validate", this.state.token).then(response => {
+
+    let user = localStorage.getItem("user") || this.state.user;
+    let token = localStorage.getItem("token") || this.state.token;
+
+    axios.post("/user/validate", token).then(response => {
       console.log(response.valid);
 
       return response.valid;
@@ -106,20 +111,20 @@ class App extends React.Component {
             {/* <Nav /> */}
             <Switch>
               <Route
-                exact
-                path="/signup"
-                render={props =>
-                  !this.validUser() && (
-                    <Signup {...props} handleSignUp={this.handleSignUp} />
-                  )
-                }
+                exact path="/signup"
+                render={props => (
+                  (!this.state.user || !this.state.token)
+                    ? <Signup {...props} handleSignUp={this.handleSignUp} />
+                    : <Redirect to="/" />
+                )}
               />
 
               <Route
-                exact
-                path="/login"
+                exactpath="/login"
                 render={props => (
-                  <Login {...props} handleLogin={this.handleLogin} />
+                  (!this.state.user || !this.state.token)
+                    ? <Login {...props} handleLogin={this.handleLogin} />
+                    : <Redirect to="/" />
                 )}
               />
               <Route exact path="/" component={Home} />

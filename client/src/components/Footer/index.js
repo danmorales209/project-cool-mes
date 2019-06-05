@@ -3,11 +3,11 @@ import React from 'react';
 const Footer = (props) => {
     return (
         <>
-            <footer class="footer">
-                <div class="container-footer">
-                    <div><p class="footerText">© 2019 MAKE.iT</p></div>
+            <footer className="footer">
+                <div className="container-footer">
+                    <div><p className="footerText">© 2019 MAKE.iT</p></div>
                     <div>
-                        <ul class="footer-nav">
+                        <ul className="footer-nav">
                             <li className="footerItem"><a href="#">Privacy Policy</a></li>
                             <li className="footerItem"><a href="#">Contact Us</a></li>
                             <li className="footerItem"><a href="#">About Us</a></li>
