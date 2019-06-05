@@ -9,7 +9,8 @@ class Manufacturing extends Component {
     newOrders: [],
     inProgressOrders: [],
     recipeObj: {},
-    currentStep: 0
+    currentStep: 0,
+    currentOrderId: "",
   };
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class Manufacturing extends Component {
         inProgress: "In Progress"
       })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.loadOrders();
       });
 
@@ -41,19 +42,24 @@ class Manufacturing extends Component {
   handleShowSteps = id => {
     let step;
     axios.get("/api/order/GET/" + id).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       step = res.data.currentStep;
       axios.get("/api/recipe/GET/" + res.data.product).then(res => {
-        console.log(res);
-        this.setState({ recipeObj: res.data, currentStep: step }, () => {
-          console.log(this.state);
-        });
+        // console.log(res);
+        this.setState({ recipeObj: res.data, currentStep: step, currentOrderId: id });
       })
     });
   };
 
-  handleNextStep = e => {
+  handleNextStep = id => {
     let steps = this.state.recipeObj.steps.length;
+    let increaseSteps = this.state.currentStep + 1;
+    let orderID = this.state.currentOrderId;
+    axios.put("/api/order/PUT/" + orderID, {
+      step: increaseSteps
+    }).then(res => {
+      console.log(res)
+    })
 
     if (this.state.currentStep < steps) {
       this.setState({ currentStep: this.state.currentStep + 1 })
@@ -61,6 +67,8 @@ class Manufacturing extends Component {
     else {
       alert("all Done");
     }
+    console.log("increase step", increaseSteps, "id", id, "state current step", this.state.currentStep)
+
   };
 
   render() {
@@ -82,7 +90,6 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    // clickSteps={id => this.handleShowSteps(id)}
                     clickStart={id => this.handleStartOrder(id)}
 
                   />
@@ -103,9 +110,7 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    // clickSteps={id => this.handleShowSteps(id)}
-                    clickStart={id => this.handleStartOrder(id)}
-                  // clickPost={d => this.handleCompleteOrder(d)}
+                    clickSteps={id => this.handleShowSteps(id)}
                   />
                 </Col>
               ))
@@ -118,8 +123,9 @@ class Manufacturing extends Component {
                 Object.keys(this.state.recipeObj).length === 0 ? <></> :
                   <RecipeSteps
                     obj={this.state.recipeObj}
-                    nextStep={this.handleNextStep}
+                    nextStep={(id) => this.handleNextStep(id)}
                     currentStep={this.state.currentStep}
+                    orderObj={this.state.inProgressOrders}
                   />
               }
             </Col>
