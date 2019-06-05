@@ -18,7 +18,7 @@ body {
 }
 
 .jumbotron {
-  background-color: #95cee9;
+  background-color: #29b6f6;
   color: black;
   margin: 10px;
   padding: 10px;
@@ -76,8 +76,6 @@ h3 {
 input{
     margin:5px;
 }
-
-
 .Low {
   color: orangered;
   padding: 0 0;
@@ -90,3 +88,37 @@ input{
   margin: 0;
 }
 
+/* Container for flexboxes */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create four equal columns */
+.column {
+  flex: 25%;
+  padding: 20px;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .column {
+    flex: 50%;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  /* .row {
+    flex-direction: column;
+  } */
+  .card{
+    max-width:  200px;
+  }
+  .container{
+    font-size: 78%;
+  }
+  h2{
+    font-size: 25px;
+  }
+}

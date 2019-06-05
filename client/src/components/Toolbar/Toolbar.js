@@ -27,7 +27,7 @@ const toolbar = props => (
             <a href="/inventory">Inventory</a>
           </li>
           <li>
-            <a href="/manufacturing">Manafucturing</a>
+            <a href="/manufacturing">Manufacturing</a>
           </li>
           <li>
             <a href="/login">Login</a>
