@@ -43,7 +43,7 @@ class Home extends Component {
             <div className="container">
                 <Container fluid>
                     <Row>
-                        <Col size="md-4">
+                        <Col size="sm-4">
                             <Row >
                                 <Jumbotron style={{ width: "100%", marginLeft: "0px", marginRight: "0px" }}>
                                     <h2>Dashboard</h2>
@@ -61,7 +61,7 @@ class Home extends Component {
                                     <p>{el.name} has low quantity<br></br> quantity: {el.quantity}</p> </Alert>)}
                             </Row>
                         </Col>
-                        <Col size="md-8">
+                        <Col size="sm-8">
                             <Row>
                                 <Col size="sm-6">
                                     <Card>
@@ -108,7 +108,6 @@ class Home extends Component {
                                 </Col>
                             </Row>
                         </Col>
-
 
                     </Row>
                 </Container>

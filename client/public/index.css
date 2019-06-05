@@ -99,6 +99,20 @@ input{
   flex: 25%;
   padding: 20px;
 }
+.footer {
+  position: fixed;
+  bottom: 0 !important;
+  width: 100%;
+  height: 50px;
+  background-color: #29b6f6;
+  text-align: center;
+  z-index: 2;
+}
+.container-footer{
+  margin: 8px;
+  color: white;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media screen and (max-width: 992px) {
