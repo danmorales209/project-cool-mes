@@ -64,6 +64,17 @@ class Inventory extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   increaseMaterial = (id) => {
+
+
+    let dumb = Object.entries(this.state).filter(e => e[0] === "materialName")[0][0]
+
+    console.log(
+
+      dumb
+      
+    )
+
+
     axios.post("/api/inventory/POST/" + id).then(res => {
       console.log(res);
       this.componentDidMount()
