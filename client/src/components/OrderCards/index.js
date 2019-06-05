@@ -6,6 +6,7 @@ import {
 
 
 const OrderCard = (props) => {
+  console.log(props.obj, "line 9")
   return (
     <>
       <Card>
@@ -23,7 +24,7 @@ const OrderCard = (props) => {
             <br></br>
             {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
-          <Button onClick={() => props.delete(props.obj._id)}>Delete</Button>
+          {props.obj.status === "New" || props.obj.status === "In Progress" ?  <Button onClick={() => props.delete(props.obj._id)}>Delete</Button> : <></>}
         </CardBody>
       </Card>
     </>
