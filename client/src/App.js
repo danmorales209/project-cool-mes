@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
@@ -129,6 +130,7 @@ class App extends React.Component {
             </Switch>
           </div>
         </Router>
+        <Footer />
       </div>
     );
   }

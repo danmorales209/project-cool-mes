@@ -24,6 +24,10 @@
   text-decoration: none;
   font-size: 1.5rem;
 }
+.toolbar_navigation_items li a .page{
+  display: inline-block;
+  float: left;
+}
 
 .spacer {
   flex: 1;
@@ -43,11 +47,13 @@
 .toolbar_navigation_items a {
   color: white;
   text-decoration: none;
+  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 25px;
 }
 
 .toolbar_navigation_items a:hover,
 .toolbar_navigation_items a:active {
-  color: orangered;
+  color: black;
 }
 
 @media (max-width: 768px) {
