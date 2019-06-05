@@ -9,7 +9,8 @@ class Manufacturing extends Component {
     newOrders: [],
     inProgressOrders: [],
     recipeObj: {},
-    currentStep: 0
+    currentStep: 0,
+    currentOrderId: "",
   };
 
   componentDidMount() {
@@ -25,41 +26,47 @@ class Manufacturing extends Component {
     });
   };
 
-  handleStartOrder = id => {
+  handlePriority = (id, pri, pro) => {
     axios
       .post("/api/order/POST/" + id, {
-        priority: 1,
-        inProgress: "In Progress"
+        priority: pri,
+        progress: pro
       })
       .then(res => {
-        console.log(res.data);
+
         this.loadOrders();
       });
+
   };
 
   handleShowSteps = id => {
     let step;
     axios.get("/api/order/GET/" + id).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       step = res.data.currentStep;
       axios.get("/api/recipe/GET/" + res.data.product).then(res => {
-        console.log(res);
-        this.setState({ recipeObj: res.data, currentStep: step }, () => {
-          console.log(this.state);
-        });
+        // console.log(res);
+        this.setState({ recipeObj: res.data, currentStep: step, currentOrderId: id });
       })
     });
   };
 
-  handleNextStep = e => {
+  handleNextStep = id => {
     let steps = this.state.recipeObj.steps.length;
-
-    if (this.state.currentStep < steps) {
+    let increaseSteps = this.state.currentStep + 1;
+    let orderID = this.state.currentOrderId;
+    axios.put("/api/order/PUT/" + orderID, {
+      step: increaseSteps
+    });
+    if (increaseSteps === steps){
+      this.handlePriority(orderID, 2, "Completed")
+      this.setState({recipeObj: {}})
+      // this.setState({inProgressOrders: []})
+      // this.loadOrders();
+    } else if (this.state.currentStep < steps) {
       this.setState({ currentStep: this.state.currentStep + 1 })
     }
-    else {
-      alert("all Done");
-    }
+
   };
 
   render() {
@@ -81,7 +88,8 @@ class Manufacturing extends Component {
                   <ManufacturingCard
                     obj={el}
                     key={i}
-                    clickSteps={id => this.handleShowSteps(id)}
+                    clickStart={id => this.handlePriority(id, 1, "In Progress")}
+
                   />
                 </Col>
               ))}
@@ -101,7 +109,6 @@ class Manufacturing extends Component {
                     obj={el}
                     key={i}
                     clickSteps={id => this.handleShowSteps(id)}
-                  //clickPost={d => this.handleCompleteOrder(d)}
                   />
                 </Col>
               ))
@@ -114,8 +121,9 @@ class Manufacturing extends Component {
                 Object.keys(this.state.recipeObj).length === 0 ? <></> :
                   <RecipeSteps
                     obj={this.state.recipeObj}
-                    nextStep={this.handleNextStep}
+                    nextStep={(id) => this.handleNextStep(id)}
                     currentStep={this.state.currentStep}
+                    orderObj={this.state.inProgressOrders}
                   />
               }
             </Col>
