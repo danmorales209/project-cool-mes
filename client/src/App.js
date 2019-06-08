@@ -13,11 +13,12 @@ import Manufacturing from "./pages/Manufacturing";
 import Inventory from "./pages/Inventory";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { isNull } from "util";
 
 class App extends React.Component {
   state = {
-    user: "",
-    token: "",
+    user: null,
+    token: null,
     sideDrawerOpen: false
   };
 
@@ -65,19 +66,34 @@ class App extends React.Component {
 
   componentDidMount = () => {
 
-    this.validUser();
+    let savedToken = JSON.parse(localStorage.getItem("token"));
+
+    if (savedToken) {
+      this.setState({ token: savedToken });
+    }
+
+
   };
 
-  validUser = () => {
+  validateUser = () => {
 
-    let user = localStorage.getItem("user") || this.state.user;
     let token = localStorage.getItem("token") || this.state.token;
 
-    axios.post("/user/validate", token).then(response => {
-      console.log(response.valid);
+    return new Promise((resolve, reject) => {
 
-      return response.valid;
-    });
+      axios.post("/user/validate", token).then(response => {
+
+        if (response.valid === true) {
+          resolve(response.valid);
+        }
+
+        else {
+          reject({ error: "Unauthorized User" })
+        }
+      });
+
+    })
+
   };
 
   drawerToggleClickHandler = () => {
@@ -92,6 +108,17 @@ class App extends React.Component {
 
   render() {
     let backdrop;
+
+    let authorizedRender, unauthorizedRender;
+
+    authorizedRender =
+      <>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/products" component={Products} />
+        <Route exact path="/orders" component={Orders} />
+        <Route exact path="/inventory" component={Inventory} />
+        <Route exact path="/manufacturing" component={Manufacturing} />
+      </>
 
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
@@ -108,24 +135,10 @@ class App extends React.Component {
 
         <Router>
           <div>
-            {/* <Nav /> */}
             <Switch>
               <Route
-                exact path="/signup"
-                render={props => (
-                  (!this.state.user || !this.state.token)
-                    ? <Signup {...props} handleSignUp={this.handleSignUp} />
-                    : <Redirect to="/" />
-                )}
-              />
-
-              <Route
                 exactpath="/login"
-                render={props => (
-                  (!this.state.user || !this.state.token)
-                    ? <Login {...props} handleLogin={this.handleLogin} />
-                    : <Redirect to="/" />
-                )}
+                render={props => (<Login {...props} handleLogin={this.handleLogin} />)}
               />
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Products} />
