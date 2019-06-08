@@ -92,6 +92,9 @@ class Orders extends React.Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
+  handleCheckInventory = () => {
+    
+  }
 
   render() {
     return (
