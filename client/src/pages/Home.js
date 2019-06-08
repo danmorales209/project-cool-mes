@@ -57,7 +57,7 @@ class Home extends Component {
                             <Row >
 
                                 {this.state.inventoryAlerts.map(el => <Alert style={{ backgroundColor: "#f44242", color: "white", width: "100%" }}> <h4>Alert</h4>
-                                    <p>{el.name} has low quantity<br></br> quantity: {el.quantity} {el.unit} </p> </Alert>)}
+                                    <p><strong>{el.name}</strong> has low quantity<br></br> quantity: {el.quantity} {el.unit} </p> </Alert>)}
                             </Row>
                         </Col>
                         <Col size="sm-8">
