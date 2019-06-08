@@ -27,8 +27,8 @@ button {
   margin: 5px;
 }
 
-p{
-  color:black;
+p {
+  color: black;
 }
 
 nav {
@@ -102,38 +102,37 @@ input {
   flex: 25%;
   padding: 20px;
 }
+
 .footer {
-  position: static;
+  position: fixed;
   bottom: 0 !important;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #29b6f6;
   text-align: center;
   align-content: center;
   z-index: 2;
   line-height: 1rem;
 }
-.footerText{
+
+.footerText {
   margin-top: 15;
-  margin: 8px;
+  margin: 3px;
   color: white;
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 10pt;
 }
 
-.footer-nav li {
-  display: inline;
-  margin:10px;
+.footer-nav a:hover {
+  color: black;
 }
 
-.footer-nav a:hover{
-  color:black;
-}
-
-.footer-nav a{
+.footer-nav a {
   text-decoration: none;
   margin-right: 5px;
   color: white;
   font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-size: 10pt;
 }
 
 /* On screens that are 992px wide or less, go from four columns to two columns */
@@ -148,20 +147,25 @@ input {
   /* .row {
     flex-direction: column;
   } */
-  .card{
-    max-width:  200px;
+
+  .card {
+    max-width: 200px;
     padding: 2px;
   }
-  .col-sm-6{
+
+  .col-sm-6 {
     width: 50%;
   }
-  .container{
+
+  .container {
     font-size: 78%;
   }
-  h2{
+
+  h2 {
     font-size: 20px;
   }
 }
+
 .add-equipment-field {
   max-width: 50px;
   min-width: 50px;
