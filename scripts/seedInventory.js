@@ -1,43 +1,44 @@
 
+
 module.exports = [
     {
       name: "sugar",
       quantity: 500,
-      unit: "lbs"
+      units: "lbs"
     },
     {
       name: "water",
       quantity: 1000,
-      unit: "gallons"
+      units: "gallons"
     },
     {
       name: "butter",
       quantity: 80,
-      unit: "lbs"
+      units: "lbs"
     },
     {
       name: "flour",
       quantity: 600,
-      unit: "lbs"
+      units: "lbs"
     },
     {
       name: "eggs",
       quantity: 300,
-      unit: "units"
+      units: "units"
     },
     {
       name: "salt",
       quantity: 250,
-      unit: "lbs"
+      units: "lbs"
     },
     {
       name: "Cocoa powder",
       quantity: 400,
-      unit: "lbs"
+      units: "lbs"
     },
     {
       name: "Confectioners sugar",
       quantity: 700,
-      unit: "lbs"
+      units: "lbs"
     }
   ];
