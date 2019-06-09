@@ -33,6 +33,15 @@ class Manufacturing extends Component {
         progress: pro
       })
       .then(res => {
+        let recipeId = res.data.product;
+
+        // console.log(res.data, "start order btn")
+        // Check if equipment/inventory is available 
+        axios.post("/api/order/CHECK", {
+          product: recipeId
+        }).then(res => {
+          console.log(res.data, "check")
+        })
 
         this.loadOrders();
       });
@@ -42,10 +51,11 @@ class Manufacturing extends Component {
   handleShowSteps = id => {
     let step;
     axios.get("/api/order/GET/" + id).then(res => {
-      // console.log(res.data)
+      let recipeId = res.data.product
       step = res.data.currentStep;
-      axios.get("/api/recipe/GET/" + res.data.product).then(res => {
-        // console.log(res);
+
+      axios.get("/api/recipe/GET/" + recipeId).then(res => {
+
         this.setState({ recipeObj: res.data, currentStep: step, currentOrderId: id });
       })
     });
@@ -58,9 +68,9 @@ class Manufacturing extends Component {
     axios.put("/api/order/PUT/" + orderID, {
       step: increaseSteps
     });
-    if (increaseSteps === steps){
+    if (increaseSteps === steps) {
       this.handlePriority(orderID, 2, "Completed")
-      this.setState({recipeObj: {}})
+      this.setState({ recipeObj: {} })
       // this.setState({inProgressOrders: []})
       // this.loadOrders();
     } else if (this.state.currentStep < steps) {
