@@ -11,17 +11,13 @@ const OrderCard = (props) => {
     <>
       <Card>
         <CardBody>
-          <CardTitle>Product Name: {props.obj.productName}</CardTitle>
-          <CardTitle>Order Status: {props.obj.status}</CardTitle>
-          <CardSubtitle>
-            Units: {props.obj.qtyNeeded}</CardSubtitle>
+          <CardTitle><h5>Product Name: </h5>{props.obj.productName}</CardTitle>
+          <CardTitle><h5>Order Status: </h5>{props.obj.status}</CardTitle>
+          <CardSubtitle><h5>Units: </h5>{props.obj.qtyNeeded}</CardSubtitle>
           <CardText>
-            Due Date: {props.obj.dueDate}
-            <br></br>
-            Customer Name: {props.obj.customer.name}
-            <br></br>
-            Customer Address:
-            <br></br>
+            <h5>Due Date: </h5>{props.obj.dueDate}
+            <h5>Customer Name: </h5>{props.obj.customer.name}
+            <h5>Customer Address:</h5>
             {props.obj.customer.address}, {props.obj.customer.city}, {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
           {props.obj.status === "New" || props.obj.status === "In Progress" ?  <Button onClick={() => props.delete(props.obj._id)}>Delete</Button> : <></>}
