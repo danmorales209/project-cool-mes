@@ -35,16 +35,15 @@ class Manufacturing extends Component {
       .then(res => {
         let recipeId = res.data.product;
 
-        // console.log(res.data, "start order btn")
         // Check if equipment/inventory is available 
         axios.post("/api/order/CHECK", {
           product: recipeId,
           order: id,
         }).then(res => {
           console.log(res.data, "check")
+          this.loadOrders();
         })
 
-        this.loadOrders();
       });
 
   };
