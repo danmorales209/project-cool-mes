@@ -9,7 +9,6 @@ import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, For
 class Orders extends React.Component {
   state = {
     newOrders: [],
-    inProgressOrders: [],
     completedOrders: [],
     product: "",
     productName: "",
@@ -68,8 +67,7 @@ class Orders extends React.Component {
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        newOrders: res.data.filter(orders => orders.priority === 0),
-        inProgressOrders: res.data.filter(orders => orders.priority === 1),
+        newOrders: res.data.filter(orders => orders.priority === 1 || 0),
         completedOrders: res.data.filter(orders => orders.priority === 2),
       });
     })
@@ -108,15 +106,6 @@ class Orders extends React.Component {
           <Row>
             {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
               this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
-          </Row>
-          <Row>
-            <Col size="md-12">
-              <h1>Queued Orders</h1>
-            </Col>
-          </Row>
-          <Row>
-            {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.inProgressOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
