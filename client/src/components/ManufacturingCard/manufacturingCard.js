@@ -17,20 +17,15 @@ const ManufacturingCard = props => {
       <Card>
         <CardBody>
           <CardTitle>
-            Order Number:{props.obj._id} Status: {props.obj.status}
+            <h5>Order Number:</h5> {props.obj._id} <h5>Status: </h5>{props.obj.status}
           </CardTitle>
           <CardSubtitle>
-            Product Name:{props.obj.productName}
-            <br />
-            Units:{props.obj.qtyNeeded}
-          </CardSubtitle>
+            <h5>Product Name:</h5>{props.obj.productName} 
+            <h5>Units:</h5>{props.obj.qtyNeeded}</CardSubtitle>
           <CardText>
-            Due Date: {props.obj.dueDate}
-            <br />
-            Customer Name: {props.obj.customer.name}
-            <br />
-            Customer Address:
-            <br />
+           <h5>Due Date: </h5>{props.obj.dueDate}
+            <h5>Customer Name: </h5>{props.obj.customer.name}
+            <h5>Customer Address: </h5>
             {props.obj.customer.address}, {props.obj.customer.city},{" "}
             {props.obj.customer.state} {props.obj.customer.zip}
           </CardText>
