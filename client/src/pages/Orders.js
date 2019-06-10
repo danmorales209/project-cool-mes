@@ -9,7 +9,6 @@ import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, For
 class Orders extends React.Component {
   state = {
     newOrders: [],
-    inProgressOrders: [],
     completedOrders: [],
     product: "",
     productName: "",
@@ -68,7 +67,7 @@ class Orders extends React.Component {
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        newOrders: res.data.filter(orders => !orders.priority === 2),
+        newOrders: res.data.filter(orders => orders.priority === 1 || 0),
         completedOrders: res.data.filter(orders => orders.priority === 2),
       });
     })
