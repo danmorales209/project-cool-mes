@@ -19,6 +19,7 @@ class App extends React.Component {
   state = {
     user: null,
     token: null,
+    authorized: null,
     sideDrawerOpen: false
   };
 
@@ -34,6 +35,8 @@ class App extends React.Component {
           console.log(this.state.token);
           localStorage.setItem("user", JSON.stringify(response.data.email));
           localStorage.setItem("token", JSON.stringify(response.data.token));
+
+
         }
       );
     });
@@ -69,7 +72,9 @@ class App extends React.Component {
     let savedToken = JSON.parse(localStorage.getItem("token"));
 
     if (savedToken) {
-      this.setState({ token: savedToken });
+      this.setState({ token: savedToken }, () => {
+        this.validateUser()
+      });
     }
 
 
@@ -77,22 +82,20 @@ class App extends React.Component {
 
   validateUser = () => {
 
-    let token = localStorage.getItem("token") || this.state.token;
+    if (localStorage.getItem("token")) {
+      this.setState({ token: localStorage.getItem("token") })
+    }
 
-    return new Promise((resolve, reject) => {
-
-      axios.post("/user/validate", token).then(response => {
-
-        if (response.valid === true) {
-          resolve(response.valid);
+    axios.post('/user/validate', { "token": this.state.token })
+      .then(response => {
+        console.log("Checking user");
+        if (response.data.valid) {
+          this.setState({ authorized: true }, () => console.log(this.state))
         }
-
         else {
-          reject({ error: "Unauthorized User" })
+          this.setState({ authorized: false, user: null, token: null })
         }
       });
-
-    })
 
   };
 
@@ -108,17 +111,6 @@ class App extends React.Component {
 
   render() {
     let backdrop;
-
-    let authorizedRender, unauthorizedRender;
-
-    authorizedRender =
-      <>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/products" component={Products} />
-        <Route exact path="/orders" component={Orders} />
-        <Route exact path="/inventory" component={Inventory} />
-        <Route exact path="/manufacturing" component={Manufacturing} />
-      </>
 
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
@@ -136,16 +128,55 @@ class App extends React.Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/products" component={Products} />
-              <Route exact path="/orders" component={Orders} />
-              <Route exact path="/inventory" component={Inventory} />
-              <Route exact path="/manufacturing" component={Manufacturing} />
-              <Route
-                exactpath="/login"
-                render={props => (<Login {...props} handleLogin={this.handleLogin} />)}
+
+              <Route exact path='/'
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Home />
+                    : <Redirect to="/login" {...props} handleLogin={this.handleLogin} />
+                )}
               />
-              
+
+              <Route exact path="/products"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Products />
+                    : <Login {...props} handleLogin={this.handleLogin} />
+                )} />
+
+              <Route exact path="/orders"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Orders />
+                    : <Login {...props} handleLogin={this.handleLogin} />
+                )} />
+
+              <Route exact path="/inventory"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Inventory />
+                    : <Login {...props} handleLogin={this.handleLogin} />
+                )} />
+
+              <Route exact path="/manufacturing"
+                render={() => (
+                  this.state.authorized === true
+                    ? <Manufacturing />
+                    : <Login handleLogin={this.handleLogin} />
+                )} />
+
+
+
+              {/* <Route path="/products" component={Products} />
+              <Route path="/orders" component={Orders} />
+              <Route path="/inventory" component={Inventory} />
+              <Route path="/manufacturing" component={Manufacturing} /> */}
+
+              <Route
+                exact path="/login"
+                render={(props) => (<Login {...props} handleLogin={this.handleLogin} auth={this.authorized} />)}
+              />
+
             </Switch>
           </div>
         </Router>

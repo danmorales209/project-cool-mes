@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Col, Row, Container } from "../components/Grid";
+import { BrowserRouter as Redirect } from "react-router-dom";
 //import LogInCarousel from "../components/LogInCarousel";
 
 export default class Login extends React.Component {
@@ -13,6 +14,10 @@ export default class Login extends React.Component {
 
     }
   };
+
+  componentDidMount = () => {
+    console.log(this.props)
+  }
 
   handleEmailChange = (e) => {
     this.setState({ email: e.target.value })
@@ -49,13 +54,13 @@ export default class Login extends React.Component {
             <Col size="md-6">
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" onChange={(e) => this.handleEmailChange(e)} />
+                <Input type="email" name="email" id="exampleEmail" placeholder="something@somewhere.com" onChange={(e) => this.handleEmailChange(e)} />
               </FormGroup>
             </Col>
             <Col size="md-6">
               <FormGroup>
                 <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" onChange={(e) => this.handlePWChange(e)} />
+                <Input type="password" name="password" id="examplePassword" placeholder="Secret Code" onChange={(e) => this.handlePWChange(e)} />
               </FormGroup>
             </Col>
           </Row>
