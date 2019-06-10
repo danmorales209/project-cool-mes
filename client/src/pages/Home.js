@@ -32,7 +32,7 @@ class Home extends Component {
         axios.get("/api/inventory/GET").then(res => {
             console.log(res.data);
             this.setState({
-                inventoryAlerts: res.data.filter(inventory => inventory.quantity < 300)
+                inventoryAlerts: res.data.filter(inventory => inventory.quantity < 100)
             })
         })
     }
