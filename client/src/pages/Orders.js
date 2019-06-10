@@ -125,7 +125,7 @@ class Orders extends React.Component {
           </Row>
           <Row>
             {this.state.completedOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard obj={data} key={i}></OrderCard></Col>)}
+              this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
           </Row>
           <Row>
             <Col size="md-12">
