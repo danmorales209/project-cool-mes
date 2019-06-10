@@ -136,15 +136,16 @@ class App extends React.Component {
         <Router>
           <div>
             <Switch>
-              <Route
-                exactpath="/login"
-                render={props => (<Login {...props} handleLogin={this.handleLogin} />)}
-              />
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Products} />
               <Route exact path="/orders" component={Orders} />
               <Route exact path="/inventory" component={Inventory} />
               <Route exact path="/manufacturing" component={Manufacturing} />
+              <Route
+                exactpath="/login"
+                render={props => (<Login {...props} handleLogin={this.handleLogin} />)}
+              />
+              
             </Switch>
           </div>
         </Router>
