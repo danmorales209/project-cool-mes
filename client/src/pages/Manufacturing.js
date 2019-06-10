@@ -38,7 +38,8 @@ class Manufacturing extends Component {
         // console.log(res.data, "start order btn")
         // Check if equipment/inventory is available 
         axios.post("/api/order/CHECK", {
-          product: recipeId
+          product: recipeId,
+          order: id,
         }).then(res => {
           console.log(res.data, "check")
         })
