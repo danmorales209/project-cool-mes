@@ -23,81 +23,15 @@ class App extends React.Component {
     sideDrawerOpen: false
   };
 
-  login = (route, data) => {
-    console.log("trying to log in...");
-
-    axios.post(route, data).then(response => {
-      console.log("Trying to send some data to login");
-
-      this.setState(
-        { user: response.data.email, token: response.data.token },
-        () => {
-          console.log(this.state.token);
-          localStorage.setItem("user", JSON.stringify(response.data.email));
-          localStorage.setItem("token", JSON.stringify(response.data.token));
-
-
-        }
-      );
-    });
-  };
-
-  handleLogin = data => {
-    console.log(data);
-
-    this.login("/user/login", data);
-  };
-
-  signup = (route, data) => {
-    console.log("trying to sign-up");
-
-    axios(route, data).then(response => {
-      this.setState(
-        { user: response.data.email, token: response.data.token },
-        () => {
-          console.log(this.state);
-
-          console.log(this.validUser());
-        }
-      );
-    });
-  };
-
-  handleSignUp = data => {
-    this.signup("/user/signup", data);
-  };
-
   componentDidMount = () => {
-
-    let savedToken = JSON.parse(localStorage.getItem("token"));
-
-    if (savedToken) {
-      this.setState({ token: savedToken }, () => {
-        this.validateUser()
-      });
-    }
-
-
-  };
-
-  validateUser = () => {
-
     if (localStorage.getItem("token")) {
-      this.setState({ token: localStorage.getItem("token") })
+      let savedToken = JSON.parse(localStorage.getItem("token"));
+      let savedUser = JSON.parse(localStorage.getItem("user"));
+
+
+      this.setState({ token: savedToken, user: savedUser, authorized: true })
     }
-
-    axios.post('/user/validate', { "token": this.state.token })
-      .then(response => {
-        console.log("Checking user");
-        if (response.data.valid) {
-          this.setState({ authorized: true }, () => console.log(this.state))
-        }
-        else {
-          this.setState({ authorized: false, user: null, token: null })
-        }
-      });
-
-  };
+  }
 
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
@@ -108,6 +42,21 @@ class App extends React.Component {
   backdropClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
   };
+
+  updateUser = (inUser, inToken, cb = null) => {
+
+    this.setState({ user: inUser, token: inToken }, cb)
+
+  }
+
+  authorizeUser = (isAuthorized) => {
+    if (isAuthorized) {
+      this.setState({ authorized: isAuthorized })
+    }
+    else {
+      this.setState({ authorized: false, user: null, token: null })
+    }
+  }
 
   render() {
     let backdrop;
@@ -133,7 +82,11 @@ class App extends React.Component {
                 render={(props) => (
                   this.state.authorized === true
                     ? <Home />
-                    : <Redirect to="/login" {...props} handleLogin={this.handleLogin} />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )}
               />
 
@@ -141,28 +94,44 @@ class App extends React.Component {
                 render={(props) => (
                   this.state.authorized === true
                     ? <Products />
-                    : <Login {...props} handleLogin={this.handleLogin} />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )} />
 
               <Route exact path="/orders"
                 render={(props) => (
                   this.state.authorized === true
                     ? <Orders />
-                    : <Login {...props} handleLogin={this.handleLogin} />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )} />
 
               <Route exact path="/inventory"
                 render={(props) => (
                   this.state.authorized === true
                     ? <Inventory />
-                    : <Login {...props} handleLogin={this.handleLogin} />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )} />
 
               <Route exact path="/manufacturing"
-                render={() => (
+                render={(props) => (
                   this.state.authorized === true
                     ? <Manufacturing />
-                    : <Login handleLogin={this.handleLogin} />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )} />
 
 
@@ -174,7 +143,12 @@ class App extends React.Component {
 
               <Route
                 exact path="/login"
-                render={(props) => (<Login {...props} handleLogin={this.handleLogin} auth={this.authorized} />)}
+                render={(props) => (
+                  <Login {...props}
+                    handleLogin={this.handleLogin}
+                    authorizeUser={this.authorizeUser}
+                    updateUser={this.updateUser}
+                  />)}
               />
 
             </Switch>
