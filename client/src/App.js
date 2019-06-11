@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import Nav from "./components/Nav";
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
@@ -13,67 +13,25 @@ import Manufacturing from "./pages/Manufacturing";
 import Inventory from "./pages/Inventory";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { isNull } from "util";
 
 class App extends React.Component {
   state = {
-    user: "",
-    token: "",
+    user: null,
+    token: null,
+    authorized: null,
     sideDrawerOpen: false
   };
 
-  login = (route, data) => {
-    console.log("trying to log in...");
-
-    axios.post(route, data).then(response => {
-      console.log("Trying to send some data to login");
-
-      this.setState(
-        { user: response.data.email, token: response.data.token },
-        () => {
-          console.log(this.state);
-
-          this.validUser();
-        }
-      );
-    });
-  };
-
-  handleLogin = data => {
-    console.log(data);
-
-    this.login("/user/login", data);
-  };
-
-  signup = (route, data) => {
-    console.log("trying to sign-up");
-
-    axios(route, data).then(response => {
-      this.setState(
-        { user: response.data.email, token: response.data.token },
-        () => {
-          console.log(this.state);
-
-          console.log(this.validUser());
-        }
-      );
-    });
-  };
-
-  handleSignUp = data => {
-    this.signup("/user/signup", data);
-  };
-
   componentDidMount = () => {
-    // console.log(this.state);
-  };
+    if (localStorage.getItem("token")) {
+      let savedToken = JSON.parse(localStorage.getItem("token"));
+      let savedUser = JSON.parse(localStorage.getItem("user"));
 
-  validUser = () => {
-    axios.post("/user/validate", this.state.token).then(response => {
-      console.log(response.valid);
 
-      return response.valid;
-    });
-  };
+      this.setState({ token: savedToken, user: savedUser, authorized: true })
+    }
+  }
 
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
@@ -84,6 +42,21 @@ class App extends React.Component {
   backdropClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
   };
+
+  updateUser = (inUser, inToken, cb = null) => {
+
+    this.setState({ user: inUser, token: inToken }, cb)
+
+  }
+
+  authorizeUser = (isAuthorized) => {
+    if (isAuthorized) {
+      this.setState({ authorized: isAuthorized })
+    }
+    else {
+      this.setState({ authorized: false, user: null, token: null })
+    }
+  }
 
   render() {
     let backdrop;
@@ -103,30 +76,81 @@ class App extends React.Component {
 
         <Router>
           <div>
-            {/* <Nav /> */}
             <Switch>
-              <Route
-                exact
-                path="/signup"
-                render={props =>
-                  !this.validUser() && (
-                    <Signup {...props} handleSignUp={this.handleSignUp} />
-                  )
-                }
-              />
 
-              <Route
-                exact
-                path="/login"
-                render={props => (
-                  <Login {...props} handleLogin={this.handleLogin} />
+              <Route exact path='/'
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Home />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
                 )}
               />
-              <Route exact path="/" component={Home} />
-              <Route exact path="/products" component={Products} />
-              <Route exact path="/orders" component={Orders} />
-              <Route exact path="/inventory" component={Inventory} />
-              <Route exact path="/manufacturing" component={Manufacturing} />
+
+              <Route exact path="/products"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Products />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
+                )} />
+
+              <Route exact path="/orders"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Orders />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
+                )} />
+
+              <Route exact path="/inventory"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Inventory />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
+                )} />
+
+              <Route exact path="/manufacturing"
+                render={(props) => (
+                  this.state.authorized === true
+                    ? <Manufacturing />
+                    : <Login {...props}
+                      handleLogin={this.handleLogin}
+                      authorizeUser={this.authorizeUser}
+                      updateUser={this.updateUser}
+                    />
+                )} />
+
+
+
+              {/* <Route path="/products" component={Products} />
+              <Route path="/orders" component={Orders} />
+              <Route path="/inventory" component={Inventory} />
+              <Route path="/manufacturing" component={Manufacturing} /> */}
+
+              <Route
+                exact path="/login"
+                render={(props) => (
+                  <Login {...props}
+                    handleLogin={this.handleLogin}
+                    authorizeUser={this.authorizeUser}
+                    updateUser={this.updateUser}
+                  />)}
+              />
+
             </Switch>
           </div>
         </Router>

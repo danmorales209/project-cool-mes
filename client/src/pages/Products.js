@@ -244,7 +244,7 @@ class Products extends Component {
                 />
               </FormGroup>
 
-              <h5>Description</h5>
+              <h5>Product Description</h5>
 
               <FormGroup>
                 <Input
@@ -255,7 +255,7 @@ class Products extends Component {
                 />
               </FormGroup>
 
-              <h5>Yield</h5>
+              <h5>Total Yield</h5>
 
               <FormGroup>
                 <Input
@@ -269,7 +269,8 @@ class Products extends Component {
               <FormGroup>
                 {
                   <div>
-                    <h5>Directions</h5>
+                    <h4>Add a Step</h4>
+                    <h6>Write directions for this step here:</h6>
                     <Input
                       id="directions"
                       name="directions"
@@ -277,20 +278,18 @@ class Products extends Component {
                       onChange={this.handleInputChange}
                     />
 
-                    <h5>Added Inventory</h5>
-
-                    <ListGroup>
-                      {this.state.renderIngredArray.map((data, i) => (
-                        <ListStuff obj={data} key={i} />
-                      ))}
-                    </ListGroup>
+                    <h6>Add ingredients for this step here:</h6>
 
                     <Dropdown
-                      className="moveDown"
+                      // className="moveDown"
                       isOpen={this.state.openIngred}
                       toggle={this.toggleInventory}
                     >
-                      <DropdownToggle caret>Add Ingredients</DropdownToggle>
+                      <DropdownToggle caret>
+                        {this.state.ingredientName === ""
+                          ? "Choose Ingredient"
+                          : this.state.ingredientName}
+                      </DropdownToggle>
 
                       <DropdownMenu>
                         {this.state.allInventory.map((el, i) => (
@@ -310,21 +309,8 @@ class Products extends Component {
                       </DropdownMenu>
                     </Dropdown>
 
-                    <Button
-                      color="success"
-                      onClick={() => {
-                        this.pushIngred();
-                        this.renderIngred();
-                      }}
-                    >
-                      Add Ingredient and Quantity
-                    </Button>
-
-                    <h3 className="moveDown">X</h3>
-
                     <Form>
                       <FormGroup>
-                        <h5>Quantity</h5>
                         <Input
                           onChange={this.handleInputChange}
                           name="quantity"
@@ -334,15 +320,26 @@ class Products extends Component {
                       </FormGroup>
                     </Form>
 
-                    <h5>Added Equipment</h5>
+                    <h6>Click button to add ingredient to step:</h6>
 
+                    <Button
+                      color="success"
+                      onClick={() => {
+                        this.pushIngred();
+                        this.renderIngred();
+                      }}
+                    >
+                      Add to Step
+                    </Button>
+
+                    <h6>Ingredients added:</h6>
                     <ListGroup>
-                      {this.state.renderEquipArray.map((data, i) => (
-                        <ListGroupItem obj={data} key={i}>
-                          {data}
-                        </ListGroupItem>
+                      {this.state.renderIngredArray.map((data, i) => (
+                        <ListStuff obj={data} key={i} />
                       ))}
                     </ListGroup>
+
+                    <h6>Select equipment for this step:</h6>
 
                     <Dropdown
                       className="longer"
@@ -369,7 +366,14 @@ class Products extends Component {
                       </DropdownMenu>
                     </Dropdown>
 
-                    <h5>Step Duration</h5>
+                    <h6>Eqiupment added:</h6>
+                    <ListGroup>
+                      {this.state.renderEquipArray.map((data, i) => (
+                        <ListGroupItem obj={data} key={i}>
+                          {data}
+                        </ListGroupItem>
+                      ))}
+                    </ListGroup>
 
                     <FormGroup>
                       <Input
@@ -380,12 +384,12 @@ class Products extends Component {
                       />
                     </FormGroup>
 
-                    <Button onClick={this.handleNextStep}>Next Step</Button>
+                    <Button onClick={this.handleNextStep}>Save Step</Button>
                   </div>
                 }
               </FormGroup>
             </Col>
-            <Col size="md-5">
+            <Col size="md-5" className="stepsList">
               <Button
                 color="success"
                 onClick={() => {
