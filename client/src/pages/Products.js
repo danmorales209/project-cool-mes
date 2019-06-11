@@ -208,6 +208,7 @@ class Products extends Component {
               <h3>Current Products</h3>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-12">
               <Slider {...settings}>
@@ -223,6 +224,7 @@ class Products extends Component {
               </Slider>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-12">
               <h3>Product Form</h3>
