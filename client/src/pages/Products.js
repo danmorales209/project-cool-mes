@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import { Col, Row, Container } from "../components/Grid";
 import axios from "axios";
+import Slider from "react-slick";
 import ProductCard from "../components/ProductCards";
 import ListStuff from "../components/ListStuff";
 
@@ -192,26 +193,38 @@ class Products extends Component {
   };
 
   render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4
+    };
     return (
       <div className="container">
         <Container fluid>
           <Row>
             <Col size="md-12">
               <h3>Current Products</h3>
-
-              {/* carousel wouuld go inside this row */}
-              {this.state.allProducts.map((data, i) => (
-                <Col size="md-3">
-                  <ProductCard
-                    delete={id => this.handleDeleteRecipe(id)}
-                    obj={data}
-                    key={i}
-                  />
-                </Col>
-              ))}
-
-              {/* carousel should be above the Product Form Heading  */}
-
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
+              <Slider {...settings}>
+                {this.state.allProducts.map((data, i) => (
+                  <div>
+                    <ProductCard
+                      delete={id => this.handleDeleteRecipe(id)}
+                      obj={data}
+                      key={i}
+                    />
+                  </div>
+                ))}
+              </Slider>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
               <h3>Product Form</h3>
             </Col>
           </Row>
