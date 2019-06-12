@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ManufacturingCard from "../components/ManufacturingCard/manufacturingCard";
 import axios from "axios";
+import Slider from "react-slick";
 import { Col, Row, Container } from "../components/Grid";
 import RecipeSteps from "../components/RecipeSteps/index";
 
@@ -80,6 +81,13 @@ class Manufacturing extends Component {
   };
 
   render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4
+    };
     return (
 
       <div className="container">
@@ -92,17 +100,21 @@ class Manufacturing extends Component {
           </Row>
 
           <Row>
-            {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.newOrders.map((el, i) => (
-                <Col size="md-3">
-                  <ManufacturingCard
-                    obj={el}
-                    key={i}
-                    clickStart={id => this.handlePriority(id, 1, "In Progress")}
-
-                  />
-                </Col>
-              ))}
+            <Col size="md-12">
+              {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+                <Slider {...settings}>
+                  {this.state.newOrders.map((el, i) => (
+                    <div>
+                      <ManufacturingCard
+                        obj={el}
+                        key={i}
+                        clickStart={id => this.handlePriority(id, 1, "In Progress")}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              }
+            </Col>
           </Row>
 
           <Row>
@@ -113,15 +125,17 @@ class Manufacturing extends Component {
 
           <Row>
             {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.inProgressOrders.map((el, i) => (
-                <Col size="md-3">
-                  <ManufacturingCard
-                    obj={el}
-                    key={i}
-                    clickSteps={id => this.handleShowSteps(id)}
-                  />
-                </Col>
-              ))
+              <Slider {...settings}>
+                {this.state.inProgressOrders.map((el, i) => (
+                  <div>
+                    <ManufacturingCard
+                      obj={el}
+                      key={i}
+                      clickSteps={id => this.handleShowSteps(id)}
+                    />
+                  </div>
+                ))}
+              </Slider>
             }
           </Row>
 

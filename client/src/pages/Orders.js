@@ -4,6 +4,7 @@ import axios from "axios";
 // import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import OrderCard from "../components/OrderCards";
+import Slider from "react-slick";
 import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Orders extends React.Component {
@@ -67,7 +68,7 @@ class Orders extends React.Component {
   loadOrders = () => {
     axios.get("/api/order/GET").then((res) => {
       this.setState({
-        newOrders: res.data.filter(orders => orders.priority === 1 || 0),
+        newOrders: res.data.filter(orders => orders.priority === 0 || 1),
         completedOrders: res.data.filter(orders => orders.priority === 2),
       });
     })
@@ -91,10 +92,17 @@ class Orders extends React.Component {
     }));
   }
   handleCheckInventory = () => {
-    
+
   }
 
   render() {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4
+    };
     return (
       <div className="container">
         <Container fluid>
@@ -104,8 +112,13 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.newOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
+            <Col size="md-12">
+              {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+                <Slider {...settings}>
+                  {this.state.newOrders.map((data, i) => <div><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></div>)}
+                </Slider>
+              }
+            </Col>
           </Row>
           <Row>
             <Col size="md-12">
@@ -113,8 +126,13 @@ class Orders extends React.Component {
             </Col>
           </Row>
           <Row>
-            {this.state.completedOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
+            <Col size="md-12">
+              {this.state.completedOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+                <Slider {...settings}>
+                  {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
+                </Slider>
+              }
+            </Col>
           </Row>
           <Row>
             <Col size="md-12">
