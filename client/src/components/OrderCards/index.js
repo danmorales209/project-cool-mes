@@ -6,7 +6,6 @@ import {
 
 
 const OrderCard = (props) => {
-  console.log(props.obj, "line 9")
   return (
     <>
       <Card>
