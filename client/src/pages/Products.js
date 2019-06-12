@@ -208,8 +208,8 @@ class Products extends Component {
 
   render() {
     let number;
-    if(this.state.newOrders.length<4){
-      number=this.state.newOrders.length
+    if(this.state.allProducts.length<4){
+      number=this.state.allProducts.length
     }
     else{
       number=4
@@ -218,8 +218,8 @@ class Products extends Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToShow: number,
+      slidesToScroll: number
     };
 
     let renderArray = this.state.showMySteps.map((e, index) => (
@@ -325,7 +325,6 @@ class Products extends Component {
                     <h6>Add ingredients for this step here:</h6>
 
                     <Dropdown
-                      // className="moveDown"
                       isOpen={this.state.openIngred}
                       toggle={this.toggleInventory}
                     >
