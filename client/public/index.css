@@ -135,6 +135,16 @@ input {
   font-size: 10pt;
 }
 
+.slick-next:before, .slick-prev:before {
+  font-size: 30px;
+  line-height: 1;
+  opacity: .75;
+  color: #29b6f6;
+}
+.slick-dots {
+  color: #29b6f6;
+}
+
 /* On screens that are 992px wide or less, go from four columns to two columns */
 @media screen and (max-width: 992px) {
   .column {
