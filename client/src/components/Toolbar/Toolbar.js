@@ -34,7 +34,7 @@ const toolbar = props => (
           <li>
             {props.authorized === true
               ? <a href="/" onClick={props.logout}>Logout</a>
-              : <a href="/login">Login</a>
+              : null
             }
 
           </li>
