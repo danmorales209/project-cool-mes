@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-// import Nav from "./components/Nav";
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
@@ -58,6 +57,18 @@ class App extends React.Component {
     }
   }
 
+  logout = () => {
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    this.setState({
+      user: null,
+      password: null,
+      authorized: false
+    });
+  }
+
   render() {
     let backdrop;
 
@@ -66,8 +77,8 @@ class App extends React.Component {
     }
     return (
       <div style={{ height: "100%" }}>
-        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-        <SideDrawer show={this.state.sideDrawerOpen} />
+        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} authorized={this.state.authorized} logout={this.logout}/>
+        <SideDrawer show={this.state.sideDrawerOpen} authorized={this.state.authorized} />
         {backdrop}
 
         <main style={{ marginTop: "64px" }}>
