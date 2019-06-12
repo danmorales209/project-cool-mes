@@ -57,6 +57,18 @@ class App extends React.Component {
     }
   }
 
+  logout = () => {
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    this.setState({
+      user: null,
+      password: null,
+      authorized: false
+    });
+  }
+
   render() {
     let backdrop;
 
@@ -65,7 +77,7 @@ class App extends React.Component {
     }
     return (
       <div style={{ height: "100%" }}>
-        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} authorized={this.state.authorized} />
+        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} authorized={this.state.authorized} logout={this.logout}/>
         <SideDrawer show={this.state.sideDrawerOpen} authorized={this.state.authorized} />
         {backdrop}
 

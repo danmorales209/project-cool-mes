@@ -33,7 +33,7 @@ const toolbar = props => (
           </li>
           <li>
             {props.authorized === true
-              ? <Logout />
+              ? <a href="/" onClick={props.logout}>Logout</a>
               : <a href="/login">Login</a>
             }
 

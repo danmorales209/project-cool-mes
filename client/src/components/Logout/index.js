@@ -4,7 +4,7 @@ import {Button} from 'reactstrap';
 const Logout = (props) => {
     return (
         <>
-            <Button>Logout</Button>
+            <a>Logout</a>
         </>
     );
 
