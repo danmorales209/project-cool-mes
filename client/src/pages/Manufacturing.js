@@ -81,12 +81,22 @@ class Manufacturing extends Component {
   };
 
   render() {
+    
+    let number;
+    
+    if (this.state.newOrders.length < 4) {
+     number = this.state.newOrders.length; 
+    }
+    else {
+     number = 4; 
+    }
+    
     var settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4
+      slidesToShow: number,
+      slidesToScroll: number
     };
     return (
 
