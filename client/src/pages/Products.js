@@ -45,7 +45,9 @@ class Products extends Component {
     openIngred: "",
     allEquipment: [],
     allInventory: [],
-    allProducts: []
+    allProducts: [],
+
+    showMySteps: []
   };
 
   handlePostProduct = () => {
@@ -117,6 +119,18 @@ class Products extends Component {
       equipmentType: this.state.equipmentType,
       duration: this.state.duration
     });
+
+    let stepObject = {
+      directions: this.state.directions,
+      equipment: this.state.renderEquipArray,
+      ingredients: this.state.renderIngredArray
+    };
+
+    this.setState({
+      showMySteps: [...this.state.showMySteps, stepObject]
+    });
+
+    console.log(stepObject);
 
     return (
       // Take steps arr and add another array item with and increased value of 1 each time
@@ -392,11 +406,13 @@ class Products extends Component {
                     </FormGroup>
 
                     <Button onClick={this.handleNextStep}>Save Step</Button>
+                    {/* click this button to render the stepObject */}
                   </div>
                 }
               </FormGroup>
             </Col>
             <Col size="md-5" className="stepsList">
+              {/* stepObject needs to render here */}
               <Button
                 color="success"
                 onClick={() => {
