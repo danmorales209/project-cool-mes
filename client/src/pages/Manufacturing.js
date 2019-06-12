@@ -124,19 +124,21 @@ class Manufacturing extends Component {
           </Row>
 
           <Row>
-            {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              <Slider {...settings}>
-                {this.state.inProgressOrders.map((el, i) => (
-                  <div>
-                    <ManufacturingCard
-                      obj={el}
-                      key={i}
-                      clickSteps={id => this.handleShowSteps(id)}
-                    />
-                  </div>
-                ))}
-              </Slider>
-            }
+            <Col size="md-12">
+              {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
+                <Slider {...settings}>
+                  {this.state.inProgressOrders.map((el, i) => (
+                    <div>
+                      <ManufacturingCard
+                        obj={el}
+                        key={i}
+                        clickSteps={id => this.handleShowSteps(id)}
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              }
+            </Col>
           </Row>
 
           <Row>

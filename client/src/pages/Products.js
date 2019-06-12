@@ -207,6 +207,13 @@ class Products extends Component {
   };
 
   render() {
+    let number;
+    if(this.state.newOrders.length<4){
+      number=this.state.newOrders.length
+    }
+    else{
+      number=4
+    }
     var settings = {
       dots: true,
       infinite: true,
