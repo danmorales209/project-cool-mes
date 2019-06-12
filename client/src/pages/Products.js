@@ -51,15 +51,22 @@ class Products extends Component {
   };
 
   handlePostProduct = () => {
-    this.handleNextStep();
+
+    let data = {
+      name: this.state.productName,
+      description: this.state.description,
+      steps: this.state.steps,
+      yield: this.state.yield
+    };
+
+  
+
     axios
-      .post("/api/recipe/POST", {
-        name: this.state.productName,
-        description: this.state.description,
-        steps: this.state.steps,
-        yield: this.state.yield
-      })
+      .post("/api/recipe/POST", data)
       .then(res => {
+
+        console.log(res)
+
         this.setState({
           productName: "",
           description: "",
@@ -123,7 +130,8 @@ class Products extends Component {
     let stepObject = {
       directions: this.state.directions,
       equipment: this.state.renderEquipArray,
-      ingredients: this.state.renderIngredArray
+      ingredients: this.state.renderIngredArray,
+      duration: this.state.duration
     };
 
     this.setState({
@@ -208,11 +216,11 @@ class Products extends Component {
 
   render() {
     let number;
-    if(this.state.allProducts.length<4){
-      number=this.state.allProducts.length
+    if (this.state.allProducts.length < 4) {
+      number = this.state.allProducts.length
     }
-    else{
-      number=4
+    else {
+      number = 4
     }
     var settings = {
       dots: true,
@@ -238,9 +246,7 @@ class Products extends Component {
             <li>{`${i.quantity} of ${i.ingredientName}`}</li>
           ))}
         </ul>
-        {e.duration.map(i => (
-          <p>{`duration of step is ${i.druation} minutes`}</p>
-        ))}
+        <p>{`duration of step is ${e.duration} minutes`}</p>
       </div>
     ));
 
