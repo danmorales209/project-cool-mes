@@ -33,7 +33,6 @@
     "mongoose": "^5.3.16",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-slick": "^0.24.0",
     "reactstrap": "^8.0.0"
   }
 }
