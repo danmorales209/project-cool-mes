@@ -207,13 +207,43 @@ class Products extends Component {
   };
 
   render() {
+    let number;
+    if(this.state.allProducts.length<4){
+      number=this.state.allProducts.length
+    }
+    else{
+      number=4
+    }
     var settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToShow: number,
+      slidesToScroll: number
     };
+
+    let renderArray = this.state.showMySteps.map((e, index) => (
+      <div>
+        <h6>Step {index + 1}:</h6>
+        <p>{e.directions}</p>
+        <h6>Equipment</h6>
+        <ul>
+          {e.equipment.map(eq => (
+            <li>{eq}</li>
+          ))}
+        </ul>
+        <h6>Ingredients</h6>
+        <ul>
+          {e.ingredients.map(i => (
+            <li>{`${i.quantity} of ${i.ingredientName}`}</li>
+          ))}
+        </ul>
+        {e.duration.map(i => (
+          <p>{`duration of step is ${i.druation} minutes`}</p>
+        ))}
+      </div>
+    ));
+
     return (
       <div className="container">
         <Container fluid>
@@ -295,7 +325,6 @@ class Products extends Component {
                     <h6>Add ingredients for this step here:</h6>
 
                     <Dropdown
-                      // className="moveDown"
                       isOpen={this.state.openIngred}
                       toggle={this.toggleInventory}
                     >
@@ -399,13 +428,13 @@ class Products extends Component {
                     </FormGroup>
 
                     <Button onClick={this.handleNextStep}>Save Step</Button>
-                    {/* click this button to render the stepObject */}
                   </div>
                 }
               </FormGroup>
             </Col>
             <Col size="md-5" className="stepsList">
-              {/* stepObject needs to render here */}
+              {this.state.showMySteps.length <= 0 ? null : renderArray}
+
               <Button
                 color="success"
                 onClick={() => {

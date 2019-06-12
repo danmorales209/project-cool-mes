@@ -124,6 +124,7 @@ class Manufacturing extends Component {
           </Row>
 
           <Row>
+          <Col size="md-12">
             {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
               <Slider {...settings}>
                 {this.state.inProgressOrders.map((el, i) => (
@@ -137,6 +138,7 @@ class Manufacturing extends Component {
                 ))}
               </Slider>
             }
+            </Col>
           </Row>
 
           <Row>

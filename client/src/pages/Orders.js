@@ -54,7 +54,6 @@ class Orders extends React.Component {
         city: "",
         state: "",
         zip: "",
-
       })
     })
   }
@@ -91,17 +90,25 @@ class Orders extends React.Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
-  handleCheckInventory = () => {
+  carouselChange = () => {
 
   }
 
   render() {
+    let number
+    console.log(this.state.newOrders)
+    if (this.state.newOrders.length < 4) {
+      number = this.state.newOrders.length
+    }
+    else {
+      number = 4
+    }
     var settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4
+      slidesToShow: number,
+      slidesToScroll: number
     };
     return (
       <div className="container">
@@ -115,7 +122,11 @@ class Orders extends React.Component {
             <Col size="md-12">
               {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
                 <Slider {...settings}>
-                  {this.state.newOrders.map((data, i) => <div><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></div>)}
+                  {this.state.newOrders.map((data, i) =>
+                    <div>
+                      <OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard>
+                    </div>
+                  )}
                 </Slider>
               }
             </Col>
@@ -129,7 +140,11 @@ class Orders extends React.Component {
             <Col size="md-12">
               {this.state.completedOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
                 <Slider {...settings}>
-                  {this.state.completedOrders.map((data, i) => <Col size="md-3"><OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard></Col>)}
+                  {this.state.completedOrders.map((data, i) =>
+                    <div>
+                      <OrderCard delete={(id) => this.handleDeleteOrder(id)} obj={data} key={i}></OrderCard>
+                    </div>
+                  )}
                 </Slider>
               }
             </Col>
@@ -144,7 +159,9 @@ class Orders extends React.Component {
               <Form>
                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                   <DropdownToggle caret>
-                    Choose a Product
+                    {this.state.productName === ""
+                      ? "Choose Product"
+                      : this.state.productName}
                     </DropdownToggle>
                   <DropdownMenu>
                     {this.state.products.map((el, i) =>
