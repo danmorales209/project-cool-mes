@@ -386,11 +386,13 @@ class Products extends Component {
                     </FormGroup>
 
                     <Button onClick={this.handleNextStep}>Save Step</Button>
+                    {/* click this button to render the stepObject */}
                   </div>
                 }
               </FormGroup>
             </Col>
             <Col size="md-5" className="stepsList">
+              {/* stepObject needs to render here */}
               <Button
                 color="success"
                 onClick={() => {
