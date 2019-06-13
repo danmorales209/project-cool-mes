@@ -16,6 +16,7 @@ body {
 .carousel-inner{
   height: 500px;
   width: 1200px;
+  margin:20px;
 }
 
 .bg-primary {
@@ -161,6 +162,15 @@ input {
   .column {
     flex: 50%;
   }
+  .carousel-inner{
+    height: 156px;
+    width: 400px;
+    margin:20px;
+  }
+  .carousel-item img{
+    height: 156px;
+    width: 400px;
+  }
 }
 
 /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
@@ -185,6 +195,15 @@ input {
   h2 {
     font-size: 20px;
   }
+}
+.carousel-inner{
+  height: 156px;
+  width: 400px;
+  margin:20px;
+}
+.carousel-item img{
+  height: 156px;
+  width: 400px;
 }
 
 .add-equipment-field {

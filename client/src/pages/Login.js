@@ -134,9 +134,9 @@ export default class Login extends React.Component {
       <div className="container">
 
         <Row>
-          <Col size="md-12">
+          
             <LogInCarousel />
-          </Col>
+          
         </Row>
 
         <Row>
