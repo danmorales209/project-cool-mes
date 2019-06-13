@@ -7,6 +7,11 @@ body {
   background-color: #eaf1f5;
 }
 
+.carousel-inner{
+  height: 500px;
+  width: 1200px;
+}
+
 .bg-primary {
   background-color: #29b6f6 !important;
 }
