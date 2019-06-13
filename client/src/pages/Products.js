@@ -51,7 +51,6 @@ class Products extends Component {
   };
 
   handlePostProduct = () => {
-
     let data = {
       name: this.state.productName,
       description: this.state.description,
@@ -59,21 +58,16 @@ class Products extends Component {
       yield: this.state.yield
     };
 
-  
+    axios.post("/api/recipe/POST", data).then(res => {
+      console.log(res);
 
-    axios
-      .post("/api/recipe/POST", data)
-      .then(res => {
-
-        console.log(res)
-
-        this.setState({
-          productName: "",
-          description: "",
-          yield: "",
-          steps: []
-        });
+      this.setState({
+        productName: "",
+        description: "",
+        yield: "",
+        steps: []
       });
+    });
   };
 
   componentDidMount() {
@@ -217,10 +211,9 @@ class Products extends Component {
   render() {
     let number;
     if (this.state.allProducts.length < 4) {
-      number = this.state.allProducts.length
-    }
-    else {
-      number = 4
+      number = this.state.allProducts.length;
+    } else {
+      number = 4;
     }
     var settings = {
       dots: true,
@@ -246,7 +239,7 @@ class Products extends Component {
             <li>{`${i.quantity} of ${i.ingredientName}`}</li>
           ))}
         </ul>
-        <p>{`duration of step is ${e.duration} minutes`}</p>
+        <p>{`Step duration= ${e.duration} minutes`}</p>
       </div>
     ));
 
