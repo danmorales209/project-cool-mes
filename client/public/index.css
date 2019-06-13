@@ -5,6 +5,17 @@ html {
 body {
   height: 100%;
   background-color: #eaf1f5;
+  /* background:url(./images/hex.jpg);
+  background-attachment: fixed;
+  -webkit-background-size: cover; 
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+}
+
+.carousel-inner{
+  height: 500px;
+  width: 1200px;
 }
 
 .bg-primary {

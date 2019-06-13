@@ -8,16 +8,28 @@ import {
 
 const items = [
   {
-    src: './images/banner1140x400.png',
+    src: './images/man.jpg',
     altText: 'Slide 1'
   },
   {
-    src: './images/banner1140x400.png',
+    src: './images/business.jpeg',
     altText: 'Slide 2'
   },
   {
-    src: './images/banner1140x400.png',
-    altText: 'Slide 3'
+    src: './images/small2.jpg',
+    altText: 'Slide 4'
+  },
+  {
+    src: './images/world.jpg',
+    altText: 'Slide 5'
+  },
+  {
+    src: './images/smallbusiness.jpg',
+    altText: 'Slide 6'
+  },
+  {
+    src: './images/factory.jpg',
+    altText: 'Slide 6'
   }
 ];
 
