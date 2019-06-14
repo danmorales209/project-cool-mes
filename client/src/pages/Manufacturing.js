@@ -82,7 +82,7 @@ class Manufacturing extends Component {
 
   render() {
     
-    let number;
+     let number;
     
     if (this.state.newOrders.length < 4) {
      number = this.state.newOrders.length; 
@@ -105,6 +105,7 @@ class Manufacturing extends Component {
       slidesToShow: number,
       slidesToScroll: number
     };
+    
     return (
 
       <div className="container">
@@ -119,7 +120,7 @@ class Manufacturing extends Component {
           <Row>
             <Col size="md-12">
               {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-                <Slider {...settings}>
+                <Slider {...settingsNew}>
                   {this.state.newOrders.map((el, i) => (
                     <div>
                       <ManufacturingCard
@@ -143,7 +144,7 @@ class Manufacturing extends Component {
           <Row>
           <Col size="md-12">
             {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              <Slider {...settings}>
+              <Slider {...settingsIP}>
                 {this.state.inProgressOrders.map((el, i) => (
                   <div>
                     <ManufacturingCard
