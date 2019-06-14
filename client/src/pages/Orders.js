@@ -103,6 +103,13 @@ class Orders extends React.Component {
     else {
       number = 4
     }
+
+    if (this.state.completedOrders.length < 4) {
+      number = this.state.completedOrders.length; 
+     }
+     else {
+      number = 4; 
+     }
     var settings = {
       dots: true,
       infinite: true,

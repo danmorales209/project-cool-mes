@@ -82,37 +82,30 @@ class Manufacturing extends Component {
 
   render() {
     
-    let newNumber, ipNumber;
+     let number;
     
     if (this.state.newOrders.length < 4) {
-     newNumber = this.state.newOrders.length; 
+     number = this.state.newOrders.length; 
     }
     else {
-     newNumber = 4; 
+     number = 4; 
     }
     
     if (this.state.inProgressOrders.length < 4) {
-      ipNumber= this.state.inProgressOrders.length;
-    }
-    else {
-     ipnumber = 4; 
-    }
-    
-    let settingsNew = {
+      number = this.state.inProgressOrders.length; 
+     }
+     else {
+      number = 4; 
+     }
+
+    var settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: newNumber,
-      slidesToScroll: newNumber
+      slidesToShow: number,
+      slidesToScroll: number
     };
     
-    let settingsIP = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: ipNumber,
-      slidesToScroll: ipNumber
-    };
     return (
 
       <div className="container">
