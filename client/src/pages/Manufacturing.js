@@ -91,6 +91,13 @@ class Manufacturing extends Component {
      number = 4; 
     }
     
+    if (this.state.inProgressOrders.length < 4) {
+      number = this.state.inProgressOrders.length; 
+     }
+     else {
+      number = 4; 
+     }
+
     var settings = {
       dots: true,
       infinite: true,
