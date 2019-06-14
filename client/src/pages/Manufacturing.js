@@ -82,21 +82,36 @@ class Manufacturing extends Component {
 
   render() {
     
-    let number;
+    let newNumber, ipNumber;
     
     if (this.state.newOrders.length < 4) {
-     number = this.state.newOrders.length; 
+     newNumber = this.state.newOrders.length; 
     }
     else {
-     number = 4; 
+     newNumber = 4; 
     }
     
-    var settings = {
+    if (this.state.inProgressOrders.length < 4) {
+      ipNumber= this.state.inProgressOrders.length;
+    }
+    else {
+     ipnumber = 4; 
+    }
+    
+    let settingsNew = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: number,
-      slidesToScroll: number
+      slidesToShow: newNumber,
+      slidesToScroll: newNumber
+    };
+    
+    let settingsIP = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: ipNumber,
+      slidesToScroll: ipNumber
     };
     return (
 
@@ -112,7 +127,7 @@ class Manufacturing extends Component {
           <Row>
             <Col size="md-12">
               {this.state.newOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-                <Slider {...settings}>
+                <Slider {...settingsNew}>
                   {this.state.newOrders.map((el, i) => (
                     <div>
                       <ManufacturingCard
@@ -136,7 +151,7 @@ class Manufacturing extends Component {
           <Row>
           <Col size="md-12">
             {this.state.inProgressOrders.length === 0 ? <h3 className="noOrder">No Orders Available</h3> :
-              <Slider {...settings}>
+              <Slider {...settingsIP}>
                 {this.state.inProgressOrders.map((el, i) => (
                   <div>
                     <ManufacturingCard
