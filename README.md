@@ -1,3 +1,7 @@
+# Note:
+
+This project has been archived- the MongoDB server associated with the deployed instance was removed and is no longer available. The project should still be to run locally. If one of us gets around to updating the configuration then we can consider redeploying.
+
 # MAKE.iT
 
 This is an application designed for small businesses to keep track of their manufacturing process. This will help store inventory, orders, product recipes, as well as how far along the in the manufacturing process an active order is. The value in this application is the automatic processes that happen between the different pages such as upon order completion the inventory is updated.
